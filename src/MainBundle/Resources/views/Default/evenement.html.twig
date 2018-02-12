@@ -1,0 +1,76 @@
+{% extends 'front.html.twig' %}
+
+
+
+
+{% block content %}
+    <link rel="stylesheet" href="{{ asset('canvas/css/style.css') }}" type="text/css" />
+
+
+    <link rel="stylesheet" href="{{ asset('canvas/css/responsive.css') }}" type="text/css" />
+    <section id="page-title">
+
+        <div class="container clearfix">
+            <h1>Events List</h1>
+            <span>Showcase of Events in Full Width Layout</span>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Events</li>
+            </ol>
+        </div>
+
+    </section><
+
+    <!-- Content
+    ============================================= -->
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+
+                <div id="posts" class="events small-thumbs">
+
+                        <div class="entry clearfix">
+                            <div class="entry-image">
+                                <a href="#">
+                                    <img src="images/events/thumbs/1.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
+                                    <div class="entry-date">10<span>Apr</span></div>
+                                </a>
+                            </div>
+                            <div class="entry-c">
+                                <div class="entry-title">
+                                    <h2><a href="#">tertterte</a></h2>
+                                </div>
+                                <ul class="entry-meta clearfix">
+                                    <li><span class="badge badge-warning">Private</span></li>
+                                    <li><a href="#"><i class="icon-time"></i> tereerterter</a></li>
+                                    <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
+                                </ul>
+                                <div class="entry-content">
+                                    <p>ertetrte</p>
+                                    <a href="#" class="btn btn-secondary" disabled="disabled">Buy Tickets</a> <a href="#" class="btn btn-danger">Read More</a>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Pagination
+        ============================================= -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <a href="#" class="btn btn-outline-secondary float-left">&larr; Older</a>
+                <a href="#" class="btn btn-outline-dark float-right">Newer &rarr;</a>
+            </div>
+        </div>
+        <!-- .pager end -->
+
+
+    </section><!-- #content end -->
+{% endblock %}

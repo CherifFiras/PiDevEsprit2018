@@ -1,0 +1,15 @@
+main_homepage:
+    path:     /
+    defaults: { _controller: MainBundle:Default:index }
+
+forum:
+    path:     /forum
+    defaults: { _controller: MainBundle:Default:Forum }
+
+evenements:
+    path:     /evenement
+    defaults: { _controller: MainBundle:Default:Evenement }
+
+profile:
+    path:     /espaces
+    defaults: { _controller: MainBundle:Default:Espaces }
