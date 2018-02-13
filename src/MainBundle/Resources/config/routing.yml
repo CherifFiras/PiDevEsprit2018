@@ -1,11 +1,7 @@
 main_homepage:
     path:     /
     defaults: { _controller: MainBundle:Default:index }
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> 939e632455e2d9640d01a9eacdeab23e439f8798
 loginadmin:
     path:     /loginadmin
     defaults: { _controller: MainBundle:AdminSecurity:login }
