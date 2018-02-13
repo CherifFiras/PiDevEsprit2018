@@ -6,11 +6,8 @@
 
         <div class="container clearfix">
             <h1>Events List</h1>
-            <span>Showcase of Events in Full Width Layout</span>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Events</li>
-            </ol>
+            <span>Showcase of Events for you</span>
+
         </div>
 
     </section><
@@ -28,7 +25,7 @@
                         <div class="entry clearfix">
                             <div class="entry-image">
                                 <a href="#">
-                                    <img src="{{ evenement.photo }}" alt="Inventore voluptates velit totam ipsa tenetur">
+                                    <img src="{{ evenement.photo }}" alt="Inventore voluptates velit totam ipsa tenetur" height="200px" width="200px">
                                 </a>
                             </div>
                             <div class="entry-c">
@@ -36,9 +33,10 @@
                                     <h2><a href="#">{{ evenement.titre }}</a></h2>
                                 </div>
                                 <ul class="entry-meta clearfix">
-                                    <li><span class="badge badge-warning">Private</span></li>
                                     <li><a href="#"><i class="icon-time"></i> {{ evenement.dateEvenement | date }}</a></li>
                                     <li><a href="#"><i class="icon-map-marker2"></i>{{ evenement.titreCordination }}</a></li>
+                                    <li><a href="#"><i class="icon-map-marker2"></i>{{ evenement.lat }}</a></li>
+                                    <li><a href="#"><i class="icon-map-marker2"></i>{{ evenement.longi }}</a></li>
                                 </ul>
                                 <div class="entry-content">
                                     <p>{{ evenement.description }}</p>
@@ -58,12 +56,7 @@
 
         <!-- Pagination
         ============================================= -->
-        <div class="row mb-3">
-            <div class="col-12">
-                <a href="#" class="btn btn-outline-secondary float-left">&larr; Older</a>
-                <a href="#" class="btn btn-outline-dark float-right">Newer &rarr;</a>
-            </div>
-        </div>
+
         <!-- .pager end -->
 
     </section><!-- #content end -->
