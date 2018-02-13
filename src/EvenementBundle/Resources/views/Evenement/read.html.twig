@@ -1,0 +1,63 @@
+
+{% extends 'front.html.twig' %}
+
+{% block content %}
+    <section id="page-title">
+
+        <div class="container clearfix">
+            <h1>Events List</h1>
+            <span>Showcase of Events for you</span>
+
+        </div>
+
+    </section><
+
+    <!-- Content
+    ============================================= -->
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+
+                <div id="posts" class="events small-thumbs">
+                    {% for evenement in evenements  %}
+                        <div class="entry clearfix">
+                            <div class="entry-image">
+                                <a href="#">
+                                    <img src="{{ evenement.photo }}" alt="Inventore voluptates velit totam ipsa tenetur" height="200px" width="200px">
+                                </a>
+                            </div>
+                            <div class="entry-c">
+                                <div class="entry-title">
+                                    <h2><a href="#">{{ evenement.titre }}</a></h2>
+                                </div>
+                                <ul class="entry-meta clearfix">
+                                    <li><a href="#"><i class="icon-time"></i> {{ evenement.dateEvenement | date }}</a></li>
+                                    <li><a href="#"><i class="icon-map-marker2"></i>{{ evenement.titreCordination }}</a></li>
+                                    <li><a href="#"><i class="icon-map-marker2"></i>{{ evenement.lat }}</a></li>
+                                    <li><a href="#"><i class="icon-map-marker2"></i>{{ evenement.longi }}</a></li>
+                                </ul>
+                                <div class="entry-content">
+                                    <p>{{ evenement.description }}</p>
+                                    <a href="#" class="btn btn-danger">Read More</a>
+                                    <a href="{{ path('update_evenement',{'id': evenement.id }) }}" class="btn btn-danger">Modifier</a>
+                                    <a href="{{ path('delete_evenement',{'id': evenement.id }) }}" class="btn btn-danger">Supprimer</a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Pagination
+        ============================================= -->
+
+        <!-- .pager end -->
+
+    </section><!-- #content end -->
+{% endblock %}

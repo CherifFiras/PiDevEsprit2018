@@ -16,11 +16,6 @@ class DefaultController extends Controller
         return $this->render('MainBundle:Default:forum.html.twig');
     }
 
-    public function EvenementAction()
-    {
-        return $this->render('MainBundle:Default:evenement.html.twig');
-    }
-
 
     public function EspacesAction()
     {

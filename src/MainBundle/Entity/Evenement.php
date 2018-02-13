@@ -55,6 +55,12 @@ class Evenement
      * @ORM\Column(name="longi", type="float")
      */
     private $longi;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo", type="string", length=255)
+     */
+    private $photo;
 
     /**
      * @var string
@@ -62,13 +68,6 @@ class Evenement
      * @ORM\Column(name="titreCordination", type="string", length=255)
      */
     private $titreCordination;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="photo", type="string", length=255)
-     */
-    private $photo;
 
 
     /**
