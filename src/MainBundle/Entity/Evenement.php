@@ -69,6 +69,13 @@ class Evenement
      */
     private $titreCordination;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo", type="string", length=255)
+     */
+    private $photo;
+
 
     /**
      * Get id

@@ -2,6 +2,7 @@ main_homepage:
     path:     /
     defaults: { _controller: MainBundle:Default:index }
 
+<<<<<<< HEAD
 forum:
     path:     /forum
     defaults: { _controller: MainBundle:Default:Forum }
@@ -9,3 +10,8 @@ forum:
 profile:
     path:     /espaces
     defaults: { _controller: MainBundle:Default:Espaces }
+=======
+loginadmin:
+    path:     /loginadmin
+    defaults: { _controller: MainBundle:AdminSecurity:login }
+>>>>>>> c5c3fa4714829089cec2681e65555dc8e22dfc54
