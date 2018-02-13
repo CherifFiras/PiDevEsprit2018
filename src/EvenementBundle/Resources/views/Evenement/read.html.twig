@@ -1,13 +1,7 @@
+
 {% extends 'front.html.twig' %}
 
-
-
-
 {% block content %}
-    <link rel="stylesheet" href="{{ asset('canvas/css/style.css') }}" type="text/css" />
-
-
-    <link rel="stylesheet" href="{{ asset('canvas/css/responsive.css') }}" type="text/css" />
     <section id="page-title">
 
         <div class="container clearfix">
@@ -30,32 +24,33 @@
             <div class="container clearfix">
 
                 <div id="posts" class="events small-thumbs">
-
+                    {% for evenement in evenements  %}
                         <div class="entry clearfix">
                             <div class="entry-image">
                                 <a href="#">
-                                    <img src="images/events/thumbs/1.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
-                                    <div class="entry-date">10<span>Apr</span></div>
+                                    <img src="{{ evenement.photo }}" alt="Inventore voluptates velit totam ipsa tenetur">
                                 </a>
                             </div>
                             <div class="entry-c">
                                 <div class="entry-title">
-                                    <h2><a href="#">tertterte</a></h2>
+                                    <h2><a href="#">{{ evenement.titre }}</a></h2>
                                 </div>
                                 <ul class="entry-meta clearfix">
                                     <li><span class="badge badge-warning">Private</span></li>
-                                    <li><a href="#"><i class="icon-time"></i> tereerterter</a></li>
-                                    <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
+                                    <li><a href="#"><i class="icon-time"></i> {{ evenement.dateEvenement | date }}</a></li>
+                                    <li><a href="#"><i class="icon-map-marker2"></i>{{ evenement.titreCordination }}</a></li>
                                 </ul>
                                 <div class="entry-content">
-                                    <p>ertetrte</p>
-                                    <a href="#" class="btn btn-secondary" disabled="disabled">Buy Tickets</a> <a href="#" class="btn btn-danger">Read More</a>
+                                    <p>{{ evenement.description }}</p>
+                                    <a href="#" class="btn btn-danger">Read More</a>
+                                    <a href="{{ path('update_evenement',{'id': evenement.id }) }}" class="btn btn-danger">Modifier</a>
+                                    <a href="{{ path('delete_evenement',{'id': evenement.id }) }}" class="btn btn-danger">Supprimer</a>
 
                                 </div>
                             </div>
                         </div>
 
-
+                    {% endfor %}
                 </div>
             </div>
 
@@ -70,7 +65,6 @@
             </div>
         </div>
         <!-- .pager end -->
-
 
     </section><!-- #content end -->
 {% endblock %}

@@ -1,3 +1,7 @@
+evenement:
+    resource: "@EvenementBundle/Resources/config/routing.yml"
+    prefix:   /
+
 main:
     resource: "@MainBundle/Resources/config/routing.yml"
     prefix:   /
