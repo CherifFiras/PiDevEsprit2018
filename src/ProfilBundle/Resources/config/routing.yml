@@ -1,0 +1,7 @@
+profil_homepage:
+    path:     /profil
+    defaults: { _controller: ProfilBundle:Default:index }
+
+paramInfo:
+    path:     /infoprofil
+    defaults: { _controller: ProfilBundle:Profil:paramsInfo }
