@@ -5,3 +5,7 @@ main_homepage:
 loginadmin:
     path:     /loginadmin
     defaults: { _controller: MainBundle:AdminSecurity:login }
+
+admin:
+    path:     /admin
+    defaults: { _controller: MainBundle:AdminSecurity:admin }

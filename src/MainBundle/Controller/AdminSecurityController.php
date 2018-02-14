@@ -11,4 +11,9 @@ class AdminSecurityController extends SecurityController
     {
         return $this->render('@FOSUser/Security/loginAdmin.html.twig', $data);
     }
+
+    public function adminAction()
+    {
+        return $this->render('@Main/Default/indexadmin.html.twig');
+    }
 }
