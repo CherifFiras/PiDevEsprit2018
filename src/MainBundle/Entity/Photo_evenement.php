@@ -62,5 +62,29 @@ class Photo_evenement
     {
         return $this->url;
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\Evenement")
+     * @ORM\JoinColumn(name="IdEvenement",referencedColumnName="id")
+     *
+     */
+    private $evenement;
+
+    /**
+     * @return mixed
+     */
+    public function getEvenement()
+    {
+        return $this->evenement;
+    }
+
+    /**
+     * @param mixed $evenement
+     */
+    public function setEvenement($evenement)
+    {
+        $this->evenement = $evenement;
+    }
+
 }
 

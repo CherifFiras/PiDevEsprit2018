@@ -93,5 +93,29 @@ class Photo_espace
     {
         return $this->alt;
     }
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\Espace")
+     * @ORM\JoinColumn(name="IdEspace",referencedColumnName="id")
+     *
+     */
+    private $espace;
+
+
+    /**
+     * @return mixed
+     */
+    public function getEspace()
+    {
+        return $this->espace;
+    }
+
+    /**
+     * @param mixed $espace
+     */
+    public function setEspace($espace)
+    {
+        $this->espace = $espace;
+    }
+
 }
 
