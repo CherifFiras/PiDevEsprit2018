@@ -55,6 +55,12 @@ class Evenement
      * @ORM\Column(name="longi", type="float")
      */
     private $longi;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo", type="string", length=255)
+     */
+    private $photo;
 
     /**
      * @var string
@@ -217,5 +223,28 @@ class Evenement
     {
         return $this->titreCordination;
     }
-}
 
+    /**
+     * Set photo
+     *
+     * @param string $photo
+     *
+     * @return Evenement
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+}

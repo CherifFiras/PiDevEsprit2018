@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 profil:
     resource: "@ProfilBundle/Resources/config/routing.yml"
+=======
+evenement:
+    resource: "@EvenementBundle/Resources/config/routing.yml"
+>>>>>>> 36909e5f99b53558f25fde2738a28b7fce0035f1
     prefix:   /
 
 main:

@@ -1,0 +1,16 @@
+
+create_evenement:
+    path:     /evenement/create
+    defaults: { _controller: EvenementBundle:Default:AjouterE }
+
+read_evenement:
+    path:     /evenement
+    defaults: { _controller: EvenementBundle:Default:ReadE }
+
+update_evenement:
+    path:     /evenement/update{id}
+    defaults: { _controller: EvenementBundle:Default:UpdateE }
+
+delete_evenement:
+    path:     /evenement/delete{id}
+    defaults: { _controller: EvenementBundle:Default:DeleteE }
