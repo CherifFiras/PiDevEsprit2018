@@ -20,6 +20,9 @@ class AppKernel extends Kernel
             new MainBundle\MainBundle(),
             new ProfilBundle\ProfilBundle(),
             new EvenementBundle\EvenementBundle(),
+            new EspaceBundle\EspaceBundle(),
+            new ForumBundle\ForumBundle(),
+            new InteractionBundle\InteractionBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -1,0 +1,3 @@
+espace_homepage:
+    path:     /
+    defaults: { _controller: EspaceBundle:Default:index }

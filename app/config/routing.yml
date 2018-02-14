@@ -1,9 +1,22 @@
+interaction:
+    resource: "@InteractionBundle/Resources/config/routing.yml"
+    prefix:   /interaction
+
+forum:
+    resource: "@ForumBundle/Resources/config/routing.yml"
+    prefix:   /forum
+
+espace:
+    resource: "@EspaceBundle/Resources/config/routing.yml"
+    prefix:   /espace
+
 profil:
     resource: "@ProfilBundle/Resources/config/routing.yml"
+    prefix:   /profil
 
 evenement:
     resource: "@EvenementBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /evenement
 
 main:
     resource: "@MainBundle/Resources/config/routing.yml"
