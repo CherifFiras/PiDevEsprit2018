@@ -9,10 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
-    public function EvenementAction()
-    {
-        return $this->render('EvenementBundle:Evenement:evenement.html.twig');
-    }
     public function AjouterEAction(Request $request)
     {
 

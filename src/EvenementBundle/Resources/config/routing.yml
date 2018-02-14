@@ -1,14 +1,10 @@
 
-evenements:
-    path:     /evenement
-    defaults: { _controller: EvenementBundle:Default:Evenement }
-
 create_evenement:
     path:     /evenement/create
     defaults: { _controller: EvenementBundle:Default:AjouterE }
 
 read_evenement:
-    path:     /evenement/read
+    path:     /evenement
     defaults: { _controller: EvenementBundle:Default:ReadE }
 
 update_evenement:

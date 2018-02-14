@@ -4,8 +4,12 @@ main_homepage:
 
 loginadmin:
     path:     /loginadmin
+<<<<<<< HEAD
     defaults: { _controller: MainBundle:AdminSecurity:login }
 
 admin:
     path:     /admin
     defaults: { _controller: MainBundle:AdminSecurity:admin }
+=======
+    defaults: { _controller: MainBundle:AdminSecurity:login }
+>>>>>>> 36909e5f99b53558f25fde2738a28b7fce0035f1
