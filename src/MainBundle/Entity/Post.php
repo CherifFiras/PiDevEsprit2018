@@ -124,5 +124,52 @@ class Post
     {
         return $this->datePublication;
     }
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\Categorie")
+     * @ORM\JoinColumn(name="IdCategorie",referencedColumnName="id")
+     *
+     */
+    private $categorie;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User")
+     * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
+     *
+     */
+    private $user;
+
+    /**
+     * @return mixed
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * @param mixed $categorie
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
 }
 

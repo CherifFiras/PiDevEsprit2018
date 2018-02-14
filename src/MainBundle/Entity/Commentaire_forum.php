@@ -93,5 +93,52 @@ class Commentaire_forum
     {
         return $this->dateCommentaire;
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\Post")
+     * @ORM\JoinColumn(name="IdPost",referencedColumnName="id")
+     *
+     */
+    private $post;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User")
+     * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
+     *
+     */
+    private $user;
+
+    /**
+     * @return mixed
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+
+    /**
+     * @param mixed $post
+     */
+    public function setPost($post)
+    {
+        $this->post = $post;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
 }
 

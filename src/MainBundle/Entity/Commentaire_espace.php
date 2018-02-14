@@ -93,5 +93,51 @@ class Commentaire_espace
     {
         return $this->dateCommentaire;
     }
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\Espace")
+     * @ORM\JoinColumn(name="IdEspace",referencedColumnName="id")
+     *
+     */
+    private $espace;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User")
+     * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
+     *
+     */
+    private $user;
+
+    /**
+     * @return mixed
+     */
+    public function getEspace()
+    {
+        return $this->espace;
+    }
+
+    /**
+     * @param mixed $espace
+     */
+    public function setEspace($espace)
+    {
+        $this->espace = $espace;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
 }
 

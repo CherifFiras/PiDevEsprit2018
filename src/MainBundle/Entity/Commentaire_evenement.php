@@ -93,5 +93,52 @@ class Commentaire_evenement
     {
         return $this->dateCommentaire;
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\Evenement")
+     * @ORM\JoinColumn(name="IdEvenement",referencedColumnName="id")
+     *
+     */
+    private $evenement;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User")
+     * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
+     *
+     */
+    private $user;
+
+    /**
+     * @return mixed
+     */
+    public function getEvenement()
+    {
+        return $this->evenement;
+    }
+
+    /**
+     * @param mixed $evenement
+     */
+    public function setEvenement($evenement)
+    {
+        $this->evenement = $evenement;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
 }
 
