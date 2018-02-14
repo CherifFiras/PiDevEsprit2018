@@ -16,9 +16,7 @@ class EvenementType extends AbstractType
             ->add('titre')
             ->add('description')
             ->add('photo')
-
             ->add('longi')
-
             ->add('lat')
             ->add('titreCordination')
             ->add('AjouterEvennement', SubmitType::class);

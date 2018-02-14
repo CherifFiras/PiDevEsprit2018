@@ -11,7 +11,6 @@ class DefaultController extends Controller
 {
     public function AjouterEAction(Request $request)
     {
-
         $evenement = new Evenement();
         $form=$this->createForm(EvenementType::class,$evenement);
         $form->handleRequest($request);
