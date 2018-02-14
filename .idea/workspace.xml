@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="cdaf5388-6378-4528-9e2a-9e4cc0a791c3" name="Default" comment="" />
+=======
     <list default="true" id="cdaf5388-6378-4528-9e2a-9e4cc0a791c3" name="Default" comment="">
 <<<<<<< HEAD
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/commandlinetools/Composer_08_02_18_21_19_c.xml" afterPath="" />
@@ -21,6 +24,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
 >>>>>>> c5c3fa4714829089cec2681e65555dc8e22dfc54
     </list>
+>>>>>>> 972dd7231c413be0b17584675e95d984ee6a7667
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +34,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" />
   <component name="FileEditorManager">
+<<<<<<< HEAD
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+=======
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
 <<<<<<< HEAD
       <file leaf-file-name="parameters.yml" pinned="false" current-in-tab="false">
@@ -182,6 +189,7 @@
         </entry>
       </file>
     </leaf>
+>>>>>>> 972dd7231c413be0b17584675e95d984ee6a7667
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -300,7 +308,6 @@
         <option value="$PROJECT_DIR$/src/MainBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/src/MainBundle/Controller/LoginController.php" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/views/Security/login_content.html.twig" />
-        <option value="$PROJECT_DIR$/src/MainBundle/Entity/Evenement.php" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/register_content.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/back.html.twig" />
         <option value="$PROJECT_DIR$/src/MainBundle/Controller/SecurityController.php" />
@@ -309,10 +316,15 @@
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/views/Security/loginAdmin.html.twig" />
 >>>>>>> c5c3fa4714829089cec2681e65555dc8e22dfc54
         <option value="$PROJECT_DIR$/src/MainBundle/Resources/config/routing.yml" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/src/MainBundle/Entity/Evenement.php" />
+        <option value="$PROJECT_DIR$/src/MainBundle/Entity/Espace.php" />
+=======
         <option value="$PROJECT_DIR$/src/MainBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/src/EvenementBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/src/EvenementBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/MainBundle/Entity/Evenement.php" />
+>>>>>>> 972dd7231c413be0b17584675e95d984ee6a7667
       </list>
     </option>
   </component>
@@ -412,6 +424,25 @@
               <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
+<<<<<<< HEAD
+              <item name="oo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oo" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="oo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oo" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="oo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oo" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+=======
               <item name="PiDevEsprit2018" type="b2602c69:ProjectViewProjectNode" />
               <item name="PiDevEsprit2018" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
@@ -449,6 +480,7 @@
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="MainBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
+>>>>>>> 972dd7231c413be0b17584675e95d984ee6a7667
             </path>
             <path>
               <item name="PiDevEsprit2018" type="b2602c69:ProjectViewProjectNode" />
@@ -543,16 +575,23 @@
       <workItem from="1518293177276" duration="47557000" />
       <workItem from="1518461185675" duration="1483000" />
 <<<<<<< HEAD
+      <workItem from="1518467779694" duration="12967000" />
+=======
+<<<<<<< HEAD
       <workItem from="1518472471957" duration="636000" />
       <workItem from="1518473129274" duration="3140000" />
       <workItem from="1518544546211" duration="2809000" />
 =======
       <workItem from="1518467779694" duration="10172000" />
 >>>>>>> c5c3fa4714829089cec2681e65555dc8e22dfc54
+>>>>>>> 972dd7231c413be0b17584675e95d984ee6a7667
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="97797000" />
+=======
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="91415000" />
   </component>
@@ -563,6 +602,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26812688" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
 =======
     <option name="totallyTimeSpent" value="95002000" />
+>>>>>>> 972dd7231c413be0b17584675e95d984ee6a7667
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
@@ -574,9 +614,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31175467" sideWeight="0.5030211" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
 <<<<<<< HEAD
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31333333" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+=======
+<<<<<<< HEAD
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47359455" sideWeight="0.49697885" order="7" side_tool="false" content_ui="tabs" />
 =======
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31333333" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+>>>>>>> 972dd7231c413be0b17584675e95d984ee6a7667
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
 >>>>>>> c5c3fa4714829089cec2681e65555dc8e22dfc54
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -625,6 +669,9 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/MainBundle/Entity/Avis_espace.php">
+=======
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Event/FormEvent.php" />
     <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/FOSUserEvents.php" />
@@ -689,6 +736,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
+>>>>>>> 972dd7231c413be0b17584675e95d984ee6a7667
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-315">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -966,6 +1014,8 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
     <entry file="file://$PROJECT_DIR$/src/MainBundle/Entity/Evenement.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -981,6 +1031,7 @@
         <state relative-caret-position="285">
           <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
 =======
+>>>>>>> 972dd7231c413be0b17584675e95d984ee6a7667
     <entry file="file://$PROJECT_DIR$/src/MainBundle/Controller/SecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1091,11 +1142,85 @@
       </provider>
     </entry>
 <<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/config/routing.yml">
+=======
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/MainBundle/Entity/Evenement.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333">
           <caret line="62" column="19" lean-forward="false" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
 =======
+    <entry file="file://$PROJECT_DIR$/src/MainBundle/Controller/AdminSecurityController.php">
+>>>>>>> 972dd7231c413be0b17584675e95d984ee6a7667
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MainBundle/Resources/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MainBundle/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="5" lean-forward="false" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/front.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MainBundle/Entity/Evenement.php">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="-51">
+          <caret line="42" column="25" lean-forward="false" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
+=======
+        <state relative-caret-position="34">
+          <caret line="2" column="55" lean-forward="true" selection-start-line="2" selection-start-column="55" selection-end-line="2" selection-end-column="55" />
+>>>>>>> c5c3fa4714829089cec2681e65555dc8e22dfc54
+>>>>>>> 972dd7231c413be0b17584675e95d984ee6a7667
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MainBundle/Entity/CentreInteret.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1173">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MainBundle/Entity/Demande.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-657">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MainBundle/Entity/Espace.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="49" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MainBundle/Controller/AdminSecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1103,23 +1228,6 @@
           <folding>
             <element signature="e#41#90#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MainBundle/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MainBundle/Resources/config/routing.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="55" lean-forward="true" selection-start-line="2" selection-start-column="55" selection-end-line="2" selection-end-column="55" />
->>>>>>> c5c3fa4714829089cec2681e65555dc8e22dfc54
-          <folding />
         </state>
       </provider>
     </entry>
