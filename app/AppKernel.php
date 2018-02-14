@@ -18,11 +18,8 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new MainBundle\MainBundle(),
-<<<<<<< HEAD
             new ProfilBundle\ProfilBundle(),
-=======
             new EvenementBundle\EvenementBundle(),
->>>>>>> 36909e5f99b53558f25fde2738a28b7fce0035f1
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
