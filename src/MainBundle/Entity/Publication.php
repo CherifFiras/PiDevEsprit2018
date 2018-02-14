@@ -85,6 +85,22 @@ class Publication
     }
 
     /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->User;
+    }
+
+    /**
+     * @param mixed $User
+     */
+    public function setUser($User)
+    {
+        $this->User = $User;
+    }
+
+    /**
      * Get datePublication
      *
      * @return \DateTime
@@ -93,5 +109,12 @@ class Publication
     {
         return $this->datePublication;
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="publications")
+     * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
+     *
+     */
+    private $user;
 }
 

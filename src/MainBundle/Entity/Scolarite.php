@@ -102,6 +102,22 @@ class Scolarite
     }
 
     /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->User;
+    }
+
+    /**
+     * @param mixed $User
+     */
+    public function setUser($User)
+    {
+        $this->User = $User;
+    }
+
+    /**
      * Set dateFin
      *
      * @param \DateTime $dateFin
@@ -124,5 +140,12 @@ class Scolarite
     {
         return $this->dateFin;
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="scolarites")
+     * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
+     *
+     */
+    private $user;
 }
 
