@@ -85,6 +85,22 @@ class CentreInteret
     }
 
     /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->User;
+    }
+
+    /**
+     * @param mixed $User
+     */
+    public function setUser($User)
+    {
+        $this->User = $User;
+    }
+
+    /**
      * Get contenu
      *
      * @return string
@@ -93,5 +109,12 @@ class CentreInteret
     {
         return $this->contenu;
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="interets")
+     * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
+     *
+     */
+    private $user;
 }
 
