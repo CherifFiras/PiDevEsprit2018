@@ -89,15 +89,15 @@ class CentreInteret
      */
     public function getUser()
     {
-        return $this->User;
+        return $this->user;
     }
 
     /**
      * @param mixed $User
      */
-    public function setUser($User)
+    public function setUser($user)
     {
-        $this->User = $User;
+        $this->User = $user;
     }
 
     /**
@@ -111,7 +111,7 @@ class CentreInteret
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="interets")
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User")
      * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
      *
      */

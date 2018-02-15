@@ -80,7 +80,7 @@ class Loisir
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="loisirs")
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User")
      * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
      *
      */

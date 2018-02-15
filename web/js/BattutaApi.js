@@ -7,7 +7,6 @@ var BATTUTA_KEY="ff0b90e420bd8826a16c88e17428424d"
 	url="https://battuta.medunes.net/api/country/all/?key="+BATTUTA_KEY+"&callback=?";
   	$.getJSON(url,function(countries)
   	{
-  		console.log(countries);
 	    //loop through countries..
 	    $.each(countries,function(key,country)
 	    {
