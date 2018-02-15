@@ -1,7 +1,19 @@
 profil_homepage:
-    path:     /profil
-    defaults: { _controller: ProfilBundle:Default:index }
+    path:     /
+    defaults: { _controller: ProfilBundle:Profil:index }
 
 paramInfo:
-    path:     /infoprofil
+    path:     /parametres
     defaults: { _controller: ProfilBundle:Profil:paramsInfo }
+
+album:
+    path:     /album
+    defaults: { _controller: ProfilBundle:Profil:album }
+
+apropos:
+    path:     /apropos
+    defaults: { _controller: ProfilBundle:Profil:Apropos }
+
+listphoto:
+    path:     /listphoto
+    defaults: { _controller: ProfilBundle:Profil:listPhoto }

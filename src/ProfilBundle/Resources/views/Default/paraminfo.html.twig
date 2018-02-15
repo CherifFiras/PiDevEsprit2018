@@ -14,7 +14,7 @@
             <div class="col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-xs-12">
                 <div class="ui-block">
                     <div class="ui-block-title">
-                        <h6 class="title">Personal Information</h6>
+                        <h6 class="title">Informations Personelle</h6>
                     </div>
                     <div class="ui-block-content">
                         <form>
@@ -23,19 +23,19 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Prénom</label>
-                                        <input class="form-control" placeholder="" type="text" value="James">
+                                        <input class="form-control" placeholder="" type="text" value={{ app.user.prenom }}>
                                     </div>
 
                                     <div class="form-group label-floating">
                                         <label class="control-label">Adresse Email</label>
-                                        <input class="form-control" placeholder="" type="email" value="jspiegel@yourmail.com">
+                                        <input class="form-control" placeholder="" type="email" value={{ app.user.email }} disabled >
                                     </div>
 
                                     <div class="form-group date-time-picker label-floating">
                                         <label class="control-label">Date de Naissance</label>
-                                        <input name="datetimepicker" value="10/24/1984" />
+                                        <input name="datetimepicker" value={{ app.user.dateNaissance|date('d/m/Y') }} >
                                         <span class="input-group-addon">
-										<svg class="olymp-month-calendar-icon icon"><use xlink:href="icons/icons.svg#olymp-month-calendar-icon"></use></svg>
+										<svg class="olymp-month-calendar-icon icon"><use xlink:href={{ asset('icons/icons.svg#olymp-month-calendar-icon') }}></use></svg>
 									</span>
                                     </div>
                                 </div>
@@ -43,124 +43,100 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Nom</label>
-                                        <input class="form-control" placeholder="" type="text" value="Spiegel">
+                                        <input class="form-control" placeholder="" type="text" value={{ app.user.nom }}>
+                                    </div>
+
+                                    <div class="form-group label-floating is-select">
+                                        <label class="control-label">Sexe</label>
+                                        <select name="gen" class="selectpicker form-control" size="auto">
+                                            <option value="M">Homme</option>
+                                            <option value="F">Femme</option>
+                                        </select>
                                     </div>
 
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Your Website</label>
-                                        <input class="form-control" placeholder="" type="email" value="daydreamzagency.com">
-                                    </div>
-
-
-                                    <div class="form-group label-floating is-empty">
                                         <label class="control-label">Numéro de Téléphone</label>
-                                        <input class="form-control" placeholder="" type="text">
+                                        <input class="form-control" placeholder="" type="text" value={{ app.user.tel }}>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating is-select">
                                         <label class="control-label">Pays</label>
-                                        <select class="selectpicker form-control" size="auto">
-                                            <option value="US">United States</option>
-                                            <option value="AU">Australia</option>
+                                        <select id="country" name="pays" class="selectpicker form-control" size="auto">
+
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating is-select">
-                                        <label class="control-label">Your State / Province</label>
-                                        <select class="selectpicker form-control" size="auto">
-                                            <option value="CA">California</option>
-                                            <option value="TE">Texas</option>
+                                        <label class="control-label">Ville</label>
+                                        <select id="region" name="ville" class="selectpicker form-control" size="auto">
+
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating is-select">
-                                        <label class="control-label">Your City</label>
-                                        <select class="selectpicker form-control" size="auto">
-                                            <option value="SF">San Francisco</option>
-                                            <option value="NY">New York</option>
+                                        <label class="control-label">Région</label>
+                                        <select id="city" name="region" class="selectpicker form-control" size="auto">
+
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Write a little description about you</label>
-                                        <textarea class="form-control" placeholder="">Hi, I’m James, I’m 36 and I work as a Digital Designer for the  “Daydreams” Agency in Pier 56</textarea>
+                                        <label class="control-label">Une petite description de vous</label>
+                                        <textarea class="form-control" placeholder="">{{ app.user.apropos }}</textarea>
                                     </div>
 
-                                    <div class="form-group label-floating is-select">
-                                        <label class="control-label">Your Gender</label>
-                                        <select class="selectpicker form-control" size="auto">
-                                            <option value="MA">Male</option>
-                                            <option value="FE">Female</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group label-floating is-empty">
-                                        <label class="control-label">Religious Belifs</label>
-                                        <input class="form-control" placeholder="" type="text">
-                                    </div>
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group label-floating is-empty">
-                                        <label class="control-label">Your Birthplace</label>
-                                        <input class="form-control" placeholder="" type="text">
-                                    </div>
-
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Your Occupation</label>
-                                        <input class="form-control" placeholder="" type="text" value="UI/UX Designer">
+                                        <label class="control-label">Lieu de Naissance</label>
+                                        <input class="form-control" placeholder="" type="text" value={{ app.user.PlaceNaiss }}>
                                     </div>
-
                                     <div class="form-group label-floating is-select">
-                                        <label class="control-label">Status</label>
-                                        <select class="selectpicker form-control" size="auto">
-                                            <option value="MA">Married</option>
-                                            <option value="FE">Not Married</option>
+                                        <label class="control-label">Religion</label>
+                                        <select name="rel" class="selectpicker form-control" size="auto">
+                                            <option value="I">Islam</option>
+                                            <option value="C">Christianisme</option>
+                                            <option value="J">Judaïsme</option>
+                                            <option value="H">Hindouisme</option>
+                                            <option value="B">Bouddhisme</option>
                                         </select>
+
+
                                     </div>
 
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Political Incline</label>
-                                        <input class="form-control" placeholder="" type="text" value="Democrat">
-                                    </div>
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group with-icon label-floating">
-                                        <label class="control-label">Your Facebook Account</label>
-                                        <input class="form-control" type="text" value="www.facebook.com/james-spiegel95321">
+                                        <label class="control-label">Votre Profil Facebook</label>
+                                        <input class="form-control" type="text" value="">
                                         <i class="fa fa-facebook c-facebook" aria-hidden="true"></i>
                                     </div>
                                     <div class="form-group with-icon label-floating">
-                                        <label class="control-label">Your Twitter Account</label>
-                                        <input class="form-control" type="text" value="www.twitter.com/james_spiegelOK">
+                                        <label class="control-label">Votre Profil Twitter</label>
+                                        <input class="form-control" type="text" value="">
                                         <i class="fa fa-twitter c-twitter" aria-hidden="true"></i>
                                     </div>
-                                    <div class="form-group with-icon label-floating is-empty">
-                                        <label class="control-label">Your RSS Feed Account</label>
-                                        <input class="form-control" type="text">
-                                        <i class="fa fa-rss c-rss" aria-hidden="true"></i>
-                                    </div>
                                     <div class="form-group with-icon label-floating">
-                                        <label class="control-label">Your Dribbble Account</label>
-                                        <input class="form-control" type="text" value="www.dribbble.com/thecowboydesigner">
-                                        <i class="fa fa-dribbble c-dribbble" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="form-group with-icon label-floating is-empty">
-                                        <label class="control-label">Your Spotify Account</label>
-                                        <input class="form-control" type="text">
-                                        <i class="fa fa-spotify c-spotify" aria-hidden="true"></i>
+                                        <label class="control-label">Votre Profil Instagram</label>
+                                        <input class="form-control" type="text" value="">
+                                        <i class="fa fa-instagram c-dribbble" aria-hidden="true"></i>
                                     </div>
                                 </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <button type="submit" class="btn btn-primary btn-lg full-width">Enregistrer</button>
+                                </div>
+                                <!--
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <button class="btn btn-secondary btn-lg full-width">Restore all Attributes</button>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <button class="btn btn-primary btn-lg full-width">Save all Changes</button>
-                                </div>
+                                -->
 
                             </div>
                         </form>
@@ -239,7 +215,19 @@
 
     <!-- ... end Your Account Personal Information -->
 
-
-
 {% endblock %}
+{% block js %}
+    <script type="text/javascript" src="{{ asset('js/BattutaApiProfil.js') }}"></script>
+    <script>
+        $("select[name='rel']").find("option[value={{ app.user.relegion }}]").attr("selected",true);
+        $("select[name='gen']").find("option[value={{ app.user.genre }}]").attr("selected",true);
+        function refresh() {
+            $("select[name='pays']").find("option[value={{ app.user.pays }}]").attr("selected",true);
+            $("select[name='ville']").find(`option[value="{{ app.user.ville|striptags|raw }}"]`).attr("selected",true);
+            $("select[name='region']").find("option[value={{ app.user.region|striptags|raw }}]").attr("selected",true);
+        }
+        hundler(refresh);
 
+
+    </script>
+{%  endblock %}

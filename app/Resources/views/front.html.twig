@@ -33,9 +33,15 @@
     <link rel="stylesheet" type="text/css" href="{{ asset("css/jquery.mCustomScrollbar.min.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("css/mediaelement-playlist-plugin.min.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("css/mediaelementplayer.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/daterangepicker.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-select.css') }}">
 
     <!-- Lightbox popup script-->
     <link rel="stylesheet" type="text/css" href="{{ asset("css/magnific-popup.css") }}">
+
+    {% block css %}
+
+    {% endblock %}
 
 </head>
 <body>
@@ -1978,12 +1984,17 @@
 <!-- Select / Sorting script -->
 <script src="{{ asset('js/selectize.min.js') }}"></script>
 
+<!-- Datepicker input field script-->
+<script src="{{ asset('js/moment.min.js') }}"></script>
+<script src="{{ asset('js/daterangepicker.min.js') }}"></script>
+
 <!-- Lightbox popup script-->
 <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
 
 <script src="{{ asset('js/mediaelement-and-player.min.js') }}"></script>
 <script src="{{ asset('js/mediaelement-playlist-plugin.min.js') }}"></script>
-
+{% block js %}
+{% endblock %}
 
 </body>
 </html>
