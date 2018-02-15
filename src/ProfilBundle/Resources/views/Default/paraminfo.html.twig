@@ -107,16 +107,13 @@
                                     </div>
                                     <div class="form-group label-floating is-select">
                                         <label class="control-label">Religion</label>
-                                        <select id="r" class="selectpicker form-control" size="auto">
+                                        <select name="r" class="selectpicker form-control" size="auto">
                                             <option value="I">Islam</option>
                                             <option value="C">Christianisme</option>
                                             <option value="J">Judaïsme</option>
                                             <option value="H">Hindouisme</option>
                                             <option value="B">Bouddhisme</option>
                                         </select>
-                                        <div id="dd">
-
-                                        </div>
 
 
                                     </div>
@@ -223,22 +220,18 @@
             </div>
         </div>
     </div>
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js"/>
+
+    <!-- ... end Your Account Personal Information -->
+
+{% endblock %}
+{% block js %}
     <script>
-        //$('select[name=r]').find('option[value="B"]').attr("selected",true);
-        //alert("oooo");
-        //alert($("#r option[value='B']").text());
+
         $(document).ready(function () {
-            alert("fefefe");
-            $('#dd').append("<p>aaaaaaaaaaaaaaaaaaaaaaa</p>");
+            $('select[name=r]').find('option[value="B"]').attr("selected",true);
         })
         //$('select[name=selector]')
         //var $select = $("select[name='r']");
         //$select.find("option[value='B']").attr("selected",true);
     </script>
-    <!-- ... end Your Account Personal Information -->
-
-
-
-{% endblock %}
-
+{%  endblock %}
