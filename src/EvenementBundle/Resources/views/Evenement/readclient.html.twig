@@ -1,5 +1,5 @@
 
-{% extends 'back.html.twig' %}
+{% extends 'front.html.twig' %}
 
 {% block content %}
     <section id="page-title">
@@ -39,9 +39,8 @@
                                 </ul>
                                 <div class="entry-content">
                                     <p>{{ evenement.description }}</p>
-                                    <a href="{{ path('readmore_evenement',{'id': evenement.id }) }}" class="btn btn-danger">Read More</a>
-                                    <a href="{{ path('update_evenement',{'id': evenement.id }) }}" class="btn btn-danger">Modifier</a>
-                                    <a href="{{ path('delete_evenement',{'id': evenement.id }) }}" class="btn btn-danger">Supprimer</a>
+                                    <a href="{{ path('readmoreclient_evenement',{'id': evenement.id }) }}" class="btn btn-danger">Read More</a>
+
 
                                 </div>
                             </div>
