@@ -39,6 +39,10 @@
     <!-- Lightbox popup script-->
     <link rel="stylesheet" type="text/css" href="{{ asset("css/magnific-popup.css") }}">
 
+    {% block css %}
+
+    {% endblock %}
+
 </head>
 <body>
 
@@ -1989,7 +1993,8 @@
 
 <script src="{{ asset('js/mediaelement-and-player.min.js') }}"></script>
 <script src="{{ asset('js/mediaelement-playlist-plugin.min.js') }}"></script>
-
+{% block js %}
+{% endblock %}
 
 </body>
 </html>
