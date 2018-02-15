@@ -14,7 +14,7 @@
             <div class="col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-xs-12">
                 <div class="ui-block">
                     <div class="ui-block-title">
-                        <h6 class="title">Personal Information</h6>
+                        <h6 class="title">Informations Personelle</h6>
                     </div>
                     <div class="ui-block-content">
                         <form>
@@ -23,17 +23,17 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Prénom</label>
-                                        <input class="form-control" placeholder="" type="text" value="James">
+                                        <input class="form-control" placeholder="" type="text" value={{ app.user.prenom }}>
                                     </div>
 
                                     <div class="form-group label-floating">
                                         <label class="control-label">Adresse Email</label>
-                                        <input class="form-control" placeholder="" type="email" value="jspiegel@yourmail.com">
+                                        <input class="form-control" placeholder="" type="email" value={{ app.user.email }} disabled >
                                     </div>
 
                                     <div class="form-group date-time-picker label-floating">
                                         <label class="control-label">Date de Naissance</label>
-                                        <input name="datetimepicker" value="10/24/1984" />
+                                        <input name="datetimepicker" value={{ app.user.dateNaissance|date('d/m/Y') }} >
                                         <span class="input-group-addon">
 										<svg class="olymp-month-calendar-icon icon"><use xlink:href={{ asset('icons/icons.svg#olymp-month-calendar-icon') }}></use></svg>
 									</span>
@@ -43,18 +43,25 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Nom</label>
-                                        <input class="form-control" placeholder="" type="text" value="Spiegel">
+                                        <input class="form-control" placeholder="" type="text" value={{ app.user.nom }}>
+                                    </div>
+
+                                    <div class="form-group label-floating is-select">
+                                        <label class="control-label">Sexe</label>
+                                        <select class="selectpicker form-control" size="auto">
+                                            {% if (app.user.genre == "M") %}
+                                            <option value="M" selected>Homme</option>
+                                            <option value="F">Femme</option>
+                                            {% else %}
+                                            <option value="M">Homme</option>
+                                            <option value="F" selected>Femme</option>
+                                            {% endif %}
+                                        </select>
                                     </div>
 
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Your Website</label>
-                                        <input class="form-control" placeholder="" type="email" value="daydreamzagency.com">
-                                    </div>
-
-
-                                    <div class="form-group label-floating is-empty">
                                         <label class="control-label">Numéro de Téléphone</label>
-                                        <input class="form-control" placeholder="" type="text">
+                                        <input class="form-control" placeholder="" type="text" value={{ app.user.tel }}>
                                     </div>
                                 </div>
 
@@ -88,58 +95,59 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Une petite description de vous</label>
-                                        <textarea class="form-control" placeholder="">Hi, I’m James, I’m 36 and I work as a Digital Designer for the  “Daydreams” Agency in Pier 56</textarea>
+                                        <textarea class="form-control" placeholder="">{{ app.user.apropos }}</textarea>
                                     </div>
 
-                                    <div class="form-group label-floating is-empty">
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Lieu de Naissance</label>
+                                        <input class="form-control" placeholder="" type="text" value={{ app.user.PlaceNaiss }}>
+                                    </div>
+                                    <div class="form-group label-floating is-select">
                                         <label class="control-label">Religion</label>
-                                        <select class="selectpicker form-control" size="auto">
+                                        <select id="r" class="selectpicker form-control" size="auto">
                                             <option value="I">Islam</option>
                                             <option value="C">Christianisme</option>
                                             <option value="J">Judaïsme</option>
                                             <option value="H">Hindouisme</option>
                                             <option value="B">Bouddhisme</option>
                                         </select>
-                                    </div>
-                                </div>
+                                        <div id="dd">
 
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group label-floating is-empty">
-                                        <label class="control-label">Lieu de Naissance</label>
-                                        <input class="form-control" placeholder="" type="text">
-                                    </div>
-                                    <div class="form-group label-floating is-select">
-                                        <label class="control-label">Sexe</label>
-                                        <select class="selectpicker form-control" size="auto">
-                                            <option value="H">Homme</option>
-                                            <option value="F">Femme</option>
-                                        </select>
+                                        </div>
+
+
                                     </div>
 
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group with-icon label-floating">
                                         <label class="control-label">Votre Profil Facebook</label>
-                                        <input class="form-control" type="text" value="www.facebook.com/james-spiegel95321">
+                                        <input class="form-control" type="text" value="">
                                         <i class="fa fa-facebook c-facebook" aria-hidden="true"></i>
                                     </div>
                                     <div class="form-group with-icon label-floating">
                                         <label class="control-label">Votre Profil Twitter</label>
-                                        <input class="form-control" type="text" value="www.twitter.com/james_spiegelOK">
+                                        <input class="form-control" type="text" value="">
                                         <i class="fa fa-twitter c-twitter" aria-hidden="true"></i>
                                     </div>
                                     <div class="form-group with-icon label-floating">
                                         <label class="control-label">Votre Profil Instagram</label>
-                                        <input class="form-control" type="text" value="www.twitter.com/james_spiegelOK">
-                                        <i class="fa fa-twitter c-twitter" aria-hidden="true"></i>
+                                        <input class="form-control" type="text" value="">
+                                        <i class="fa fa-instagram c-dribbble" aria-hidden="true"></i>
                                     </div>
                                 </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <button type="submit" class="btn btn-primary btn-lg full-width">Enregistrer</button>
+                                </div>
+                                <!--
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <button class="btn btn-secondary btn-lg full-width">Restore all Attributes</button>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <button class="btn btn-primary btn-lg full-width">Save all Changes</button>
-                                </div>
+                                -->
 
                             </div>
                         </form>
@@ -215,7 +223,19 @@
             </div>
         </div>
     </div>
-
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"/>
+    <script>
+        //$('select[name=r]').find('option[value="B"]').attr("selected",true);
+        //alert("oooo");
+        //alert($("#r option[value='B']").text());
+        $(document).ready(function () {
+            alert("fefefe");
+            $('#dd').append("<p>aaaaaaaaaaaaaaaaaaaaaaa</p>");
+        })
+        //$('select[name=selector]')
+        //var $select = $("select[name='r']");
+        //$select.find("option[value='B']").attr("selected",true);
+    </script>
     <!-- ... end Your Account Personal Information -->
 
 

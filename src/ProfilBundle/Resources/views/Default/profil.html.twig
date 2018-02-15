@@ -58,7 +58,7 @@
                                 <a href="#" class="btn btn-control bg-purple">
                                     <svg class="olymp-chat---messages-icon"><use xlink:href={{ asset("icons/icons.svg#olymp-chat---messages-icon") }}></use></svg>
                                 </a>
-
+                                {% if (app.user.id == iduser) %}
                                 <div class="btn btn-control bg-primary more">
                                     <svg class="olymp-settings-icon"><use xlink:href={{ asset("icons/icons.svg#olymp-settings-icon") }}></use></svg>
 
@@ -70,11 +70,13 @@
                                             <a href="#" data-toggle="modal" data-target="#update-header-photo">Update Header Photo</a>
                                         </li>
                                         <li>
-                                            <a href="29-YourAccount-AccountSettings.html">Account Settings</a>
+                                            <a href="{{ path('paramInfo') }}">Gérer Profil</a>
                                         </li>
                                     </ul>
                                 </div>
+                                {% endif %}
                             </div>
+
                         </div>
                         <div class="top-header-author">
                             <a href="02-ProfilePage.html" class="author-thumb">

@@ -5952,7 +5952,7 @@ ol ol li {
   background-color: #38bff1; }
 
 .bg-dribbble {
-  background-color: #f74881; }
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%) }
 
 .c-white {
   color: #fff; }
@@ -5983,7 +5983,7 @@ ol ol li {
   color: #38bff1; }
 
 .c-dribbble {
-  color: #f74881; }
+  color: #dd0ff7; }
 
 .c-rss {
   color: #fab819; }
