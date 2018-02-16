@@ -423,4 +423,20 @@ class User extends BaseUser
     {
         return $this->genre;
     }
+
+    /**
+     * @return string
+     */
+    public function getPhotoprofil()
+    {
+        return $this->photoprofil;
+    }
+
+    /**
+     * @param string $photoprofil
+     */
+    public function setPhotoprofil($photoprofil)
+    {
+        $this->photoprofil = $photoprofil;
+    }
 }
