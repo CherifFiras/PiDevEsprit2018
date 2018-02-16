@@ -97,7 +97,7 @@ class CentreInteret
      */
     public function setUser($user)
     {
-        $this->User = $user;
+        $this->user = $user;
     }
 
     /**

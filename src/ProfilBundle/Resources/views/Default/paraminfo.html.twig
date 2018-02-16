@@ -207,7 +207,7 @@
                                             <a href="28-YourAccount-PersonalInformation.html">Informations Personelles</a>
                                         </li>
                                         <li>
-                                            <a href="28-YourAccount-PersonalInformation.html">Gérer Photos</a>
+                                            <a href="{{ path('album') }}">Gérer Photos</a>
                                         </li>
                                         <li>
                                             <a href="29-YourAccount-AccountSettings.html">Parametres de Compte</a>
@@ -216,7 +216,11 @@
                                             <a href="30-YourAccount-ChangePassword.html">Modifier le Mot de Passe</a>
                                         </li>
                                         <li>
-                                            <a href="31-YourAccount-HobbiesAndInterests.html">Loisirs et Centres d'intérêts</a>
+                                            {% if (app.user.id == iduser) %}
+                                            <a href="{{ path('centreinteret') }}">Loisirs et Centres d'intérêts</a>
+                                            {% else %}
+                                            <a href="{{ path('centreinteret') }}">Loisirs et Centres d'intérêts</a>
+                                            {% endif %}
                                         </li>
                                         <li>
                                             <a href="32-YourAccount-EducationAndEmployement.html">Education et Emploi</a>

@@ -2,6 +2,7 @@
 
 namespace ProfilBundle\Controller;
 
+use MainBundle\Entity\CentreInteret;
 use MainBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -52,14 +53,45 @@ class ProfilController extends Controller
         }
         // Recuperation des donnees
         //Remplir form
-        return $this->render('ProfilBundle:Default:paraminfo.html.twig');
+        return $this->render('ProfilBundle:Default:paraminfo.html.twig', array(
+            'iduser' => $u->getId()
+        ));
 
     }
 
-    public function centreintAction()
+    public function centreintAction(Request $request)
     {
+        $u= $this->container->get('security.token_storage')->getToken()->getUser();
+        //-----------------Afficher les centres d'interet
+        $em = $this->getDoctrine()->getManager();
+        $cen_user = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'film'));
 
-        return $this->render('ProfilBundle:Default:centreinteret.html.twig');
+        $newc = new CentreInteret();
+        if ($request->isMethod('POST'))
+        {
+            if ($request->request->has('idc')) {
+                $delc= $em->getRepository(CentreInteret::class)->find($request->get("idc"));
+                $em->remove($delc);
+                $em->flush();
+                return $this->redirectToRoute("centreinteret");
+            }
+            else
+            {
+                $newc->setType($request->get("type"));
+                $newc->setContenu($request->get("newcentre"));
+                echo $request->get('user');
+                $newc->setUser($u);
+                $em->persist($newc);
+                $em->flush();
+                return $this->redirectToRoute('centreinteret');
+            }
+
+        }
+
+        //-----------------
+        return $this->render('ProfilBundle:Default:centreinteret.html.twig', array(
+            'iduser' => $u->getId(),'centres' => $cen_user
+        ));
     }
 
     public function albumAction()

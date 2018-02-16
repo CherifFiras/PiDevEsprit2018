@@ -5,13 +5,72 @@
     #lstg1{height:150px; width:auto;}
     #lstg1{overflow:hidden; overflow-y:scroll;}
     #lstg1 > li{ color: orangered;}
+
+    .action-list-group {
+        position: relative;
+    }
+
+    .action-list-group .list-group-item > a.list-group-link {
+        display: block;
+        /* inherit from .list-group-item */
+        padding: 10px 15px;
+        color: #555;
+    }
+
+    .action-list-group .list-group-item > a.list-group-link:hover {
+        background: #f5f5f5;
+        text-decoration: none;
+    }
+
+    .action-list-group .btn {
+        position: absolute;
+        right: 5px;
+        margin-top: 5px;
+        top: 0;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
 
-    <!-- Your Account Personal Information -->
+    <form name="f" method="POST">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
 
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-control-label">Saisir un Film:</label>
+                            <input type="text" class="form-control" id="filmi"  placeholder="Rechercher içi">
+                            <select id="film" class="ui fluid search dropdown" multiple="" name="newcentre">
+
+                            </select>
+                            <input type="hidden" value="" name="type">
+                            <input type="hidden" value={{ iduser }} name="user">
+                        </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </form>
+
+    <!-- Your Account Personal Information -->
+<form method="POST">
     <div class="container">
         <div class="row">
             <div class="col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-xs-12">
@@ -26,6 +85,53 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
                                         <label >Films préférés:</label>
+                                        <form name="del" method="POST">
+                                        <ul id="lstg1" class="list-group action-list-group" >
+                                            {% for cen in centres  %}
+                                            <li class="list-group-item">{{ cen.contenu }}
+                                                <span class="pull-right button-group">
+                                                    <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span> X</button>
+                                                    <input type="hidden" value={{ cen.id }} name="idc">
+                                                </span>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                        </form>
+                                    </div>
+                                    <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-whatever="film" class="add-field">
+                                        <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
+                                        <span>Ajouter un Film</span>
+                                    </a>
+
+
+                                    <div class="form-group label-floating">
+                                        <label >Série de télévision préférées:</label>
+                                        <ul id="lstg1" class="list-group action-list-group" >
+                                            <li class="list-group-item clear-fix">Cras justo odio
+                                                <span class="pull-right button-group">
+                                                    <button type="button" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                                                </span>
+                                            </li>
+                                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                        </ul>
+                                    </div>
+                                    <a href="#" class="add-field">
+                                        <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
+                                        <span>Ajouter une Série</span>
+                                    </a>
+
+
+                                    <div class="form-group label-floating">
+                                        <label >Groupes de musique / Artistes préférés:</label>
                                         <ul id="lstg1" class="list-group" >
                                             <li class="list-group-item">Cras justo odio</li>
                                             <li class="list-group-item">Dapibus ac facilisis in</li>
@@ -42,56 +148,55 @@
                                     </div>
                                     <a href="#" class="add-field">
                                         <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
-                                        <span>Add Education Field</span>
-                                    </a>
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Favourite TV Shows</label>
-                                        <textarea class="form-control" placeholder=""  >Breaking Good, RedDevil, People of Interest, The Running Dead, Found,  American Guy.</textarea>
-                                    </div>
-                                    <a href="#" class="add-field">
-                                        <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
-                                        <span>Add Education Field</span>
-                                    </a>
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Favourite Movies</label>
-                                        <textarea class="form-control" placeholder=""  >Idiocratic, The Scarred Wizard and the Fire Crown,  Crime Squad, Ferrum Man. </textarea>
-                                    </div>
-                                    <a href="#" class="add-field">
-                                        <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
-                                        <span>Add Education Field</span>
+                                        <span>Ajouter un Artist</span>
                                     </a>
 
-                                    <button class="btn btn-secondary btn-lg full-width">Cancel</button>
+                                    <button class="btn btn-primary btn-lg full-width">Save all Changes</button>
                                 </div>
 
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Favourite Music Bands / Artists</label>
-                                        <textarea class="form-control" placeholder=""  >Iron Maid, DC/AC, Megablow, The Ill, Kung Fighters, System of a Revenge.</textarea>
+                                        <label >Livres préférés:</label>
+                                        <ul id="lstg1" class="list-group" >
+                                            <li class="list-group-item">Cras justo odio</li>
+                                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                        </ul>
                                     </div>
                                     <a href="#" class="add-field">
                                         <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
-                                        <span>Add Education Field</span>
-                                    </a>
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Favourite Books</label>
-                                        <textarea class="form-control" placeholder=""  >The Crime of the Century, Egiptian Mythology 101, The Scarred Wizard, Lord of the Wings, Amongst Gods, The Oracle, A Tale of Air and Water.</textarea>
-                                    </div>
-                                    <a href="#" class="add-field">
-                                        <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
-                                        <span>Add Education Field</span>
-                                    </a>
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Favourite Writers</label>
-                                        <textarea class="form-control" placeholder=""  >Martin T. Georgeston, Jhonathan R. Token, Ivana Rowle, Alexandria Platt, Marcus Roth. </textarea>
-                                    </div>
-                                    <a href="#" class="add-field">
-                                        <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
-                                        <span>Add Education Field</span>
+                                        <span>Ajouter un Livre</span>
                                     </a>
 
+                                    <div class="form-group label-floating">
+                                        <label >Loisirs:</label>
+                                        <ul id="lstg1" class="list-group" >
+                                            <li class="list-group-item">Cras justo odio</li>
+                                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                        </ul>
+                                    </div>
+                                    <a href="#" class="add-field">
+                                        <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
+                                        <span>Ajouter une Activité</span>
+                                    </a>
 
-                                    <button class="btn btn-primary btn-lg full-width">Save all Changes</button>
                                 </div>
 
                             </div>
@@ -121,10 +226,10 @@
                                 <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                                     <ul class="your-profile-menu">
                                         <li>
-                                            <a href="28-YourAccount-PersonalInformation.html">Informations Personelles</a>
+                                            <a href="{{ path('paramInfo') }}">Informations Personelles</a>
                                         </li>
                                         <li>
-                                            <a href="28-YourAccount-PersonalInformation.html">Gérer Photos</a>
+                                            <a href="{{ path('album') }}">Gérer Photos</a>
                                         </li>
                                         <li>
                                             <a href="29-YourAccount-AccountSettings.html">Parametres de Compte</a>
@@ -168,15 +273,47 @@
             </div>
         </div>
     </div>
-
+</form>
     <!-- ... end Your Account Personal Information -->
 {% endblock %}
 
 {% block js %}
-        <script>
-            $( document ).ready(function() {
-                $('html, body').scrollTop: $("a.active").offset().top;
-            });
-        </script>
+    <script type="text/javascript" src="{{ asset('js/dropdown.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/transition.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/popup.min.js') }}"></script>
+    <script>
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            var modal = $(this)
+            modal.find('.modal-title').text('Ajouter ' + recipient)
+            modal.find('input[type=hidden]').val(recipient)
+            //modal.find('.modal-body input').val(recipient)
+        })
+
+        // Charger les films "Themoviedb API" TMDB
+        $(document).ready(function() {
+            $("#filmi").keyup(function () {
+                url = "https://api.themoviedb.org/3/search/movie?api_key=2e5aee0d6e6ad27e13cf48eb3cd9b5dc&language=en-US&query="+$("#filmi").val()+"&page=1&include_adult=false";
+                if($("#filmi").val() == "")
+                    return;
+                $.getJSON(url,function(movies)
+                {
+                    $("#film option").remove();
+                    //loop through countries..
+                    $.each(movies['results'],function(key,movie)
+                    {
+                        $("<option></option>")
+                            .attr("value",movie.title)
+                            .append(movie.title)
+                            .appendTo($("#film"));
+                    });
+
+                });
+            })});
+        //---------------
+    </script>
+
 {% endblock %}
 
