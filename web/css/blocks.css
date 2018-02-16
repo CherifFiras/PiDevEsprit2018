@@ -2411,6 +2411,30 @@ body {
     fill: #ff5e3a;
     background-color: #fafbfd; }
 
+
+.upload-photo-itemCus {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  padding: 50px;
+  text-align: center;
+  fill: #c2c5d9;
+  border-left: 1px solid #e6ecf5; }
+.upload-photo-item:first-child {
+  border-right: none; }
+.upload-photo-item h6, .upload-photo-item .h6 {
+  margin-bottom: 0; }
+.upload-photo-item svg {
+  margin-bottom: 30px;
+  width: 22px;
+  height: 20px; }
+.upload-photo-item span {
+  font-size: 11px;
+  color: #888da8; }
+.upload-photo-item:hover {
+  fill: #ff5e3a;
+  background-color: #fafbfd; }
+
 .choose-from-my-photo {
   width: 770px; }
   .choose-from-my-photo .ui-block-title {

@@ -1,14 +1,43 @@
 {% extends 'front.html.twig' %}
 
+{% block css %}
+
+{% endblock %}
+
 {% block content %}
 
+    <!-- Window-popup Update Header Photo -->
+
+    <div class="modal fade" id="update-header-photo">
+        <div class="modal-dialog ui-block window-popup update-header-photo">
+            <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                <svg class="olymp-close-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-close-icon') }}></use></svg>
+            </a>
+
+            <div class="ui-block-title">
+                <h6 class="title">Modifier Photo de Profil</h6>
+            </div>
+
+            <a href="#" class="upload-photo-itemCus">
+                <div class="file-upload">
+                    <svg class="olymp-computer-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-computer-icon') }}></use></svg>
+                    <h6>Ajouter Photo</h6>
+
+                    <label for="upload" class="file-upload__label">Parcourir</label>
+                    <input id="upload" class="file-upload__input" name="photoprofil" type="file">
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- ... end Window-popup Update Header Photo -->
 
     <!-- Main Header Your Account -->
     <!-- ... end Main Header Your Account -->
 
 
     <!-- Your Account Personal Information -->
-
+<form method="POST">
     <div class="container">
         <div class="row">
             <div class="col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-xs-12">
@@ -23,12 +52,12 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Prénom</label>
-                                        <input class="form-control" placeholder="" type="text" value={{ app.user.prenom }}>
+                                        <input class="form-control" placeholder="" type="text" name="prenom" value={{ app.user.prenom }}>
                                     </div>
 
                                     <div class="form-group label-floating">
                                         <label class="control-label">Adresse Email</label>
-                                        <input class="form-control" placeholder="" type="email" value={{ app.user.email }} disabled >
+                                        <input class="form-control" placeholder="" type="email" name="email" value={{ app.user.email }} disabled >
                                     </div>
 
                                     <div class="form-group date-time-picker label-floating">
@@ -43,7 +72,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Nom</label>
-                                        <input class="form-control" placeholder="" type="text" value={{ app.user.nom }}>
+                                        <input class="form-control" placeholder="" name="nom" type="text" value={{ app.user.nom }}>
                                     </div>
 
                                     <div class="form-group label-floating is-select">
@@ -56,7 +85,7 @@
 
                                     <div class="form-group label-floating">
                                         <label class="control-label">Numéro de Téléphone</label>
-                                        <input class="form-control" placeholder="" type="text" value={{ app.user.tel }}>
+                                        <input class="form-control" placeholder="" type="text" name="tel" value={{ app.user.tel }}>
                                     </div>
                                 </div>
 
@@ -87,15 +116,35 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Une petite description de vous</label>
-                                        <textarea class="form-control" placeholder="">{{ app.user.apropos }}</textarea>
+                                        <textarea class="form-control" placeholder="" name="apropos">{{ app.user.apropos }}</textarea>
                                     </div>
 
+                                    <div class="form-group label-floating">
+                                        <!--<label class="control-label">Photo de profil</label>-->
+                                        <!--<input class="form-control" placeholder="" type="text" name="photoprofil" value={{ app.user.photoprofil }}>-->
+                                        <!--<img class="form-control" style="width:126px;height:126px;" src={{ asset('images/profil.jpg') }} >-->
+
+                                        <!--
+                                        <label for="upload" class="file-upload__label">Upload Button</label>
+                                        <input id="upload" class="file-upload__input form-control" data-toggle="modal" data-target="#update-header-photo">
+                                        -->
+
+                                        <div class="photo-item">
+                                            <img src={{ asset('images/') }}{{ app.user.photoprofil }} style="width:150px;height:150px;" >
+                                            <div class="overlay overlay-dark"></div>
+                                            <a href="#" data-toggle="modal" data-target="#update-header-photo" class="full-block"></a>
+                                            <div class="content">
+                                                <a href="#" class="h6 title">Modifier Photo</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
 
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Lieu de Naissance</label>
-                                        <input class="form-control" placeholder="" type="text" value={{ app.user.PlaceNaiss }}>
+                                        <input class="form-control" placeholder="" type="text" name="placenaiss" value={{ app.user.PlaceNaiss }}>
                                     </div>
                                     <div class="form-group label-floating is-select">
                                         <label class="control-label">Religion</label>
@@ -106,25 +155,23 @@
                                             <option value="H">Hindouisme</option>
                                             <option value="B">Bouddhisme</option>
                                         </select>
-
-
                                     </div>
 
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group with-icon label-floating">
                                         <label class="control-label">Votre Profil Facebook</label>
-                                        <input class="form-control" type="text" value="">
+                                        <input class="form-control" type="text" name="facebook" value={{ app.user.facebook }}>
                                         <i class="fa fa-facebook c-facebook" aria-hidden="true"></i>
                                     </div>
                                     <div class="form-group with-icon label-floating">
                                         <label class="control-label">Votre Profil Twitter</label>
-                                        <input class="form-control" type="text" value="">
+                                        <input class="form-control" type="text" name="twitter" value={{ app.user.twitter }}>
                                         <i class="fa fa-twitter c-twitter" aria-hidden="true"></i>
                                     </div>
                                     <div class="form-group with-icon label-floating">
                                         <label class="control-label">Votre Profil Instagram</label>
-                                        <input class="form-control" type="text" value="">
+                                        <input class="form-control" type="text" name="instagram" value={{ app.user.instagram }}>
                                         <i class="fa fa-instagram c-dribbble" aria-hidden="true"></i>
                                     </div>
                                 </div>
@@ -212,11 +259,12 @@
             </div>
         </div>
     </div>
-
+</form>
     <!-- ... end Your Account Personal Information -->
 
 {% endblock %}
 {% block js %}
+
     <script type="text/javascript" src="{{ asset('js/BattutaApiProfil.js') }}"></script>
     <script>
         $("select[name='rel']").find("option[value={{ app.user.relegion }}]").attr("selected",true);
@@ -224,9 +272,11 @@
         function refresh() {
             $("select[name='pays']").find("option[value={{ app.user.pays }}]").attr("selected",true);
             $("select[name='ville']").find(`option[value="{{ app.user.ville|striptags|raw }}"]`).attr("selected",true);
-            $("select[name='region']").find("option[value={{ app.user.region|striptags|raw }}]").attr("selected",true);
+            $("select[name='region']").find(`option[value="{{ app.user.region|striptags|raw }}"]`).attr("selected",true);
         }
         hundler(refresh);
+        //----------------------
+
 
 
     </script>

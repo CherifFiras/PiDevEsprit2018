@@ -17,3 +17,7 @@ apropos:
 listphoto:
     path:     /listphoto
     defaults: { _controller: ProfilBundle:Profil:listPhoto }
+
+centreinteret:
+    path:     /centreinteret
+    defaults: { _controller: ProfilBundle:Profil:centreint }
