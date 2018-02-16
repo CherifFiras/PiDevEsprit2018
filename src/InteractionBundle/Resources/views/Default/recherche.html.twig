@@ -67,8 +67,8 @@
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Gender</div>
                                                 <div class="menu">
-                                                    <div class="item" data-value="1">Male</div>
-                                                    <div class="item" data-value="0">Female</div>
+                                                    <div class="item" data-value="M">Male</div>
+                                                    <div class="item" data-value="F">Female</div>
                                                 </div>
                                             </div>
                                         </li>
@@ -221,8 +221,8 @@
                 var musique = $("#music").val();
                 $.ajax({
                     url:"{{ path("search_result") }}",
-                    type:'post',
-                    data:{"gender":gender},
+                    type:'get',
+                    data:{"gender":gender,"age":age,"occupation":occupation},
                     success:function (data) {
                         console.log(data);
                     }

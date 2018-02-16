@@ -5,6 +5,7 @@ namespace MainBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
@@ -41,7 +42,7 @@ class User extends BaseUser
     protected $prenom;
 
     /**
-     * @var DateTime
+     * @var Date
      *
      * @ORM\Column(name="date_naissance", type="date")
      */
@@ -121,6 +122,29 @@ class User extends BaseUser
      * @ORM\Column(name="instagram", type="string" , length=255,nullable=true)
      */
     protected $instagram;
+
+    /**
+     * @return string
+     */
+    public function getOccupation()
+    {
+        return $this->occupation;
+    }
+
+    /**
+     * @param string $occupation
+     */
+    public function setOccupation($occupation)
+    {
+        $this->occupation = $occupation;
+    }
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="occupation", type="string" , length=255,nullable=true)
+     */
+    protected $occupation;
 
     /**
      * @return string
