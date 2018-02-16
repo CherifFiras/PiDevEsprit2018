@@ -48,14 +48,9 @@
 
                                     <div class="form-group label-floating is-select">
                                         <label class="control-label">Sexe</label>
-                                        <select class="selectpicker form-control" size="auto">
-                                            {% if (app.user.genre == "M") %}
-                                            <option value="M" selected>Homme</option>
-                                            <option value="F">Femme</option>
-                                            {% else %}
+                                        <select name="gen" class="selectpicker form-control" size="auto">
                                             <option value="M">Homme</option>
-                                            <option value="F" selected>Femme</option>
-                                            {% endif %}
+                                            <option value="F">Femme</option>
                                         </select>
                                     </div>
 
@@ -68,27 +63,24 @@
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating is-select">
                                         <label class="control-label">Pays</label>
-                                        <select class="selectpicker form-control" size="auto">
-                                            <option value="US">United States</option>
-                                            <option value="AU">Australia</option>
+                                        <select id="country" name="pays" class="selectpicker form-control" size="auto">
+
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating is-select">
                                         <label class="control-label">Ville</label>
-                                        <select class="selectpicker form-control" size="auto">
-                                            <option value="CA">California</option>
-                                            <option value="TE">Texas</option>
+                                        <select id="region" name="ville" class="selectpicker form-control" size="auto">
+
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating is-select">
                                         <label class="control-label">Région</label>
-                                        <select class="selectpicker form-control" size="auto">
-                                            <option value="SF">San Francisco</option>
-                                            <option value="NY">New York</option>
+                                        <select id="city" name="region" class="selectpicker form-control" size="auto">
+
                                         </select>
                                     </div>
                                 </div>
@@ -107,7 +99,7 @@
                                     </div>
                                     <div class="form-group label-floating is-select">
                                         <label class="control-label">Religion</label>
-                                        <select name="r" class="selectpicker form-control" size="auto">
+                                        <select name="rel" class="selectpicker form-control" size="auto">
                                             <option value="I">Islam</option>
                                             <option value="C">Christianisme</option>
                                             <option value="J">Judaïsme</option>
@@ -225,13 +217,17 @@
 
 {% endblock %}
 {% block js %}
+    <script type="text/javascript" src="{{ asset('js/BattutaApiProfil.js') }}"></script>
     <script>
+        $("select[name='rel']").find("option[value={{ app.user.relegion }}]").attr("selected",true);
+        $("select[name='gen']").find("option[value={{ app.user.genre }}]").attr("selected",true);
+        function refresh() {
+            $("select[name='pays']").find("option[value={{ app.user.pays }}]").attr("selected",true);
+            $("select[name='ville']").find(`option[value="{{ app.user.ville|striptags|raw }}"]`).attr("selected",true);
+            $("select[name='region']").find("option[value={{ app.user.region|striptags|raw }}]").attr("selected",true);
+        }
+        hundler(refresh);
 
-        $(document).ready(function () {
-            $('select[name=r]').find('option[value="B"]').attr("selected",true);
-        })
-        //$('select[name=selector]')
-        //var $select = $("select[name='r']");
-        //$select.find("option[value='B']").attr("selected",true);
+
     </script>
 {%  endblock %}

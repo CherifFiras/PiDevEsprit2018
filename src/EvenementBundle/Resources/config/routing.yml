@@ -1,11 +1,22 @@
+readclient_evenement:
+    path:     /
+    defaults: { _controller: EvenementBundle:Client:ReadE }
+
+readmoreclient_evenement:
+    path:     /readmoreclient{id}
+    defaults: { _controller: EvenementBundle:Client:ReadMoreEC }
 
 create_evenement:
     path:     /create
     defaults: { _controller: EvenementBundle:Default:AjouterE }
 
 read_evenement:
-    path:     /
-    defaults: { _controller: EvenementBundle:Default:ReadE }
+    path:     /read
+    defaults: { _controller: EvenementBundle:Default:ReadAdmin }
+
+readmore_evenement:
+    path:     /readmore{id}
+    defaults: { _controller: EvenementBundle:Default:ReadMoreE }
 
 update_evenement:
     path:     /update{id}
@@ -14,3 +25,4 @@ update_evenement:
 delete_evenement:
     path:     /delete{id}
     defaults: { _controller: EvenementBundle:Default:DeleteE }
+
