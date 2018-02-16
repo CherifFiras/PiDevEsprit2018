@@ -142,7 +142,7 @@ class Scolarite
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="scolarites")
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User")
      * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
      *
      */

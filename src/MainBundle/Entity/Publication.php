@@ -111,7 +111,7 @@ class Publication
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="publications")
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User")
      * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
      *
      */

@@ -111,7 +111,7 @@ class Album
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="albums")
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User")
      * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
      *
      */

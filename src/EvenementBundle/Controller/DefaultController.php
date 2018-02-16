@@ -25,15 +25,17 @@ class DefaultController extends Controller
             "form"=>$form->createView()
         ));
     }
-    public function ReadEAction()
+
+    public function ReadAdminAction()
     {
         $em= $this->getDoctrine()->getManager();
         $evenements=$em->getRepository("MainBundle:Evenement")->findAll();
-        return $this->render('EvenementBundle:Evenement:read.html.twig', array(
+        return $this->render('@Evenement/Evenement/read.html.twig', array(
             "evenements"=>$evenements
 
         ));
     }
+
     public function UpdateEAction ($id,Request $request)
     {
         $em= $this->getDoctrine()->getManager();
@@ -57,5 +59,15 @@ class DefaultController extends Controller
         $em->remove($evenement);
         $em->flush();
         return $this->redirectToRoute("read_evenement");
+    }
+
+    public function ReadMoreEAction($id)
+    {
+        $em= $this->getDoctrine()->getManager();
+        $evenement=$em->getRepository("MainBundle:Evenement")->find($id);
+        return $this->render('EvenementBundle:Evenement:readmore.html.twig', array(
+            "evenement"=>$evenement
+
+        ));
     }
 }

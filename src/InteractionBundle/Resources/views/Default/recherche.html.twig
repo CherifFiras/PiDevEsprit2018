@@ -15,156 +15,32 @@
             <div class="col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-xs-12">
                 <div class="ui-block">
                     <div class="ui-block-title">
-                        <h6 class="title">Personal Information</h6>
+                        <h6 class="title">Resultat de recherche</h6>
                     </div>
-                    <div class="ui-block-content">
-                        <form>
-                            <div class="row">
-
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">First Name</label>
-                                        <input class="form-control" placeholder="" type="text" value="James">
-                                    </div>
-
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Your Email</label>
-                                        <input class="form-control" placeholder="" type="email" value="jspiegel@yourmail.com">
-                                    </div>
-
-                                    <div class="form-group date-time-picker label-floating">
-                                        <label class="control-label">Your Birthday</label>
-                                        <input name="datetimepicker" value="10/24/1984" />
-                                        <span class="input-group-addon">
-										<svg class="olymp-month-calendar-icon icon"><use xlink:href="icons/icons.svg#olymp-month-calendar-icon"></use></svg>
-									</span>
-                                    </div>
+                    <div class="ui-block-content pre-scrollable">
+                        <ul class="notification-list friend-requests">
+                            <li>
+                                <div class="author-thumb">
+                                    <img src="{{ asset('img/avatar16-sm.jpg') }}" alt="author">
                                 </div>
-
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Last Name</label>
-                                        <input class="form-control" placeholder="" type="text" value="Spiegel">
-                                    </div>
-
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Your Website</label>
-                                        <input class="form-control" placeholder="" type="email" value="daydreamzagency.com">
-                                    </div>
-
-
-                                    <div class="form-group label-floating is-empty">
-                                        <label class="control-label">Your Phone Number</label>
-                                        <input class="form-control" placeholder="" type="text">
-                                    </div>
+                                <div class="notification-event">
+                                    <a href="#" class="h6 notification-friend">Tony Stevens</a>
+                                    <span class="chat-message-item">4 Friends in Common</span>
                                 </div>
-
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <div class="form-group label-floating is-select">
-                                        <label class="control-label">Your Country</label>
-                                        <select class="selectpicker form-control" size="auto">
-                                            <option value="US">United States</option>
-                                            <option value="AU">Australia</option>
-                                        </select>
-                                    </div>
+                                <span class="notification-icon">
+                                    <a href="#" class="accept-request">
+                                        <span class="icon-add">
+                                            <svg class="olymp-happy-face-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('icons/icons.svg#olymp-happy-face-icon') }}"></use></svg>
+                                        </span>
+                                        Demande de Communication
+                                    </a>
+						        </span>
+                                <div class="more">
+                                    <svg class="olymp-three-dots-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
+                                    <svg class="olymp-little-delete"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('icons/icons.svg#olymp-little-delete') }}"></use></svg>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <div class="form-group label-floating is-select">
-                                        <label class="control-label">Your State / Province</label>
-                                        <select class="selectpicker form-control" size="auto">
-                                            <option value="CA">California</option>
-                                            <option value="TE">Texas</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <div class="form-group label-floating is-select">
-                                        <label class="control-label">Your City</label>
-                                        <select class="selectpicker form-control" size="auto">
-                                            <option value="SF">San Francisco</option>
-                                            <option value="NY">New York</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Write a little description about you</label>
-                                        <textarea class="form-control" placeholder="">Hi, I’m James, I’m 36 and I work as a Digital Designer for the  “Daydreams” Agency in Pier 56</textarea>
-                                    </div>
-
-                                    <div class="form-group label-floating is-select">
-                                        <label class="control-label">Your Gender</label>
-                                        <select class="selectpicker form-control" size="auto">
-                                            <option value="MA">Male</option>
-                                            <option value="FE">Female</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group label-floating is-empty">
-                                        <label class="control-label">Religious Belifs</label>
-                                        <input class="form-control" placeholder="" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group label-floating is-empty">
-                                        <label class="control-label">Your Birthplace</label>
-                                        <input class="form-control" placeholder="" type="text">
-                                    </div>
-
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Your Occupation</label>
-                                        <input class="form-control" placeholder="" type="text" value="UI/UX Designer">
-                                    </div>
-
-                                    <div class="form-group label-floating is-select">
-                                        <label class="control-label">Status</label>
-                                        <select class="selectpicker form-control" size="auto">
-                                            <option value="MA">Married</option>
-                                            <option value="FE">Not Married</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Political Incline</label>
-                                        <input class="form-control" placeholder="" type="text" value="Democrat">
-                                    </div>
-                                </div>
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group with-icon label-floating">
-                                        <label class="control-label">Your Facebook Account</label>
-                                        <input class="form-control" type="text" value="www.facebook.com/james-spiegel95321">
-                                        <i class="fa fa-facebook c-facebook" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="form-group with-icon label-floating">
-                                        <label class="control-label">Your Twitter Account</label>
-                                        <input class="form-control" type="text" value="www.twitter.com/james_spiegelOK">
-                                        <i class="fa fa-twitter c-twitter" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="form-group with-icon label-floating is-empty">
-                                        <label class="control-label">Your RSS Feed Account</label>
-                                        <input class="form-control" type="text">
-                                        <i class="fa fa-rss c-rss" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="form-group with-icon label-floating">
-                                        <label class="control-label">Your Dribbble Account</label>
-                                        <input class="form-control" type="text" value="www.dribbble.com/thecowboydesigner">
-                                        <i class="fa fa-dribbble c-dribbble" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="form-group with-icon label-floating is-empty">
-                                        <label class="control-label">Your Spotify Account</label>
-                                        <input class="form-control" type="text">
-                                        <i class="fa fa-spotify c-spotify" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <button class="btn btn-secondary btn-lg full-width">Restore all Attributes</button>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <button class="btn btn-primary btn-lg full-width">Save all Changes</button>
-                                </div>
-
-                            </div>
-                        </form>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -187,12 +63,12 @@
                                     <ul class="your-profile-menu">
                                         <li>
                                             <div class="form-group ui selection dropdown">
-                                                <input type="hidden" name="gender">
+                                                <input type="hidden" name="gender" id="gender">
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Gender</div>
                                                 <div class="menu">
-                                                    <div class="item" data-value="1">Male</div>
-                                                    <div class="item" data-value="0">Female</div>
+                                                    <div class="item" data-value="M">Male</div>
+                                                    <div class="item" data-value="F">Female</div>
                                                 </div>
                                             </div>
                                         </li>
@@ -203,18 +79,17 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="form-group">
-                                                <select class="ui fluid search dropdown" multiple="">
+                                            <div id="occupation_div" class="form-group">
+                                                <select id="occupation" class="ui fluid search dropdown" multiple="">
                                                     <option value="">Occupation</option>
-                                                    <option value="AL">Professeur</option>
-                                                    <option value="2">Ingenieur</option>
-                                                    <option value="WY">ttt</option>
+                                                    <option value="Prof">Professeur</option>
+                                                    <option value="Ing">Ingenieur</option>
                                                 </select>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="form-group">
-                                                <select class="ui fluid search dropdown" multiple="">
+                                            <div id="religion_div" class="form-group">
+                                                <select id="religion" class="ui fluid search dropdown" multiple="">
                                                     <option value="">Relegion</option>
                                                     <option value="Islam">Islam</option>
                                                     <option value="Christianisme">Christianisme</option>
@@ -250,12 +125,12 @@
                             </div>
                         </div>
 
-                        <div id="accordion" role="tablist" aria-multiselectable="true">
+                        <div id="accordion2" role="tablist" aria-multiselectable="true">
                             <div class="card">
                                 <div class="card-header" role="tab" id="headingTwo">
                                     <h6 class="mb-0">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                            centres d'intérêt
+                                        <a data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                            Centres d'intérêt
                                             <svg class="olymp-dropdown-arrow-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-dropdown-arrow-icon') }}"></use></svg>
                                         </a>
                                     </h6>
@@ -264,66 +139,44 @@
                                 <div id="collapseTwo" class="collapse show" role="tabpanel" aria-labelledby="headingTwo">
                                     <ul class="your-profile-menu">
                                         <li>
-                                            <div class="form-group ui selection dropdown">
-                                                <input type="hidden" name="gender">
-                                                <i class="dropdown icon"></i>
-                                                <div class="default text">Gender</div>
-                                                <div class="menu">
-                                                    <div class="item" data-value="1">Male</div>
-                                                    <div class="item" data-value="0">Female</div>
-                                                </div>
+                                            <div id="film_div" class="form-group">
+                                                <select id="film" class="ui fluid search dropdown" multiple="">
+                                                    <option value="">Films</option>
+                                                </select>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="form-group">
-                                                <label class="control-label" style="font-weight:500;margin-right:85px;">Age</label>
-                                                <input id="ageInt" type="text" class=" form-control" value="" data-slider-min="18" data-slider-max="50" data-slider-step="1" data-slider-value="[24,34]"/>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-group">
-                                                <select class="ui fluid search dropdown" multiple="">
-                                                    <option value="">Occupation</option>
-                                                    <option value="AL">Professeur</option>
-                                                    <option value="2">Ingenieur</option>
-                                                    <option value="WY">ttt</option>
+                                            <div id="serie_div" class="form-group">
+                                                <select id="serie" class="ui fluid search dropdown" multiple="">
+                                                    <option value="">Series</option>
                                                 </select>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="form-group">
-                                                <select class="ui fluid search dropdown" multiple="">
-                                                    <option value="">Relegion</option>
-                                                    <option value="Islam">Islam</option>
-                                                    <option value="Christianisme">Christianisme</option>
-                                                    <option value="Judaïsme">Judaïsme</option>
-                                                    <option value="Hindouisme">Hindouisme</option>
-                                                    <option value="Bouddhisme">Bouddhisme</option>
+                                                <select id="livre" class="ui fluid search dropdown" multiple="">
+                                                    <option value="">Livres</option>
+                                                    <option value="Insomnia">Insomnia</option>
+                                                    <option value="The Shinin">The Shining</option>
+                                                    <option value="The Social Animal">The Social Animal</option>
+                                                    <option value="Do androids dream with an electric ship">Do androids dream with an electric ship</option>
                                                 </select>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="form-group">
-                                                <select id="country" class="ui fluid search dropdown" multiple="">
-                                                    <option value="">Pays</option>
-                                                </select>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-group">
-                                                <select id="region" class="ui fluid search dropdown" multiple="">
-                                                    <option value="">Region</option>
-                                                </select>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-group">
-                                                <select id="city" class="ui fluid search dropdown" multiple="">
-                                                    <option value="">Ville</option>
+                                                <select id="music" class="ui fluid search dropdown" multiple="">
+                                                    <option value="">Musique</option>
+                                                    <option value="Rap">Rap</option>
+                                                    <option value="Metal">Metal</option>
+                                                    <option value="Rock">Rock</option>
                                                 </select>
                                             </div>
                                         </li>
                                     </ul>
+                                    <div class="ui-block-title">
+                                        <a id="searchh"  class="h6 title ">Rechercher</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -338,23 +191,52 @@
     <script type="text/javascript" src="{{ asset('js/dropdown.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/transition.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/BattutaApi.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/themoviedbApi.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
     <script>
-        $(document)
-            .ready(function() {
-                $('.ui.dropdown')
-                    .dropdown({
-                        on: 'click'
-                    })
-                ;
-            })
-        ;
+        var age;
+        $(document).ready(function() {
+            $('.ui.dropdown').dropdown({
+                onChange:function (x,y,z) {
+                }
+            });
+
+            $("#film_div").find(".search").keyup(function (v) {
+                loadFilms($("#film_div").find("input").val(),"#film");
+            });
+            $("#serie_div").find(".search").keyup(function (v) {
+                loadSeries($("#serie_div").find("input").val(),"#serie");
+            });
+
+            $("#searchh").click(function () {
+                var gender = $("#gender").val();
+                var occupation = $("#occupation").val();
+                var religion = $("#religion").val();
+                var pays = $("#country").val();
+                var ville = $("#region").val();
+                var region = $("#city").val();
+                var film = $("#film").val();
+                var serie = $("#serie").val();
+                var livre = $("#livre").val();
+                var musique = $("#music").val();
+                $.ajax({
+                    url:"{{ path("search_result") }}",
+                    type:'get',
+                    data:{"gender":gender,"age":age,"occupation":occupation},
+                    success:function (data) {
+                        console.log(data);
+                    }
+                });
+
+            });
+        });
         $("#ageInt").slider();
         $("#ageInt").on("slideStart", function(slideEvt) {
             $(".tooltip").css("opacity",100);
         });
         $("#ageInt").on("slideStop", function(slideEvt) {
             $(".tooltip").css("opacity",0);
+            age = slideEvt.value;
         });
     </script>
 {% endblock %}

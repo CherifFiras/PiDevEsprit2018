@@ -1,3 +1,7 @@
 interaction_homepage:
     path:     /recherche
     defaults: { _controller: InteractionBundle:Recherche:recherche }
+
+search_result:
+    path:     /getresult
+    defaults: { _controller: InteractionBundle:Recherche:resultat }

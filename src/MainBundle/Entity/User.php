@@ -5,6 +5,7 @@ namespace MainBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
@@ -41,7 +42,7 @@ class User extends BaseUser
     protected $prenom;
 
     /**
-     * @var DateTime
+     * @var Date
      *
      * @ORM\Column(name="date_naissance", type="date")
      */
@@ -127,6 +128,29 @@ class User extends BaseUser
      * @ORM\Column(name="photoprofil", type="string" , length=255,nullable=true)
      */
     protected $photoprofil = "unknownphoto.jpg";
+
+    /**
+     * @return string
+     */
+    public function getOccupation()
+    {
+        return $this->occupation;
+    }
+
+    /**
+     * @param string $occupation
+     */
+    public function setOccupation($occupation)
+    {
+        $this->occupation = $occupation;
+    }
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="occupation", type="string" , length=255,nullable=true)
+     */
+    protected $occupation;
 
     /**
      * @return string
@@ -399,6 +423,7 @@ class User extends BaseUser
     {
         return $this->genre;
     }
+<<<<<<< HEAD
 
     /**
      * @ORM\OneToMany(targetEntity="MainBundle\Entity\CentreInteret", mappedBy="user")
@@ -542,4 +567,6 @@ class User extends BaseUser
         $this->photoprofil = $photoprofil;
     }
 
+=======
+>>>>>>> 44aabbbdf88a90e1e2551f0155c9be0d1da759e2
 }
