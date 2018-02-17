@@ -1,0 +1,319 @@
+{% extends 'front.html.twig' %}
+
+{% block css %}
+<style>
+    #lstg1{height:150px; width:auto;}
+    #lstg1{overflow:hidden; overflow-y:scroll;}
+    #lstg1 > li{ color: orangered;}
+
+    .action-list-group {
+        position: relative;
+    }
+
+    .action-list-group .list-group-item > a.list-group-link {
+        display: block;
+        /* inherit from .list-group-item */
+        padding: 10px 15px;
+        color: #555;
+    }
+
+    .action-list-group .list-group-item > a.list-group-link:hover {
+        background: #f5f5f5;
+        text-decoration: none;
+    }
+
+    .action-list-group .btn {
+        position: absolute;
+        right: 5px;
+        margin-top: 5px;
+        top: 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <form name="f" method="POST">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-control-label">Saisir un Film:</label>
+                            <input type="text" class="form-control" id="filmi"  placeholder="Rechercher içi">
+                            <select id="film" class="ui fluid search dropdown" multiple="" name="newcentre">
+
+                            </select>
+                            <input type="hidden" value="" name="type">
+                            <input type="hidden" value={{ iduser }} name="user">
+                        </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </form>
+
+    <!-- Your Account Personal Information -->
+<form method="POST">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-xs-12">
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Centres d'interets et Loisir</h6>
+                    </div>
+                    <div class="ui-block-content">
+                        <form>
+                            <div class="row">
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group label-floating">
+                                        <label >Films préférés:</label>
+                                        <form name="del" method="POST">
+                                        <ul id="lstg1" class="list-group action-list-group" >
+                                            {% for cen in centres  %}
+                                            <li class="list-group-item">{{ cen.contenu }}
+                                                <span class="pull-right button-group">
+                                                    <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span> X</button>
+                                                    <input type="hidden" value={{ cen.id }} name="idc">
+                                                </span>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                        </form>
+                                    </div>
+                                    <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-whatever="film" class="add-field">
+                                        <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
+                                        <span>Ajouter un Film</span>
+                                    </a>
+
+
+                                    <div class="form-group label-floating">
+                                        <label >Série de télévision préférées:</label>
+                                        <ul id="lstg1" class="list-group action-list-group" >
+                                            <li class="list-group-item clear-fix">Cras justo odio
+                                                <span class="pull-right button-group">
+                                                    <button type="button" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                                                </span>
+                                            </li>
+                                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                        </ul>
+                                    </div>
+                                    <a href="#" class="add-field">
+                                        <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
+                                        <span>Ajouter une Série</span>
+                                    </a>
+
+
+                                    <div class="form-group label-floating">
+                                        <label >Groupes de musique / Artistes préférés:</label>
+                                        <ul id="lstg1" class="list-group" >
+                                            <li class="list-group-item">Cras justo odio</li>
+                                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                        </ul>
+                                    </div>
+                                    <a href="#" class="add-field">
+                                        <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
+                                        <span>Ajouter un Artist</span>
+                                    </a>
+
+                                    <button class="btn btn-primary btn-lg full-width">Save all Changes</button>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group label-floating">
+                                        <label >Livres préférés:</label>
+                                        <ul id="lstg1" class="list-group" >
+                                            <li class="list-group-item">Cras justo odio</li>
+                                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                        </ul>
+                                    </div>
+                                    <a href="#" class="add-field">
+                                        <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
+                                        <span>Ajouter un Livre</span>
+                                    </a>
+
+                                    <div class="form-group label-floating">
+                                        <label >Loisirs:</label>
+                                        <ul id="lstg1" class="list-group" >
+                                            <li class="list-group-item">Cras justo odio</li>
+                                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                            <li class="list-group-item">Morbi leo risus</li>
+                                            <li class="list-group-item">Porta ac consectetur ac</li>
+                                            <li class="list-group-item">Vestibulum at eros</li>
+                                        </ul>
+                                    </div>
+                                    <a href="#" class="add-field">
+                                        <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
+                                        <span>Ajouter une Activité</span>
+                                    </a>
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 order-xl-1 col-lg-3 order-lg-1 col-md-12 order-md-2 col-sm-12 col-xs-12 responsive-display-none">
+                <div class="ui-block">
+                    <div class="your-profile">
+                        <div class="ui-block-title ui-block-title-small">
+                            <h6 class="title">Votre Profil</h6>
+                        </div>
+
+                        <div id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="card">
+                                <div class="card-header" role="tab" id="headingOne">
+                                    <h6 class="mb-0">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Parametres de Profil
+                                            <svg class="olymp-dropdown-arrow-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-dropdown-arrow-icon') }}></use></svg>
+                                        </a>
+                                    </h6>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                                    <ul class="your-profile-menu">
+                                        <li>
+                                            <a href="{{ path('paramInfo') }}">Informations Personelles</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('album') }}">Gérer Photos</a>
+                                        </li>
+                                        <li>
+                                            <a href="29-YourAccount-AccountSettings.html">Parametres de Compte</a>
+                                        </li>
+                                        <li>
+                                            <a href="30-YourAccount-ChangePassword.html">Modifier le Mot de Passe</a>
+                                        </li>
+                                        <li>
+                                            <a href="31-YourAccount-HobbiesAndInterests.html">Loisirs et Centres d'intérêts</a>
+                                        </li>
+                                        <li>
+                                            <a href="32-YourAccount-EducationAndEmployement.html">Education et Emploi</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ui-block-title">
+                            <a href="33-YourAccount-Notifications.html" class="h6 title">Notifications</a>
+                            <a href="#" class="items-round-little bg-primary">8</a>
+                        </div>
+                        <div class="ui-block-title">
+                            <a href="34-YourAccount-ChatMessages.html" class="h6 title">Chat / Messages</a>
+                        </div>
+                        <div class="ui-block-title">
+                            <a href="35-YourAccount-FriendsRequests.html" class="h6 title">Friend Requests</a>
+                            <a href="#" class="items-round-little bg-blue">4</a>
+                        </div>
+                        <div class="ui-block-title ui-block-title-small">
+                            <h6 class="title">FAVOURITE PAGE</h6>
+                        </div>
+                        <div class="ui-block-title">
+                            <a href="36-FavPage-SettingsAndCreatePopup.html" class="h6 title">Create Fav Page</a>
+                        </div>
+                        <div class="ui-block-title">
+                            <a href="36-FavPage-SettingsAndCreatePopup.html" class="h6 title">Fav Page Settings</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+    <!-- ... end Your Account Personal Information -->
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ asset('js/dropdown.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/transition.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/popup.min.js') }}"></script>
+    <script>
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            var modal = $(this)
+            modal.find('.modal-title').text('Ajouter ' + recipient)
+            modal.find('input[type=hidden]').val(recipient)
+            //modal.find('.modal-body input').val(recipient)
+        })
+
+        // Charger les films "Themoviedb API" TMDB
+        $(document).ready(function() {
+            $("#filmi").keyup(function () {
+                url = "https://api.themoviedb.org/3/search/movie?api_key=2e5aee0d6e6ad27e13cf48eb3cd9b5dc&language=en-US&query="+$("#filmi").val()+"&page=1&include_adult=false";
+                if($("#filmi").val() == "")
+                    return;
+                $.getJSON(url,function(movies)
+                {
+                    $("#film option").remove();
+                    //loop through countries..
+                    $.each(movies['results'],function(key,movie)
+                    {
+                        $("<option></option>")
+                            .attr("value",movie.title)
+                            .append(movie.title)
+                            .appendTo($("#film"));
+                    });
+
+                });
+            })});
+        //---------------
+    </script>
+
+{% endblock %}
+

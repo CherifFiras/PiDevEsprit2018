@@ -124,6 +124,12 @@ class User extends BaseUser
      * @ORM\Column(name="instagram", type="string" , length=255,nullable=true)
      */
     protected $instagram;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photoprofil", type="string" , length=255,nullable=true)
+     */
+    protected $photoprofil = "unknownphoto.jpg";
 
     /**
      * @return string
@@ -427,6 +433,7 @@ class User extends BaseUser
     }
 
     /**
+<<<<<<< HEAD
      * @return mixed
      */
     public function getInterets()
@@ -442,3 +449,20 @@ class User extends BaseUser
         $this->interets = $interets;
     }
 }
+=======
+     * @return string
+     */
+    public function getPhotoprofil()
+    {
+        return $this->photoprofil;
+    }
+
+    /**
+     * @param string $photoprofil
+     */
+    public function setPhotoprofil($photoprofil)
+    {
+        $this->photoprofil = $photoprofil;
+    }
+}
+>>>>>>> 49e6ee13b18fcc5299579f2ecd28d63a858d5516

@@ -92,7 +92,6 @@ var BATTUTA_KEY="00000000000000000000000000000000"
 		    // trigger "change" to fire the #state section update process
             funce();
             $('.selectpicker').selectpicker('refresh');
-            $("#region").trigger("change");
 	    	
 	    }); 
 	    
