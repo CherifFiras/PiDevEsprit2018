@@ -111,7 +111,7 @@ class CentreInteret
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="interets")
      * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
      *
      */

@@ -4,8 +4,11 @@ namespace InteractionBundle\Controller;
 
 use MainBundle\Entity\CentreInteret;
 use MainBundle\Entity\Emploi;
+use MainBundle\Entity\Recherche;
 use MainBundle\Entity\User;
+use MainBundle\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Ldap\Adapter\ExtLdap\Collection;
@@ -22,19 +25,62 @@ class RechercheController extends Controller
 
     public function resultatAction(Request $request)
     {
-        $userList = new Collection();
+
         $manager = $this->getDoctrine()->getManager();
         $genre = $request->get("gender");
-        $occupation = $request->get("occupation");
-        $users = $manager->getRepository(User::class)->findBy(array("genre"=>$genre));
-
-        foreach ($occupation as $o)
+        $age = $request->get("age");
+        if($age == null)
         {
-            $u = $manager->getRepository(Emploi::class)->findBy(array());
+            $age[0] = 18;
+            $age[1] = 60;
         }
+        $occupation = $request->get("occupation");
+        $religion = $request->get("religion");
+        $pays = $request->get("pays");
+        $ville = $request->get("ville");
+        $region = $request->get("region");
+        $films = $request->get("films");
+        $series = $request->get("series");
+        $livres = $request->get("livres");
+        $this->saveRecherche($genre,$age[0],$age[1],$occupation,$religion,$pays,$ville,$region);
+        $userList = $manager->getRepository("MainBundle:User")->resultusers($genre,$occupation,$religion,$pays,$ville,$region,$films,$series,$livres);
 
-        return $this->render('@Interaction/Default/index.html.twig',array(
-            "occupation"=>$occupation
-        ));
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setIgnoredAttributes(array('user'));
+
+        $serializer=new Serializer(array($normalizer));
+        $data=$serializer->normalize($userList);
+        return new JsonResponse($data);
+
+
+    }
+
+    private function saveRecherche($genre,$agemin,$agemax,$occupation,$religion,$pays,$ville,$region)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        if($occupation != null)
+            $occupation = implode(",",$occupation);
+        if($religion != null)
+            $religion = implode(",",$religion);
+        if($pays != null)
+            $pays = implode(",",$pays);
+        if($ville != null)
+            $ville = implode(",",$ville);
+        if($region)
+            $region = implode(",",$region);
+
+        $recherche = new Recherche();
+        $recherche->setGenre($genre);
+        $recherche->setAgeMin($agemin);
+        $recherche->setAgeMax($agemax);
+        $recherche->setOccupation($occupation);
+        $recherche->setRelegion($religion);
+        $recherche->setPays($pays);
+        $recherche->setVille($ville);
+        $recherche->setRegion($region);
+
+        $manager->persist($recherche);
+        $manager->flush();
     }
 }

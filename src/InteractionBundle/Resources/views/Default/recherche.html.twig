@@ -17,7 +17,7 @@
                     <div class="ui-block-title">
                         <h6 class="title">Resultat de recherche</h6>
                     </div>
-                    <div class="ui-block-content pre-scrollable">
+                    <div id="result_content" class="ui-block-content pre-scrollable">
                         <ul class="notification-list friend-requests">
                             <li>
                                 <div class="author-thumb">
@@ -192,6 +192,7 @@
     <script type="text/javascript" src="{{ asset('js/transition.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/BattutaApi.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/themoviedbApi.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/Models.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
     <script>
         var age;
@@ -203,6 +204,7 @@
 
             $("#film_div").find(".search").keyup(function (v) {
                 loadFilms($("#film_div").find("input").val(),"#film");
+                var musique = $("#music").val();
             });
             $("#serie_div").find(".search").keyup(function (v) {
                 loadSeries($("#serie_div").find("input").val(),"#serie");
@@ -215,16 +217,38 @@
                 var pays = $("#country").val();
                 var ville = $("#region").val();
                 var region = $("#city").val();
-                var film = $("#film").val();
-                var serie = $("#serie").val();
-                var livre = $("#livre").val();
-                var musique = $("#music").val();
+                var film = [];
+                var i = 0;
+                $.each($("#film_div").find("a"),function (k,v) {
+                    film[i++] = v.dataset.value;
+                });
+                var serie = [];
+                i = 0;
+                $.each($("#serie_div").find("a"),function (k,v) {
+                    serie[i++] = v.dataset.value;
+                });
+                var livre = [];
+                i = 0;
+                $.each($("#livre_div").find("a"),function (k,v) {
+                    livre[i++] = v.dataset.value;
+                });
+
                 $.ajax({
+
                     url:"{{ path("search_result") }}",
                     type:'get',
-                    data:{"gender":gender,"age":age,"occupation":occupation},
+                    data:{"gender":gender,"age":age,"occupation":occupation,"pays":pays,"ville":ville,"region":region,"religion":religion,"films":film,"series":serie,"livres":livre},
                     success:function (data) {
-                        console.log(data);
+                        $.each(data,function(key,user)
+                        {
+                            var args = ["{{ asset('img/') }}avatar16-sm.jpg",{{ path('profil_homepage') }}user.id,user.nom,"{{ asset('icons/icons.svg#olymp-happy-face-icon') }}","{{ asset('icons/icons.svg#olymp-three-dots-icon') }}","{{ asset('icons/icons.svg#olymp-little-delete') }}"];
+                            var s = searchResult;
+                            for (var i = 0; i < args.length; i++) {
+                                var reg = new RegExp("\\{" + i + "\\}","gm");
+                                s = s.replace(reg, args[i]);
+                            }
+                            $("#result_content").append(s);
+                        });
                     }
                 });
 

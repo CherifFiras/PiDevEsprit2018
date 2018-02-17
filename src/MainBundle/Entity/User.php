@@ -3,17 +3,19 @@
 
 namespace MainBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MainBundle\Repository\UserRepository")
  * @ORM\Table(name="user")
  */
 class User extends BaseUser
 {
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -24,7 +26,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        // your own logic
+        $this->interets = new ArrayCollection();
     }
 
     /**
@@ -144,7 +146,13 @@ class User extends BaseUser
      *
      * @ORM\Column(name="occupation", type="string" , length=255,nullable=true)
      */
-    protected $occupation;
+    public $occupation;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="MainBundle\Entity\CentreInteret", mappedBy="user")
+     */
+    private $interets;
 
     /**
      * @return string
@@ -416,5 +424,21 @@ class User extends BaseUser
     public function getGenre()
     {
         return $this->genre;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInterets()
+    {
+        return $this->interets;
+    }
+
+    /**
+     * @param mixed $interets
+     */
+    public function setInterets($interets)
+    {
+        $this->interets = $interets;
     }
 }
