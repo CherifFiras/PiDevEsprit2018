@@ -17,7 +17,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('u');
         $qb->andWhere("u.id != :ii")->setParameter(":ii",$u);
         if($gender != null)
-            $qb->andWhere("u.genre = ':ge'")->setParameter(":ge",$gender);
+            $qb->andWhere("u.genre = :gen")->setParameter(":gen",$gender);
         if($occupation != null)
             $qb->andWhere("u.occupation in (:oc)")->setParameter(":oc",$occupation);
         if($religion != null)
