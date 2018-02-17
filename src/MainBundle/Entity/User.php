@@ -433,7 +433,6 @@ class User extends BaseUser
     }
 
     /**
-<<<<<<< HEAD
      * @return mixed
      */
     public function getInterets()
@@ -448,9 +447,9 @@ class User extends BaseUser
     {
         $this->interets = $interets;
     }
-}
-=======
-     * @return string
+
+    /**
+     * @return mixed
      */
     public function getPhotoprofil()
     {
@@ -465,4 +464,3 @@ class User extends BaseUser
         $this->photoprofil = $photoprofil;
     }
 }
->>>>>>> 49e6ee13b18fcc5299579f2ecd28d63a858d5516
