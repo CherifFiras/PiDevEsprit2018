@@ -10,11 +10,12 @@ namespace MainBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function resultusers($gender,$occupation,$religion,$pays,$ville,$region,$films,$series,$livres)
+    public function resultusers($u,$gender,$occupation,$religion,$pays,$ville,$region,$films,$series,$livres)
     {
         $c = array();
         $t = array();
         $qb = $this->createQueryBuilder('u');
+        $qb->andWhere("u.id != :ii")->setParameter(":ii",$u);
         if($gender != null)
             $qb->andWhere("u.genre = ':ge'")->setParameter(":ge",$gender);
         if($occupation != null)

@@ -18,29 +18,7 @@
                         <h6 class="title">Resultat de recherche</h6>
                     </div>
                     <div id="result_content" class="ui-block-content pre-scrollable">
-                        <ul class="notification-list friend-requests">
-                            <li>
-                                <div class="author-thumb">
-                                    <img src="{{ asset('img/avatar16-sm.jpg') }}" alt="author">
-                                </div>
-                                <div class="notification-event">
-                                    <a href="#" class="h6 notification-friend">Tony Stevens</a>
-                                    <span class="chat-message-item">4 Friends in Common</span>
-                                </div>
-                                <span class="notification-icon">
-                                    <a href="#" class="accept-request">
-                                        <span class="icon-add">
-                                            <svg class="olymp-happy-face-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('icons/icons.svg#olymp-happy-face-icon') }}"></use></svg>
-                                        </span>
-                                        Demande de Communication
-                                    </a>
-						        </span>
-                                <div class="more">
-                                    <svg class="olymp-three-dots-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
-                                    <svg class="olymp-little-delete"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('icons/icons.svg#olymp-little-delete') }}"></use></svg>
-                                </div>
-                            </li>
-                        </ul>
+
                     </div>
                 </div>
             </div>
@@ -241,7 +219,7 @@
                     success:function (data) {
                         $.each(data,function(key,user)
                         {
-                            var args = ["{{ asset('img/') }}avatar16-sm.jpg",{{ path('profil_homepage') }}user.id,user.nom,"{{ asset('icons/icons.svg#olymp-happy-face-icon') }}","{{ asset('icons/icons.svg#olymp-three-dots-icon') }}","{{ asset('icons/icons.svg#olymp-little-delete') }}"];
+                            var args = ["{{ asset('img/') }}avatar16-sm.jpg","{{ path('profil_homepage') }}"+user.id,user.nom,"{{ asset('icons/icons.svg#olymp-happy-face-icon') }}","{{ asset('icons/icons.svg#olymp-three-dots-icon') }}","{{ asset('icons/icons.svg#olymp-little-delete') }}"];
                             var s = searchResult;
                             for (var i = 0; i < args.length; i++) {
                                 var reg = new RegExp("\\{" + i + "\\}","gm");

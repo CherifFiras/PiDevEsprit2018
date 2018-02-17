@@ -43,7 +43,8 @@ class RechercheController extends Controller
         $series = $request->get("series");
         $livres = $request->get("livres");
         $this->saveRecherche($genre,$age[0],$age[1],$occupation,$religion,$pays,$ville,$region);
-        $userList = $manager->getRepository("MainBundle:User")->resultusers($genre,$occupation,$religion,$pays,$ville,$region,$films,$series,$livres);
+        $u= $this->container->get('security.token_storage')->getToken()->getUser();
+        $userList = $manager->getRepository("MainBundle:User")->resultusers($u->getId(),$genre,$occupation,$religion,$pays,$ville,$region,$films,$series,$livres);
 
 
         $normalizer = new ObjectNormalizer();
