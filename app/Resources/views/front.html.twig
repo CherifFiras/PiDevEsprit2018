@@ -388,74 +388,16 @@
     <div class="fixed-sidebar-right sidebar--small" id="sidebar-right">
 
         <div class="mCustomScrollbar" data-mcs-theme="dark">
-            <ul class="chat-users">
+            <ul id="chat-list" class="chat-users">
                 <li class="inline-items js-chat-open">
                     <div class="author-thumb">
-                        <img alt="author" src="{{ asset('img/avatar67-sm.jpg') }}" class="avatar">
+                        <img id="14" alt="author" src="{{ asset('img/avatar67-sm.jpg') }}" class="avatar">
                         <span class="icon-status online"></span>
                     </div>
                 </li>
-                <li class="inline-items js-chat-open">
+                <li  class="inline-items js-chat-open">
                     <div class="author-thumb">
-                        <img alt="author" src="{{ asset('img/avatar62-sm.jpg') }}" class="avatar">
-                        <span class="icon-status online"></span>
-                    </div>
-                </li>
-
-                <li class="inline-items js-chat-open">
-                    <div class="author-thumb">
-                        <img alt="author" src="{{ asset('img/avatar68-sm.jpg') }}" class="avatar">
-                        <span class="icon-status online"></span>
-                    </div>
-                </li>
-
-                <li class="inline-items js-chat-open">
-                    <div class="author-thumb">
-                        <img alt="author" src="{{ asset('img/avatar69-sm.jpg') }}" class="avatar">
-                        <span class="icon-status away"></span>
-                    </div>
-                </li>
-
-                <li class="inline-items js-chat-open">
-                    <div class="author-thumb">
-                        <img alt="author" src="{{ asset('img/avatar70-sm.jpg') }}" class="avatar">
-                        <span class="icon-status disconected"></span>
-                    </div>
-                </li>
-                <li class="inline-items js-chat-open">
-                    <div class="author-thumb">
-                        <img alt="author" src="{{ asset('img/avatar64-sm.jpg') }}" class="avatar">
-                        <span class="icon-status online"></span>
-                    </div>
-                </li>
-                <li class="inline-items js-chat-open">
-                    <div class="author-thumb">
-                        <img alt="author" src="{{ asset('img/avatar71-sm.jpg') }}" class="avatar">
-                        <span class="icon-status online"></span>
-                    </div>
-                </li>
-                <li class="inline-items js-chat-open">
-                    <div class="author-thumb">
-                        <img alt="author" src="{{ asset('img/avatar72-sm.jpg') }}" class="avatar">
-                        <span class="icon-status away"></span>
-                    </div>
-                </li>
-                <li class="inline-items js-chat-open">
-                    <div class="author-thumb">
-                        <img alt="author" src="{{ asset('img/avatar63-sm.jpg') }}" class="avatar">
-                        <span class="icon-status status-invisible"></span>
-                    </div>
-                </li>
-                <li class="inline-items js-chat-open">
-                    <div class="author-thumb">
-                        <img alt="author" src="{{ asset('img/avatar72-sm.jpg') }}" class="avatar">
-                        <span class="icon-status away"></span>
-                    </div>
-                </li>
-                <li class="inline-items js-chat-open">
-
-                    <div class="author-thumb">
-                        <img alt="author" src="{{ asset('img/avatar71-sm.jpg') }}" class="avatar">
+                        <img id="12" alt="author" src="{{ asset('img/avatar2-sm.jpg') }}" class="avatar">
                         <span class="icon-status online"></span>
                     </div>
                 </li>
@@ -1762,7 +1704,7 @@
 
 <!-- Window-popup-CHAT for responsive min-width: 768px -->
 
-<div class="ui-block popup-chat popup-chat-responsive">
+<div id="messagep" class="ui-block popup-chat popup-chat-responsive">
     <div class="ui-block-title">
         <span class="icon-status online"></span>
         <h6 class="title" >Chat</h6>
@@ -1772,37 +1714,8 @@
         </div>
     </div>
     <div class="mCustomScrollbar">
-        <ul class="notification-list chat-message chat-message-field">
-            <li>
-                <div class="author-thumb">
-                    <img src="{{ asset('img/avatar14-sm.jpg') }}" alt="author" class="mCS_img_loaded">
-                </div>
-                <div class="notification-event">
-                    <span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
-                    <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
-                </div>
-            </li>
+        <ul id="message-list" class="notification-list chat-message chat-message-field">
 
-            <li>
-                <div class="author-thumb">
-                    <img src="{{ asset('img/author-page.jpg') }}" alt="author" class="mCS_img_loaded">
-                </div>
-                <div class="notification-event">
-                    <span class="chat-message-item">Don’t worry Mathilda!</span>
-                    <span class="chat-message-item">I already bought everything</span>
-                    <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:29pm</time></span>
-                </div>
-            </li>
-
-            <li>
-                <div class="author-thumb">
-                    <img src="{{ asset('img/avatar14-sm.jpg') }}" alt="author" class="mCS_img_loaded">
-                </div>
-                <div class="notification-event">
-                    <span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
-                    <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
-                </div>
-            </li>
         </ul>
     </div>
 
@@ -1993,7 +1906,102 @@
 
 <script src="{{ asset('js/mediaelement-and-player.min.js') }}"></script>
 <script src="{{ asset('js/mediaelement-playlist-plugin.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        //$(".mCustomScrollbar").mCustomScrollbar();
+        var b = 0;
+        var lastMessage;
+        var id = 0;
+        var messageItem = `<span class="chat-message-item">{0}</span>`;
+        var messageModel = `<li>
+                        <div class="author-thumb">
+                            <img src="{0}" alt="author" class="mCS_img_loaded">
+                        </div>
+                        <div class="notification-event">
+                            {1}
+                            <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
+                        </div>
+			        </li>`;
+        function load() {
+            $.ajax({
+                url:"{{ path("message_data") }}",
+                type:'get',
+                data:{"touser":id,"last":lastMessage},
+                success:function (data) {
+                    if(data == "") return;
+                    if(data[0].sender.id == {{ app.user.id }})
+                        $("#message-list").append("<li></li>");
+                    var tab = [];
+                    var check = data[0].sender.id;
+                    $.each(data,function(key,message)
+                    {
+                        lastMessage = message.id;
+                        if(check == message.sender.id)
+                            tab.push(formatString(messageItem,[message.text]));
+                        else
+                        {
+                            var content = messageModel;
+                            for(i=0;i<tab.length;i++)
+                                content =  formatString(content,["{{ asset('img/avatar14-sm.jpg') }}",tab[i]+"{1}"]);
+                            content =  formatString(content,["{{ asset('img/avatar14-sm.jpg') }}",""]);
+                            $("#message-list").append(content);
+                            tab = [];
+                            tab.push(formatString(messageItem,[message.text]));
+                        }
+                        check = message.sender.id;
+                    });
+                    var content = messageModel;
+                    for(i=0;i<tab.length;i++)
+                        content =  formatString(content,["{{ asset('img/avatar14-sm.jpg') }}",tab[i]+"{1}"]);
+                    content =  formatString(content,["{{ asset('img/avatar14-sm.jpg') }}",""]);
+                    $("#message-list").append(content);
+                    //$(".mCustomScrollbar").mCustomScrollbar("update");
+                    //$(".mCustomScrollbar").mCustomScrollbar("scrollTo", "bottom");
+                    b = 1;
+                }
+            });
+        }
+        setInterval(function(){
+            if(id == 0 || b==0) return;
+            console.log("setinterval");
+            load();
+        }, 2000);
+        function formatString(s,args)
+        {
+            for (var i = 0; i < args.length; i++) {
+                var reg = new RegExp("\\{" + i + "\\}","gm");
+                s = s.replace(reg, args[i]);
+            }
+            return s;
+        }
+        $("#chat-list").find("li").find("img").click(function (e) {
+            lastMessage = 0;
+            $("#message-list").empty();
+            id = e.target.id;
+            b = 0;
+            load();
+        });
+
+        $("#messagep").find("textarea").keypress(function (e) {
+            if(e.which != 13) return;
+            $.ajax({
+
+                url:"{{ path("send_message") }}",
+                type:'post',
+                data:{"touser":id,"text":$("#messagep").find("textarea").val()},
+                error:function (data) {
+                    alert("erreur");
+                },
+                success:function () {
+                    $("#messagep").find("textarea").val("");
+                }
+            });
+        });
+
+    });
+</script>
 {% block js %}
+
 {% endblock %}
 
 </body>

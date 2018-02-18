@@ -21,3 +21,4 @@ var searchResult = `<ul class="notification-list friend-requests">
                                 </div>
                             </li>
                         </ul>`;
+
