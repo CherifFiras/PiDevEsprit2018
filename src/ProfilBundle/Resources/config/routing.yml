@@ -1,5 +1,5 @@
 profil_homepage:
-    path:     /
+    path:     /journal
     defaults: { _controller: ProfilBundle:Profil:index }
 
 paramInfo:

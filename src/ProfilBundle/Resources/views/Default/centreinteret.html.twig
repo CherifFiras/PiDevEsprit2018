@@ -5,6 +5,7 @@
     #lstg1{height:150px; width:auto;}
     #lstg1{overflow:hidden; overflow-y:scroll;}
     #lstg1 > li{ color: orangered;}
+    #flst > li{ color: orangered;}
 
     .action-list-group {
         position: relative;
@@ -85,18 +86,18 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
                                         <label >Films préférés:</label>
-                                        <form name="del" method="POST">
                                         <ul id="lstg1" class="list-group action-list-group" >
                                             {% for cen in centres  %}
-                                            <li class="list-group-item">{{ cen.contenu }}
+                                            <form id="flst" name="del" method="POST">
+                                            <li class="list-group-item" >{{ cen.contenu }}
                                                 <span class="pull-right button-group">
                                                     <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span> X</button>
                                                     <input type="hidden" value={{ cen.id }} name="idc">
                                                 </span>
                                             </li>
+                                            </form>
                                             {% endfor %}
                                         </ul>
-                                        </form>
                                     </div>
                                     <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-whatever="film" class="add-field">
                                         <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
@@ -278,10 +279,7 @@
 {% endblock %}
 
 {% block js %}
-    <script type="text/javascript" src="{{ asset('js/dropdown.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/transition.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
-    <script type="text/javascript" src="{{ asset('js/popup.min.js') }}"></script>
+
     <script>
         $('#exampleModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
