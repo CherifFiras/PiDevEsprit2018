@@ -13,3 +13,7 @@ message_data:
 send_message:
     path:     /sendmessage
     defaults: { _controller: InteractionBundle:Message:sendMessage }
+
+chat:
+    path:     /getmembers
+    defaults: { _controller: InteractionBundle:Message:getChatMemebers }

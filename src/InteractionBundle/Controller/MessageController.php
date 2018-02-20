@@ -23,8 +23,6 @@ class MessageController extends Controller
         $messageList = $manager->getRepository("MainBundle:Message")->fetchMessages($user,$touser,$last);
 
         $normalizer = new ObjectNormalizer();
-        //$normalizer->setIgnoredAttributes(array('interets'));
-
         $serializer=new Serializer(array(new DateTimeNormalizer(),$normalizer));
         $data=$serializer->normalize($messageList, null, array('attributes' => array('id','sender'=>['id'], 'receiver' => ['id'],'text','date')));
         return new JsonResponse($data);
@@ -45,5 +43,15 @@ class MessageController extends Controller
         $manager->persist($message);
         $manager->flush();
         return new JsonResponse("DONE !!!");
+    }
+    public function getChatMemebersAction()
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $user= $this->container->get('security.token_storage')->getToken()->getUser();
+        $users = $manager->getRepository("MainBundle:Relation")->fetchMembers($user);
+        $normalizer = new ObjectNormalizer();
+        $serializer=new Serializer(array(new DateTimeNormalizer(),$normalizer));
+        $data=$serializer->normalize($users, null, array('attributes' => array('id','requester'=> ['id','photoprofil'], 'acceptor' => ['id','photoprofil'])));
+        return new JsonResponse($data);
     }
 }

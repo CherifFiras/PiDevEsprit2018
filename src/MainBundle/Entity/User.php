@@ -161,6 +161,17 @@ class User extends BaseUser
     private $interets;
 
     /**
+     * @ORM\OneToMany(targetEntity="MainBundle\Entity\Relation", mappedBy="acceptor")
+     */
+    private $acceptors;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="MainBundle\Entity\Relation", mappedBy="requester")
+     */
+    private $requesters;
+
+    /**
      * @return string
      */
     public function getFacebook()
@@ -462,5 +473,37 @@ class User extends BaseUser
     public function setPhotoprofil($photoprofil)
     {
         $this->photoprofil = $photoprofil;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAcceptors()
+    {
+        return $this->acceptors;
+    }
+
+    /**
+     * @param mixed $acceptors
+     */
+    public function setAcceptors($acceptors)
+    {
+        $this->acceptors = $acceptors;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRequesters()
+    {
+        return $this->requesters;
+    }
+
+    /**
+     * @param mixed $requesters
+     */
+    public function setRequesters($requesters)
+    {
+        $this->requesters = $requesters;
     }
 }

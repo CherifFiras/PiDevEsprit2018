@@ -30,6 +30,21 @@ class Relation
 
 
     /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="requesters")
+     * @ORM\JoinColumn(name="requester",referencedColumnName="id")
+     *
+     */
+    private $requester;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="acceptors")
+     * @ORM\JoinColumn(name="acceptor",referencedColumnName="id")
+     *
+     */
+    private $acceptor;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -61,6 +76,38 @@ class Relation
     public function getDateRelation()
     {
         return $this->dateRelation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRequester()
+    {
+        return $this->requester;
+    }
+
+    /**
+     * @param mixed $requester
+     */
+    public function setRequester($requester)
+    {
+        $this->requester = $requester;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAcceptor()
+    {
+        return $this->acceptor;
+    }
+
+    /**
+     * @param mixed $acceptor
+     */
+    public function setAcceptor($acceptor)
+    {
+        $this->acceptor = $acceptor;
     }
 }
 

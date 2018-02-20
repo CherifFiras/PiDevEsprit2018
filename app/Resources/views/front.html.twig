@@ -389,18 +389,7 @@
 
         <div class="mCustomScrollbar" data-mcs-theme="dark">
             <ul id="chat-list" class="chat-users">
-                <li class="inline-items js-chat-open">
-                    <div class="author-thumb">
-                        <img id="14" alt="author" src="{{ asset('img/avatar67-sm.jpg') }}" class="avatar">
-                        <span class="icon-status online"></span>
-                    </div>
-                </li>
-                <li  class="inline-items js-chat-open">
-                    <div class="author-thumb">
-                        <img id="12" alt="author" src="{{ asset('img/avatar2-sm.jpg') }}" class="avatar">
-                        <span class="icon-status online"></span>
-                    </div>
-                </li>
+
             </ul>
         </div>
 
@@ -1912,6 +1901,12 @@
         var b = 0;
         var lastMessage;
         var id = 0;
+        var chatItem = `<li class="inline-items js-chat-open">
+                    <div class="author-thumb">
+                        <img id="{0}" alt="author" src="{1}" class="avatar">
+                        <span class="icon-status online"></span>
+                    </div>
+                </li>`;
         var messageItem = `<span class="chat-message-item">{0}</span>`;
         var messageModel = `<li>
                         <div class="author-thumb">
@@ -1961,6 +1956,34 @@
                 }
             });
         }
+        $.ajax({
+           url:"{{ path("chat") }}",
+            type:"get",
+            success:function(data) {
+               $.each(data,function(key,relation){
+                   if(relation.acceptor.id == {{ app.user.id }}) {
+                       var id = relation.requester.id;
+                       var photo = relation.requester.photoprofil;
+                   }
+                   else {
+                       var id = relation.acceptor.id;
+                       var photo = relation.acceptor.photoprofil;
+                   }
+
+                   var item = formatString(chatItem,[id,"{{ asset('images/') }}"+photo]);
+                   $("#chat-list").append(item);
+               });
+               $("#chat-list").find("li").find("img").click(function (e) {
+                   $("#messagep").attr("class","ui-block popup-chat popup-chat-responsive open-chat");
+                    lastMessage = 0;
+                    $("#message-list").empty();
+                    id = e.target.id;
+                    b = 0;
+                    load();
+               });
+            }
+
+        });
         setInterval(function(){
             if(id == 0 || b==0) return;
             console.log("setinterval");
@@ -1974,13 +1997,6 @@
             }
             return s;
         }
-        $("#chat-list").find("li").find("img").click(function (e) {
-            lastMessage = 0;
-            $("#message-list").empty();
-            id = e.target.id;
-            b = 0;
-            load();
-        });
 
         $("#messagep").find("textarea").keypress(function (e) {
             if(e.which != 13) return;
@@ -1997,7 +2013,6 @@
                 }
             });
         });
-
     });
 </script>
 {% block js %}
