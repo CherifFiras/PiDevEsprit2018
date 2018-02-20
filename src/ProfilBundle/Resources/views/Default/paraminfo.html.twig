@@ -52,17 +52,17 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Prénom</label>
-                                        <input class="form-control" placeholder="" type="text" name="prenom" value={{ app.user.prenom }}>
+                                        <input class="form-control" placeholder="" type="text" name="prenom" value="{{ app.user.prenom }}">
                                     </div>
 
                                     <div class="form-group label-floating">
                                         <label class="control-label">Adresse Email</label>
-                                        <input class="form-control" placeholder="" type="email" name="email" value={{ app.user.email }} disabled >
+                                        <input class="form-control" placeholder="" type="email" name="email" value="{{ app.user.email }}" disabled >
                                     </div>
 
                                     <div class="form-group date-time-picker label-floating">
                                         <label class="control-label">Date de Naissance</label>
-                                        <input name="datetimepicker" value={{ app.user.dateNaissance|date('d/m/Y') }} >
+                                        <input name="datetimepicker" value="{{ app.user.dateNaissance|date('d/m/Y') }}" >
                                         <span class="input-group-addon">
 										<svg class="olymp-month-calendar-icon icon"><use xlink:href={{ asset('icons/icons.svg#olymp-month-calendar-icon') }}></use></svg>
 									</span>
@@ -72,7 +72,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Nom</label>
-                                        <input class="form-control" placeholder="" name="nom" type="text" value={{ app.user.nom }}>
+                                        <input class="form-control" placeholder="" name="nom" type="text" value="{{ app.user.nom }}">
                                     </div>
 
                                     <div class="form-group label-floating is-select">
@@ -85,7 +85,7 @@
 
                                     <div class="form-group label-floating">
                                         <label class="control-label">Numéro de Téléphone</label>
-                                        <input class="form-control" placeholder="" type="text" name="tel" value={{ app.user.tel }}>
+                                        <input class="form-control" placeholder="" type="text" name="tel" value="{{ app.user.tel }}">
                                     </div>
                                 </div>
 
@@ -136,7 +136,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Lieu de Naissance</label>
-                                        <input class="form-control" placeholder="" type="text" name="placenaiss" value={{ app.user.PlaceNaiss }}>
+                                        <input class="form-control" placeholder="" type="text" name="placenaiss" value="{{ app.user.PlaceNaiss }}">
                                     </div>
                                     <div class="form-group label-floating is-select">
                                         <label class="control-label">Religion</label>
@@ -153,17 +153,17 @@
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group with-icon label-floating">
                                         <label class="control-label">Votre Profil Facebook</label>
-                                        <input class="form-control" type="text" name="facebook" value={{ app.user.facebook }}>
+                                        <input class="form-control" type="text" name="facebook" value="{{ app.user.facebook }}">
                                         <i class="fa fa-facebook c-facebook" aria-hidden="true"></i>
                                     </div>
                                     <div class="form-group with-icon label-floating">
                                         <label class="control-label">Votre Profil Twitter</label>
-                                        <input class="form-control" type="text" name="twitter" value={{ app.user.twitter }}>
+                                        <input class="form-control" type="text" name="twitter" value="{{ app.user.twitter }}">
                                         <i class="fa fa-twitter c-twitter" aria-hidden="true"></i>
                                     </div>
                                     <div class="form-group with-icon label-floating">
                                         <label class="control-label">Votre Profil Instagram</label>
-                                        <input class="form-control" type="text" name="instagram" value={{ app.user.instagram }}>
+                                        <input class="form-control" type="text" name="instagram" value="{{ app.user.instagram }}">
                                         <i class="fa fa-instagram c-dribbble" aria-hidden="true"></i>
                                     </div>
                                 </div>
@@ -223,7 +223,11 @@
                                             {% endif %}
                                         </li>
                                         <li>
-                                            <a href="32-YourAccount-EducationAndEmployement.html">Education et Emploi</a>
+                                            {% if (app.user.id == iduser) %}
+                                                <a href="{{ path('educationemploi') }}">Education et Emploi</a>
+                                            {% else %}
+                                                <a href="{{ path('educationemploi') }}">Education et Emploi</a>
+                                            {% endif %}
                                         </li>
                                     </ul>
                                 </div>

@@ -29,16 +29,16 @@ class Scolarite
     private $contenu;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="dateDebut", type="date")
+     * @ORM\Column(name="dateDebut", type="string", length=255)
      */
     private $dateDebut;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="dateFin", type="date")
+     * @ORM\Column(name="dateFin", type="string", length=255)
      */
     private $dateFin;
 
@@ -80,7 +80,7 @@ class Scolarite
     /**
      * Set dateDebut
      *
-     * @param \DateTime $dateDebut
+     * @param string $dateDebut
      *
      * @return Scolarite
      */
@@ -94,7 +94,7 @@ class Scolarite
     /**
      * Get dateDebut
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDateDebut()
     {
@@ -106,7 +106,7 @@ class Scolarite
      */
     public function getUser()
     {
-        return $this->User;
+        return $this->user;
     }
 
     /**
@@ -114,13 +114,13 @@ class Scolarite
      */
     public function setUser($User)
     {
-        $this->User = $User;
+        $this->user = $User;
     }
 
     /**
      * Set dateFin
      *
-     * @param \DateTime $dateFin
+     * @param string $dateFin
      *
      * @return Scolarite
      */
@@ -134,7 +134,7 @@ class Scolarite
     /**
      * Get dateFin
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDateFin()
     {
