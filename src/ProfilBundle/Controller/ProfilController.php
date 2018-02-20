@@ -55,6 +55,8 @@ class ProfilController extends Controller
         }
         // Recuperation des donnees
         //Remplir form
+
+
         return $this->render('ProfilBundle:Default:paraminfo.html.twig', array(
             'iduser' => $u->getId()
         ));
