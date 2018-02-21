@@ -2,12 +2,14 @@
 
 namespace ProfilBundle\Controller;
 
+use MainBundle\Entity\Album;
 use MainBundle\Entity\CentreInteret;
 use MainBundle\Entity\Emploi;
 use MainBundle\Entity\Scolarite;
 use MainBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -216,9 +218,42 @@ class ProfilController extends Controller
         return $this->redirectToRoute('educationemploi');
     }
 
-    public function albumAction()
+    public function albumAction(Request $request)
     {
-        return $this->render('ProfilBundle:Default:album.html.twig');
+        $u= $this->container->get('security.token_storage')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $album = new Album();
+        //----------------
+        $form=$this->createFormBuilder($album)
+            ->add('imageFile', VichImageType::class)
+            ->add('user', HiddenType::class, array('data' => $u))
+            ->add('Ajouter',SubmitType::class)
+            ->getForm();
+        $form->handleRequest($request);
+        if (($form->isSubmitted())&&($form->isValid()))
+        {
+            $album=$form->getData();
+            $album->setUser($u);
+            $em->persist($album);
+            $em->flush();
+            return $this->redirectToRoute('album');
+        }
+        //-------------------supprimer photo
+        if ($request->isMethod('POST')) {
+            if ($request->request->has('idp')) {
+                $p= $em->getRepository(Album::class)->find($request->get("idp"));
+                $em->remove($p);
+                $em->flush();
+                return $this->redirectToRoute("album");
+            }
+            return $this->redirectToRoute('album');
+        }
+        //----------------------------------
+        $photos=$em->getRepository(Album::class)->findBy(array('user' => $u->getId()),array('datePublication' => 'ASC'));
+
+        return $this->render('ProfilBundle:Default:album.html.twig', array(
+            'curr_user' => $u,'form'=>$form->createView(),'photos'=>$photos
+        ));
     }
 
     public function AproposAction()
