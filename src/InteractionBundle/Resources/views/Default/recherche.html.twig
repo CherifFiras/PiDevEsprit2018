@@ -217,14 +217,11 @@
                     type:'get',
                     data:{"gender":gender,"age":age,"occupation":occupation,"pays":pays,"ville":ville,"region":region,"religion":religion,"films":film,"series":serie,"livres":livre},
                     success:function (data) {
+                        $("#result_content").empty();
                         $.each(data,function(key,user)
                         {
                             var args = ["{{ asset('img/') }}avatar16-sm.jpg","{{ path('profil_homepage') }}"+user.id,user.nom,"{{ asset('icons/icons.svg#olymp-happy-face-icon') }}","{{ asset('icons/icons.svg#olymp-three-dots-icon') }}","{{ asset('icons/icons.svg#olymp-little-delete') }}"];
-                            var s = searchResult;
-                            for (var i = 0; i < args.length; i++) {
-                                var reg = new RegExp("\\{" + i + "\\}","gm");
-                                s = s.replace(reg, args[i]);
-                            }
+                            var s = formatString(searchResult,args);
                             $("#result_content").append(s);
                         });
                     }

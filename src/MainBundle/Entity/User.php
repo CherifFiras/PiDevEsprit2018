@@ -27,6 +27,8 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->interets = new ArrayCollection();
+        $this->receivers = new ArrayCollection();
+        $this->senders = new ArrayCollection();
     }
 
     /**
@@ -170,6 +172,50 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="MainBundle\Entity\Relation", mappedBy="requester")
      */
     private $requesters;
+
+    /**
+     * @ORM\OneToMany(targetEntity="MainBundle\Entity\Demande", mappedBy="sender")
+     */
+    private $senders;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="MainBundle\Entity\Demande", mappedBy="receiver")
+     */
+    private $receivers;
+
+    /**
+     * @return mixed
+     */
+    public function getReceivers()
+    {
+        return $this->receivers;
+    }
+
+    /**
+     * @param mixed $receivers
+     */
+    public function setReceivers($receivers)
+    {
+        $this->receivers = $receivers;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSenders()
+    {
+        return $this->senders;
+    }
+
+    /**
+     * @param mixed $senders
+     */
+    public function setSenders($senders)
+    {
+        $this->senders = $senders;
+    }
+
 
     /**
      * @return string

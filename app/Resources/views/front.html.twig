@@ -1895,6 +1895,7 @@
 
 <script src="{{ asset('js/mediaelement-and-player.min.js') }}"></script>
 <script src="{{ asset('js/mediaelement-playlist-plugin.min.js') }}"></script>
+<script src="{{ asset('js/Models.js') }}"></script>
 <script>
     $(document).ready(function () {
         //$(".mCustomScrollbar").mCustomScrollbar();
@@ -1989,14 +1990,6 @@
             console.log("setinterval");
             load();
         }, 2000);
-        function formatString(s,args)
-        {
-            for (var i = 0; i < args.length; i++) {
-                var reg = new RegExp("\\{" + i + "\\}","gm");
-                s = s.replace(reg, args[i]);
-            }
-            return s;
-        }
 
         $("#messagep").find("textarea").keypress(function (e) {
             if(e.which != 13) return;

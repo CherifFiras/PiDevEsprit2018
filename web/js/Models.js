@@ -1,3 +1,27 @@
+function formatString(s,args)
+{
+    for (var i = 0; i < args.length; i++) {
+        var reg = new RegExp("\\{" + i + "\\}","gm");
+        s = s.replace(reg, args[i]);
+    }
+    return s;
+}
+var chatItem = `<li class="inline-items js-chat-open">
+                    <div class="author-thumb">
+                        <img id="{0}" alt="author" src="{1}" class="avatar">
+                        <span class="icon-status online"></span>
+                    </div>
+                </li>`;
+var messageItem = `<span class="chat-message-item">{0}</span>`;
+var messageModel = `<li>
+                        <div class="author-thumb">
+                            <img src="{0}" alt="author" class="mCS_img_loaded">
+                        </div>
+                        <div class="notification-event">
+                            {1}
+                            <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
+                        </div>
+			        </li>`;
 var searchResult = `<ul class="notification-list friend-requests">
                             <li>
                                 <div class="author-thumb">
