@@ -8,7 +8,9 @@ use MainBundle\Entity\Scolarite;
 use MainBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProfilController extends Controller
 {
@@ -24,8 +26,20 @@ class ProfilController extends Controller
     public function paramsInfoAction(Request $request)
     {
         $u= $this->container->get('security.token_storage')->getToken()->getUser();
-
         $em = $this->getDoctrine()->getManager();
+        //----------------
+        $form=$this->createFormBuilder($u)
+            ->add('imageFile', VichImageType::class)
+            ->add('Ajouter',SubmitType::class)
+            ->getForm();
+        $form->handleRequest($request);
+        if (($form->isSubmitted())&&($form->isValid()))
+        {
+            $u=$form->getData();
+            $em->flush();
+            return $this->redirectToRoute('paramInfo');
+        }
+        //----------------
         $user = $em->getRepository(User::class)->find($u->getId());
         //Save?
         if ($request->isMethod('POST')) {
@@ -45,6 +59,7 @@ class ProfilController extends Controller
             $user->setFacebook($request->get('facebook'));
             $user->setTwitter($request->get('twitter'));
             $user->setInstagram($request->get('instagram'));
+            //$user->setPhotoprofil("unknownphoto.jpg");
             //----------------------PhotoUpload
 
             //--------------------------------
@@ -58,7 +73,7 @@ class ProfilController extends Controller
 
 
         return $this->render('ProfilBundle:Default:paraminfo.html.twig', array(
-            'iduser' => $u->getId()
+            'iduser' => $u->getId(),'us' => $u,'form'=>$form->createView()
         ));
 
     }

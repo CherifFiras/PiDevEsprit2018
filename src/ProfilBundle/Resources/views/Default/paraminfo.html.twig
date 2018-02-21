@@ -22,9 +22,11 @@
                 <div class="file-upload">
                     <svg class="olymp-computer-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-computer-icon') }}></use></svg>
                     <h6>Ajouter Photo</h6>
+                    {{ form_start(form) }}
+                    {{ form_widget(form.imageFile) }}
+                    {{ form_widget(form.Ajouter, { 'attr': {'class': 'btn btn-primary btn-lg full-width'} }) }}
+                    {{ form_end(form) }}
 
-                    <label for="upload" class="file-upload__label">Parcourir</label>
-                    <input id="upload" class="file-upload__input" name="photoprofil" type="file">
                 </div>
             </a>
         </div>
@@ -129,7 +131,7 @@
                                     <div class="form-group label-floating">
 
                                         <div class="photo-item">
-                                            <img src="{{ asset('images/') }}{{ app.user.photoprofil }}" style="width:150px;height:150px;" >
+                                            <img src="{{ asset('') }}{{ vich_uploader_asset(us, 'imageFile') }}" style="width:150px;height:150px;" >
                                             <div class="overlay overlay-dark"></div>
                                             <a href="#" data-toggle="modal" data-target="#update-header-photo" class="full-block"></a>
                                             <div class="content">

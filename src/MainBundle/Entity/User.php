@@ -6,12 +6,15 @@ namespace MainBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="MainBundle\Repository\UserRepository")
  * @ORM\Table(name="user")
+ * @Vich\Uploadable
  */
 class User extends BaseUser
 {
@@ -124,12 +127,26 @@ class User extends BaseUser
      * @ORM\Column(name="instagram", type="string" , length=255,nullable=true)
      */
     protected $instagram;
+
+
     /**
+     * @ORM\Column(name="image",type="string", length=255,nullable=true)
      * @var string
-     *
-     * @ORM\Column(name="photoprofil", type="string" , length=255,nullable=true)
      */
-    protected $photoprofil = "unknownphoto.jpg";
+    private $image="unknownphoto.jpg";
+
+
+    /**
+     * @Vich\UploadableField(mapping="profil_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updatedAt;
 
     /**
      * @return string
@@ -449,18 +466,35 @@ class User extends BaseUser
     }
 
     /**
-     * @return mixed
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      */
-    public function getPhotoprofil()
+    public function setImageFile(File $image = null)
     {
-        return $this->photoprofil;
+        $this->imageFile = $image;
+
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
     /**
-     * @param string $photoprofil
+     * @return string
      */
-    public function setPhotoprofil($photoprofil)
+    public function getImage()
     {
-        $this->photoprofil = $photoprofil;
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 }

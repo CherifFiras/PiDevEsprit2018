@@ -86,3 +86,13 @@ fos_user:
         form:
             type: MainBundle\Form\UserType
 
+# Vichupload Configuration
+vich_uploader:
+    db_driver: orm
+    mappings:
+            profil_images:
+                uri_prefix:         /images
+                upload_destination: '%kernel.root_dir%/../web/images'
+                namer: vich_uploader.namer_uniqid
+                delete_on_update:   true
+                delete_on_remove:   true
