@@ -58,13 +58,13 @@
                                 <div class="col-xl-8 m-auto col-lg-8 col-md-12">
                                     <ul class="profile-menu">
                                         <li>
-                                            <a href="12-FavouritePage.html">Journal</a>
+                                            <a href="{{ path('profil_homepage') }}">Journal</a>
                                         </li>
                                         <li>
-                                            <a href="13-FavouritePage-About.html">A Propos</a>
+                                            <a href="{{ path('apropos') }}">A Propos</a>
                                         </li>
                                         <li>
-                                            <a href="07-ProfilePage-Photos.html">Album Photos</a>
+                                            <a href="{{ path('album') }}">Album Photos</a>
                                         </li>
                                         {% if (app.user.id != curr_user.id) %}
                                         <li>

@@ -21,7 +21,7 @@ class ProfilController extends Controller
         $u= $this->container->get('security.token_storage')->getToken()->getUser();
 
         return $this->render('ProfilBundle:Default:profil.html.twig', array(
-            'iduser' => $u->getId()
+            'iduser' => $u->getId(),'curr_user' => $u
         ));
     }
 
@@ -258,7 +258,11 @@ class ProfilController extends Controller
 
     public function AproposAction()
     {
-        return $this->render('ProfilBundle:Default:apropos.html.twig');
+        $u= $this->container->get('security.token_storage')->getToken()->getUser();
+
+        return $this->render('ProfilBundle:Default:apropos.html.twig', array(
+            'iduser' => $u->getId(),'curr_user' => $u
+        ));
     }
 
     public function listPhotoAction()
