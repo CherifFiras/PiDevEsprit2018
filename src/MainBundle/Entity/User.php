@@ -6,14 +6,17 @@ namespace MainBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Mgilet\NotificationBundle\Annotation\Notifiable;
+use Mgilet\NotificationBundle\NotifiableInterface;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @ORM\Entity(repositoryClass="MainBundle\Repository\UserRepository")
  * @ORM\Table(name="user")
+ * @Notifiable(name="user")
  */
-class User extends BaseUser
+class User extends BaseUser implements NotifiableInterface
 {
 
     /**
