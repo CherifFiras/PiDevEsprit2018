@@ -89,7 +89,7 @@ class Publication
      */
     public function getUser()
     {
-        return $this->User;
+        return $this->user;
     }
 
     /**
@@ -97,7 +97,7 @@ class Publication
      */
     public function setUser($User)
     {
-        $this->User = $User;
+        $this->user = $User;
     }
 
     /**

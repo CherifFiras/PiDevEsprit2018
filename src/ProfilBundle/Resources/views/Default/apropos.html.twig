@@ -8,83 +8,61 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="ui-block">
-                    <div class="top-header">
+                    <div class="top-header top-header-favorit">
                         <div class="top-header-thumb">
-                            <img src={{ asset('img/top-header1.jpg') }} alt="nature">
+                            <img src="{{ asset('img/header.jpg') }}" alt="nature">
+                            <div class="top-header-author">
+                                <div class="author-thumb">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}" alt="author">
+                                </div>
+                                <div class="author-content">
+                                    <a href="#" class="h3 author-name">{{curr_user.prenom ~" "~ curr_user.nom }}</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="profile-section">
                             <div class="row">
-                                <div class="col-lg-5 col-md-5 ">
+                                <div class="col-xl-8 m-auto col-lg-8 col-md-12">
                                     <ul class="profile-menu">
                                         <li>
-                                            <a href="02-ProfilePage.html">Journal</a>
+                                            <a href="{{ path('profil_homepage') }}">Journal</a>
                                         </li>
                                         <li>
-                                            <a href="05-ProfilePage-About.html" class="active">À propos</a>
+                                            <a href="{{ path('apropos') }}">A Propos</a>
                                         </li>
                                         <li>
-                                            <a href="06-ProfilePage.html">Friends</a>
+                                            <a href="{{ path('album') }}">Album Photos</a>
                                         </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-5 ml-auto col-md-5">
-                                    <ul class="profile-menu">
-                                        <li>
-                                            <a href="07-ProfilePage-Photos.html">Album Photo</a>
-                                        </li>
-                                        <li>
-                                            <a href="09-ProfilePage-Videos.html">Videos</a>
-                                        </li>
-                                        <li>
-                                            <div class="more">
-                                                <svg class="olymp-three-dots-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-three-dots-icon') }}></use></svg>
-                                                <ul class="more-dropdown more-with-triangle">
-                                                    <li>
-                                                        <a href="#">Report Profile</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Block Profile</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
+                                        {% if (app.user.id != curr_user.id) %}
+                                            <li>
+                                                <div class="more">
+                                                    <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
+                                                    <ul class="more-dropdown more-with-triangle">
+                                                        <li>
+                                                            <a href="#">Report Profile</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Block Profile</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        {% endif %}
                                     </ul>
                                 </div>
                             </div>
 
                             <div class="control-block-button">
-                                <a href="35-YourAccount-FriendsRequests.html" class="btn btn-control bg-blue">
-                                    <svg class="olymp-happy-face-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-happy-face-icon') }}></use></svg>
-                                </a>
-
-                                <a href="#" class="btn btn-control bg-purple">
-                                    <svg class="olymp-chat---messages-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-chat---messages-icon') }}></use></svg>
-                                </a>
 
                                 <div class="btn btn-control bg-primary more">
-                                    <svg class="olymp-settings-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-settings-icon') }}></use></svg>
+                                    <svg class="olymp-settings-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-settings-icon') }}"></use></svg>
 
                                     <ul class="more-dropdown more-with-triangle triangle-bottom-right">
                                         <li>
-                                            <a href="#" data-toggle="modal" data-target="#update-header-photo">Update Profile Photo</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#update-header-photo">Update Header Photo</a>
-                                        </li>
-                                        <li>
-                                            <a href="29-YourAccount-AccountSettings.html">Account Settings</a>
+                                            <a href="{{ path('paramInfo') }}">Gérer Profil</a>
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="top-header-author">
-                            <a href="02-ProfilePage.html" class="author-thumb">
-                                <img src={{ asset('img/author-main1.jpg') }} alt="author">
-                            </a>
-                            <div class="author-content">
-                                <a href="02-ProfilePage.html" class="h4 author-name">James Spiegel</a>
-                                <div class="country">San Francisco, CA</div>
                             </div>
                         </div>
                     </div>
@@ -92,7 +70,6 @@
             </div>
         </div>
     </div>
-
     <!-- ... end Top Header -->
 
     <div class="container">
@@ -108,17 +85,27 @@
                                 <ul class="widget w-personal-info item-block">
                                     <li>
                                         <span class="title">Loisirs:</span>
-                                        <span class="text">I like to ride the bike to work, swimming, and working out. I also like
-								reading design magazines, go to museums, and binge watching a good tv show while it’s raining outside.
-							</span>
+                                        <span class="text">
+                                            {% for lo in loisirs %}
+                                            {{ lo.contenu~", " }}
+                                            {% endfor %}
+                                        </span>
                                     </li>
                                     <li>
                                         <span class="title">Série de télévision préférées:</span>
-                                        <span class="text">Breaking Good, RedDevil, People of Interest, The Running Dead, Found,  American Guy.</span>
+                                        <span class="text">
+                                            {% for s in series %}
+                                            {{ s.contenu~", " }}
+                                            {% endfor %}
+                                        </span>
                                     </li>
                                     <li>
                                         <span class="title">Films préférés:</span>
-                                        <span class="text">Idiocratic, The Scarred Wizard and the Fire Crown,  Crime Squad, Ferrum Man. </span>
+                                        <span class="text">
+                                            {% for f in films %}
+                                            {{ f.contenu~", " }}
+                                            {% endfor %}
+                                        </span>
                                     </li>
 
                                 </ul>
@@ -127,11 +114,19 @@
                                 <ul class="widget w-personal-info item-block">
                                     <li>
                                         <span class="title">Groupes de musique / Artistes préférés:</span>
-                                        <span class="text">Iron Maid, DC/AC, Megablow, The Ill, Kung Fighters, System of a Revenge.</span>
+                                        <span class="text">
+                                            {% for a in artists %}
+                                            {{ a.contenu~", " }}
+                                            {% endfor %}
+                                        </span>
                                     </li>
                                     <li>
                                         <span class="title">Livres préférés:</span>
-                                        <span class="text">The Crime of the Century, Egiptian Mythology 101, The Scarred Wizard, Lord of the Wings, Amongst Gods, The Oracle, A Tale of Air and Water.</span>
+                                        <span class="text">
+                                            {% for l in livres %}
+                                            {{ l.contenu~", " }}
+                                            {% endfor %}
+                                        </span>
                                     </li>
 
                                 </ul>
@@ -146,39 +141,19 @@
                     </div>
                     <div class="ui-block-content">
                         <div class="row">
+
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <ul class="widget w-personal-info item-block">
+                                    {% for s in scolarites %}
                                     <li>
-                                        <span class="title">The New College of Design</span>
-                                        <span class="date">2001 - 2006</span>
-                                        <span class="text">Breaking Good, RedDevil, People of Interest, The Running Dead, Found,  American Guy.</span>
+                                        <span class="title">{{ s.contenu }}</span>
+                                        <span class="date">{{ s.dateDebut }} - {{ s.dateFin }}</span>
                                     </li>
-                                    <li>
-                                        <span class="title">Rembrandt Institute</span>
-                                        <span class="date">2008</span>
-                                        <span class="text">Five months Digital Illustration course. Professor: Leonardo Stagg.</span>
-                                    </li>
+                                    {% endfor %}
+
                                 </ul>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <ul class="widget w-personal-info item-block">
-                                    <li>
-                                        <span class="title">Digital Design Intern</span>
-                                        <span class="date">2006-2008</span>
-                                        <span class="text">Digital Design Intern for the “Multimedz” agency. Was in charge of the communication with the clients.</span>
-                                    </li>
-                                    <li>
-                                        <span class="title">UI/UX Designer</span>
-                                        <span class="date">2008-2013</span>
-                                        <span class="text">UI/UX Designer for the “Daydreams” agency. </span>
-                                    </li>
-                                    <li>
-                                        <span class="title">Senior UI/UX Designer</span>
-                                        <span class="date">2013-Now</span>
-                                        <span class="text">Senior UI/UX Designer for the “Daydreams” agency. I’m in charge of a ten person group, overseeing all the proyects and talking to potential clients.</span>
-                                    </li>
-                                </ul>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -191,32 +166,18 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <ul class="widget w-personal-info item-block">
-                                    <li>
-                                        <span class="title">The New College of Design</span>
-                                        <span class="date">2001 - 2006</span>
-                                        <span class="text">Breaking Good, RedDevil, People of Interest, The Running Dead, Found,  American Guy.</span>
-                                    </li>
-                                    <li>
-                                        <span class="title">Rembrandt Institute</span>
-                                        <span class="date">2008</span>
-                                        <span class="text">Five months Digital Illustration course. Professor: Leonardo Stagg.</span>
-                                    </li>
+                                    <ul class="widget w-personal-info item-block">
+                                        {% for e in emplois %}
+                                            <li>
+                                                <span class="title">{{ e.contenu }}</span>
+                                                <span class="date">{{ e.dateDebut }} - {{ e.dateFin }}</span>
+                                            </li>
+                                        {% endfor %}
+
+                                    </ul>
                                 </ul>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <ul class="widget w-personal-info item-block">
-                                    <li>
-                                        <span class="title">Digital Design Intern</span>
-                                        <span class="date">2006-2008</span>
-                                        <span class="text">Digital Design Intern for the “Multimedz” agency. Was in charge of the communication with the clients.</span>
-                                    </li>
-                                    <li>
-                                        <span class="title">UI/UX Designer</span>
-                                        <span class="date">2008-2013</span>
-                                        <span class="text">UI/UX Designer for the “Daydreams” agency. </span>
-                                    </li>
-                                </ul>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -230,61 +191,82 @@
                         <ul class="widget w-personal-info">
                             <li>
                                 <span class="title">Description:</span>
-                                <span class="text">Hi, I’m James, I’m 36 and I work as a Digital Designer for the
-								“Daydreams” Agency in Pier 56
-							</span>
+                                <span class="text">{{ curr_user.apropos }}</span>
                             </li>
                             <li>
                                 <span class="title">Date de Naissance:</span>
-                                <span class="text">December 14th, 1980</span>
+                                <span class="text">{{ curr_user.datenaissance|date("j F Y") }}</span>
                             </li>
                             <li>
                                 <span class="title">Lieu de Naissance:</span>
-                                <span class="text">Austin, Texas, USA</span>
+                                <span class="text">{{ curr_user.placeNaiss }}</span>
                             </li>
                             <li>
                                 <span class="title">Sexe:</span>
-                                <span class="text">Male</span>
+                                <span class="text">
+                                    {% if curr_user.genre=="F" %}
+                                        Femme
+                                    {% endif %}
+                                    {% if curr_user.relegion=="M" %}
+                                        Homme
+                                    {% endif %}
+                                </span>
                             </li>
                             <li>
                                 <span class="title">Vit en:</span>
-                                <span class="text">San Francisco, California, USA</span>
+                                <span class="text" id="vitspan"></span>
                             </li>
                             <li>
                                 <span class="title">Emploi:</span>
-                                <span class="text">UI/UX Designer</span>
+                                <span class="text">{{ (emplois|last).contenu }}</span>
                             </li>
                             <li>
-                                <span class="title">Date de C. compte:</span>
-                                <span class="text">April 31st, 2014</span>
+                                <span class="title">Derniere Connexion:</span>
+                                <span class="text">{{ curr_user.lastLogin|date("j F Y") }}</span>
                             </li>
                             <li>
                                 <span class="title">Email:</span>
-                                <span class="text">jspiegel@yourmail.com</span>
+                                <span class="text">{{ curr_user.email }}</span>
                             </li>
                             <li>
                                 <span class="title">Numéro de Téléphone:</span>
-                                <span class="text">(044) 555 - 4369 - 8957</span>
+                                <span class="text">{{ curr_user.tel }}</span>
                             </li>
                             <li>
                                 <span class="title">Religion:</span>
-                                <span class="text">-</span>
+                                <span class="text">
+                                    {% if curr_user.relegion=="I" %}
+                                        Islam
+                                    {% endif %}
+                                    {% if curr_user.relegion=="C" %}
+                                        Christianisme
+                                    {% endif %}
+                                    {% if curr_user.relegion=="J" %}
+                                        Judaïsme
+                                    {% endif %}
+                                    {% if curr_user.relegion=="H" %}
+                                        Hindouisme
+                                    {% endif %}
+                                    {% if curr_user.relegion=="B" %}
+                                        Bouddhisme
+                                    {% endif %}
+                                </span>
                             </li>
                         </ul>
 
                         <div class="widget w-socials">
                             <h6 class="title">Autres réseaux sociaux:</h6>
-                            <a href="https://www.facebook.com/achraf.abdennadher.5" class="social-item bg-facebook">
+                            <a href="{{ curr_user.facebook }}" class="social-item bg-facebook">
                                 <i class="fa fa-facebook" aria-hidden="true"></i>
                                 Facebook
                             </a>
-                            <a href="#" class="social-item bg-twitter">
+                            <a href="{{ curr_user.twitter }}" class="social-item bg-twitter">
                                 <i class="fa fa-twitter" aria-hidden="true"></i>
                                 Twitter
                             </a>
-                            <a href="#" class="social-item bg-dribbble">
+                            <a href="{{ curr_user.instagram }}" class="social-item bg-dribbble">
                                 <i class="fa fa-instagram" aria-hidden="true"></i>
-                                Dribbble
+                                Instagram
                             </a>
                         </div>
                     </div>
@@ -292,6 +274,31 @@
             </div>
         </div>
     </div>
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        var BATTUTA_KEY="64ce08de6549c8476cf8956a351fd81d";
+
+        function vitEn(country,ville) {
+            var url1="http://battuta.medunes.net/api/country/code/"+country+"/?key="+BATTUTA_KEY+"&callback=?";
+
+            //var url3="http://battuta.medunes.net/api/city/"+country+"/search/?region="+"{{ curr_user.ville }}"+"&key="+BATTUTA_KEY+"&callback=?";
+
+            $.getJSON(url1,function(c)
+            {
+                getPays(c[0].name);
+            });
+            function getPays(x){
+                $('#vitspan').text(x+", "+"{{ curr_user.ville }}");
+            }
+
+        }
+        //--------------------------------------
+        vitEn("{{ curr_user.pays }}");
+
+    </script>
 
 {% endblock %}
 

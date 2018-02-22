@@ -29,16 +29,16 @@ class Emploi
     private $contenu;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="dateDebut", type="date")
+     * @ORM\Column(name="dateDebut", type="string", length=255)
      */
     private $dateDebut;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="dateFin", type="date")
+     * @ORM\Column(name="dateFin", type="string", length=255)
      */
     private $dateFin;
 
@@ -80,7 +80,7 @@ class Emploi
     /**
      * Set dateDebut
      *
-     * @param \DateTime $dateDebut
+     * @param string $dateDebut
      *
      * @return Emploi
      */
@@ -94,7 +94,7 @@ class Emploi
     /**
      * Get dateDebut
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDateDebut()
     {
@@ -106,7 +106,7 @@ class Emploi
      */
     public function getUser()
     {
-        return $this->User;
+        return $this->user;
     }
 
     /**
@@ -114,13 +114,13 @@ class Emploi
      */
     public function setUser($User)
     {
-        $this->User = $User;
+        $this->user = $User;
     }
 
     /**
      * Set dateFin
      *
-     * @param \DateTime $dateFin
+     * @param string $dateFin
      *
      * @return Emploi
      */
@@ -134,7 +134,7 @@ class Emploi
     /**
      * Get dateFin
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDateFin()
     {

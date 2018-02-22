@@ -3,12 +3,15 @@
 namespace MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Album
  *
  * @ORM\Table(name="album")
  * @ORM\Entity(repositoryClass="MainBundle\Repository\AlbumRepository")
+ * @Vich\Uploadable
  */
 class Album
 {
@@ -27,6 +30,12 @@ class Album
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
+
+    /**
+     * @Vich\UploadableField(mapping="profil_images", fileNameProperty="url")
+     * @var File
+     */
+    private $imageFile;
 
     /**
      * @var \DateTime
@@ -89,7 +98,7 @@ class Album
      */
     public function getUser()
     {
-        return $this->User;
+        return $this->user;
     }
 
     /**
@@ -97,7 +106,7 @@ class Album
      */
     public function setUser($User)
     {
-        $this->User = $User;
+        $this->user = $User;
     }
 
     /**
@@ -116,5 +125,23 @@ class Album
      *
      */
     private $user;
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $url
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if ($image) {
+            $this->datePublication = new \DateTime('now');
+        }
+    }
+
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
 }
 

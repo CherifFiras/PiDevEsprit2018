@@ -1,5 +1,5 @@
 profil_homepage:
-    path:     /
+    path:     /journal
     defaults: { _controller: ProfilBundle:Profil:index }
 
 paramInfo:
@@ -21,3 +21,16 @@ listphoto:
 centreinteret:
     path:     /centreinteret
     defaults: { _controller: ProfilBundle:Profil:centreint }
+
+educationemploi:
+    path:     /educationemploi
+    defaults: { _controller: ProfilBundle:Profil:eduEmp }
+
+updateEmploi:
+    path:     /educationemploi/ue
+    defaults: { _controller: ProfilBundle:Profil:updateEmp }
+
+updateScol:
+    path:     /educationemploi/us
+    defaults: { _controller: ProfilBundle:Profil:updateScol }
+

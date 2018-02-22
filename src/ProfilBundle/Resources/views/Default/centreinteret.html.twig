@@ -5,6 +5,7 @@
     #lstg1{height:150px; width:auto;}
     #lstg1{overflow:hidden; overflow-y:scroll;}
     #lstg1 > li{ color: orangered;}
+    #flst > li{ color: orangered;}
 
     .action-list-group {
         position: relative;
@@ -33,6 +34,7 @@
 
 {% block content %}
 
+    <!-- MODAL AJOUT FILM -->
     <form name="f" method="POST">
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -50,11 +52,11 @@
                         <div class="form-group">
                             <label for="recipient-name" class="form-control-label">Saisir un Film:</label>
                             <input type="text" class="form-control" id="filmi"  placeholder="Rechercher içi">
-                            <select id="film" class="ui fluid search dropdown" multiple="" name="newcentre">
+                            <select id="film" class="ui fluid search dropdown" multiple="" name="newcentrefilm">
 
                             </select>
                             <input type="hidden" value="" name="type">
-                            <input type="hidden" value={{ iduser }} name="user">
+                            <input type="hidden" value="{{ iduser }}" name="user">
                         </div>
 
                 </div>
@@ -68,6 +70,44 @@
         </div>
     </div>
     </form>
+
+    <!-- MODAL AJOUT SERIE -->
+    <form name="f2" method="POST">
+        <div class="modal fade" id="exampleModalserie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-control-label">Saisir une Serie:</label>
+                            <input type="text" class="form-control" id="seriei"  placeholder="Rechercher içi">
+                            <select id="serietv" class="ui fluid search dropdown" multiple="" name="newcentreserie">
+
+                            </select>
+                            <input type="hidden" value="" name="type">
+                            <input type="hidden" value="{{ iduser }}" name="user">
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
 
     <!-- Your Account Personal Information -->
 <form method="POST">
@@ -83,51 +123,49 @@
                             <div class="row">
 
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <!-- Ajout de Films !! -->
                                     <div class="form-group label-floating">
                                         <label >Films préférés:</label>
-                                        <form name="del" method="POST">
                                         <ul id="lstg1" class="list-group action-list-group" >
-                                            {% for cen in centres  %}
-                                            <li class="list-group-item">{{ cen.contenu }}
+                                            {% for cen in centresfilm  %}
+                                            <form id="flst" name="del" method="POST">
+                                            <li class="list-group-item" >{{ cen.contenu }}
                                                 <span class="pull-right button-group">
                                                     <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span> X</button>
-                                                    <input type="hidden" value={{ cen.id }} name="idc">
+                                                    <input type="hidden" value="{{ cen.id }}" name="idc">
                                                 </span>
                                             </li>
+                                            </form>
                                             {% endfor %}
                                         </ul>
-                                        </form>
                                     </div>
-                                    <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-whatever="film" class="add-field">
+                                    <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-whatever="film" class="add-field prev">
                                         <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
                                         <span>Ajouter un Film</span>
                                     </a>
+                                    <!-- FIN -- Ajout de Films !! -->
 
-
+                                    <!-- Ajout de Series !! -->
                                     <div class="form-group label-floating">
                                         <label >Série de télévision préférées:</label>
                                         <ul id="lstg1" class="list-group action-list-group" >
-                                            <li class="list-group-item clear-fix">Cras justo odio
-                                                <span class="pull-right button-group">
-                                                    <button type="button" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                                            {% for cen in centresserie  %}
+                                                <form id="flst" name="del" method="POST">
+                                                    <li class="list-group-item" >{{ cen.contenu }}
+                                                        <span class="pull-right button-group">
+                                                    <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span> X</button>
+                                                    <input type="hidden" value="{{ cen.id }}" name="idc">
                                                 </span>
-                                            </li>
-                                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                                            <li class="list-group-item">Morbi leo risus</li>
-                                            <li class="list-group-item">Porta ac consectetur ac</li>
-                                            <li class="list-group-item">Vestibulum at eros</li>
-                                            <li class="list-group-item">Morbi leo risus</li>
-                                            <li class="list-group-item">Porta ac consectetur ac</li>
-                                            <li class="list-group-item">Vestibulum at eros</li>
-                                            <li class="list-group-item">Morbi leo risus</li>
-                                            <li class="list-group-item">Porta ac consectetur ac</li>
-                                            <li class="list-group-item">Vestibulum at eros</li>
+                                                    </li>
+                                                </form>
+                                            {% endfor %}
                                         </ul>
                                     </div>
-                                    <a href="#" class="add-field">
+                                    <a href="#exampleModalserie" data-toggle="modal" data-target="#exampleModalserie" data-whatever="serie" class="add-field prev">
                                         <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
                                         <span>Ajouter une Série</span>
                                     </a>
+                                    <!-- FIN -- Ajout de Series !! -->
 
 
                                     <div class="form-group label-floating">
@@ -146,12 +184,11 @@
                                             <li class="list-group-item">Vestibulum at eros</li>
                                         </ul>
                                     </div>
-                                    <a href="#" class="add-field">
+                                    <a href="#" class="add-field prev">
                                         <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
                                         <span>Ajouter un Artist</span>
                                     </a>
 
-                                    <button class="btn btn-primary btn-lg full-width">Save all Changes</button>
                                 </div>
 
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -171,7 +208,7 @@
                                             <li class="list-group-item">Vestibulum at eros</li>
                                         </ul>
                                     </div>
-                                    <a href="#" class="add-field">
+                                    <a href="#" class="add-field prev">
                                         <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
                                         <span>Ajouter un Livre</span>
                                     </a>
@@ -192,7 +229,7 @@
                                             <li class="list-group-item">Vestibulum at eros</li>
                                         </ul>
                                     </div>
-                                    <a href="#" class="add-field">
+                                    <a href="#" class="add-field prev">
                                         <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
                                         <span>Ajouter une Activité</span>
                                     </a>
@@ -238,10 +275,18 @@
                                             <a href="30-YourAccount-ChangePassword.html">Modifier le Mot de Passe</a>
                                         </li>
                                         <li>
-                                            <a href="31-YourAccount-HobbiesAndInterests.html">Loisirs et Centres d'intérêts</a>
+                                            {% if (app.user.id == iduser) %}
+                                                <a href="{{ path('centreinteret') }}">Loisirs et Centres d'intérêts</a>
+                                            {% else %}
+                                                <a href="{{ path('centreinteret') }}">Loisirs et Centres d'intérêts</a>
+                                            {% endif %}
                                         </li>
                                         <li>
-                                            <a href="32-YourAccount-EducationAndEmployement.html">Education et Emploi</a>
+                                            {% if (app.user.id == iduser) %}
+                                                <a href="{{ path('educationemploi') }}">Education et Emploi</a>
+                                            {% else %}
+                                                <a href="{{ path('educationemploi') }}">Education et Emploi</a>
+                                            {% endif %}
                                         </li>
                                     </ul>
                                 </div>
@@ -278,11 +323,12 @@
 {% endblock %}
 
 {% block js %}
-    <script type="text/javascript" src="{{ asset('js/dropdown.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/transition.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
-    <script type="text/javascript" src="{{ asset('js/popup.min.js') }}"></script>
+
     <script>
+        $('.perv').click(function(e) {
+            e.preventDefault();
+        });
+        //Modal Film
         $('#exampleModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
             var recipient = button.data('whatever')
@@ -290,6 +336,30 @@
             modal.find('.modal-title').text('Ajouter ' + recipient)
             modal.find('input[type=hidden]').val(recipient)
             //modal.find('.modal-body input').val(recipient)
+        })
+        //Modal Serie
+        $('#exampleModalserie').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            var modal = $(this)
+            modal.find('.modal-title').text('Ajouter ' + recipient)
+            modal.find('input[type=hidden]').val(recipient)
+        })
+        //Modal Music
+        $('#exampleModalmusic').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            var modal = $(this)
+            modal.find('.modal-title').text('Ajouter ' + recipient)
+            modal.find('input[type=hidden]').val(recipient)
+        })
+        //Modal Livre
+        $('#exampleModallivre').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            var modal = $(this)
+            modal.find('.modal-title').text('Ajouter ' + recipient)
+            modal.find('input[type=hidden]').val(recipient)
         })
 
         // Charger les films "Themoviedb API" TMDB
@@ -309,10 +379,27 @@
                             .append(movie.title)
                             .appendTo($("#film"));
                     });
-
                 });
             })});
-        //---------------
+        // Charger les serie "Themoviedb API" TMDB
+        $(document).ready(function() {
+            $("#seriei").keyup(function () {
+                url = "https://api.themoviedb.org/3/search/tv?api_key=2e5aee0d6e6ad27e13cf48eb3cd9b5dc&language=en-US&query="+$("#seriei").val()+"&page=1&include_adult=false";
+                if($("#seriei").val() == "")
+                    return;
+                $.getJSON(url,function(movies)
+                {
+                    $("#serietv option").remove();
+                    //loop through countries..
+                    $.each(movies['results'],function(key,movie)
+                    {
+                        $("<option></option>")
+                            .attr("value",movie.original_name)
+                            .append(movie.original_name)
+                            .appendTo($("#serietv"));
+                    });
+                });
+            })});
     </script>
 
 {% endblock %}
