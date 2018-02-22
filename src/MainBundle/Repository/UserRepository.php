@@ -2,6 +2,7 @@
 
 namespace MainBundle\Repository;
 
+
 /**
  * AlbumRepository
  *
@@ -10,11 +11,13 @@ namespace MainBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function resultusers($u,$gender,$occupation,$religion,$pays,$ville,$region,$films,$series,$livres)
+    public function resultusers($u,$datemin,$datemax,$gender,$occupation,$religion,$pays,$ville,$region,$films,$series,$livres)
     {
         $c = array();
         $t = array();
         $qb = $this->createQueryBuilder('u');
+        //$qb->andWhere("u.date_naissance >= :dmax")->setParameter(":dmax",$datemax);
+        $qb->andWhere("u.date_naissance BETWEEN :dmax AND :dmin ")->setParameter(":dmin","$datemin")->setParameter("dmax","$datemax");
         $qb->andWhere("u.id != :ii")->setParameter(":ii",$u);
         if($gender != null)
             $qb->andWhere("u.genre = :gen")->setParameter(":gen",$gender);
@@ -47,9 +50,9 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             $c = array_merge($c,$livres);
             $t = array_merge($t,array("Book"));
         }
-
-        $qb->andWhere($qb->expr()->andX("i.type in (:ty)","i.contenu in (:co)"))
-            ->setParameter(":ty",$t)->setParameter(":co",$c);
+        if($films != null && $series!= null && $livres != null)
+            $qb->andWhere($qb->expr()->andX("i.type in (:ty)","i.contenu in (:co)"))
+                ->setParameter(":ty",$t)->setParameter(":co",$c);
 
 
 

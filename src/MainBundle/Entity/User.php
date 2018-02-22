@@ -6,6 +6,8 @@ namespace MainBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Mgilet\NotificationBundle\Annotation\Notifiable;
+use Mgilet\NotificationBundle\NotifiableInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -14,9 +16,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass="MainBundle\Repository\UserRepository")
  * @ORM\Table(name="user")
+ * @Notifiable(name="user")
  * @Vich\Uploadable
  */
-class User extends BaseUser
+class User extends BaseUser implements NotifiableInterface
 {
 
     /**
@@ -30,6 +33,8 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->interets = new ArrayCollection();
+        $this->receivers = new ArrayCollection();
+        $this->senders = new ArrayCollection();
     }
 
     /**
@@ -176,6 +181,61 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="MainBundle\Entity\CentreInteret", mappedBy="user")
      */
     private $interets;
+
+    /**
+     * @ORM\OneToMany(targetEntity="MainBundle\Entity\Relation", mappedBy="acceptor")
+     */
+    private $acceptors;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="MainBundle\Entity\Relation", mappedBy="requester")
+     */
+    private $requesters;
+
+    /**
+     * @ORM\OneToMany(targetEntity="MainBundle\Entity\Demande", mappedBy="sender")
+     */
+    private $senders;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="MainBundle\Entity\Demande", mappedBy="receiver")
+     */
+    private $receivers;
+
+    /**
+     * @return mixed
+     */
+    public function getReceivers()
+    {
+        return $this->receivers;
+    }
+
+    /**
+     * @param mixed $receivers
+     */
+    public function setReceivers($receivers)
+    {
+        $this->receivers = $receivers;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSenders()
+    {
+        return $this->senders;
+    }
+
+    /**
+     * @param mixed $senders
+     */
+    public function setSenders($senders)
+    {
+        $this->senders = $senders;
+    }
+
 
     /**
      * @return string
@@ -496,5 +556,37 @@ class User extends BaseUser
     public function getImageFile()
     {
         return $this->imageFile;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAcceptors()
+    {
+        return $this->acceptors;
+    }
+
+    /**
+     * @param mixed $acceptors
+     */
+    public function setAcceptors($acceptors)
+    {
+        $this->acceptors = $acceptors;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRequesters()
+    {
+        return $this->requesters;
+    }
+
+    /**
+     * @param mixed $requesters
+     */
+    public function setRequesters($requesters)
+    {
+        $this->requesters = $requesters;
     }
 }

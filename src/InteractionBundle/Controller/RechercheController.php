@@ -12,8 +12,10 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Ldap\Adapter\ExtLdap\Collection;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class RechercheController extends Controller
 {
@@ -44,14 +46,16 @@ class RechercheController extends Controller
         $livres = $request->get("livres");
         $this->saveRecherche($genre,$age[0],$age[1],$occupation,$religion,$pays,$ville,$region);
         $u= $this->container->get('security.token_storage')->getToken()->getUser();
-        $userList = $manager->getRepository("MainBundle:User")->resultusers($u->getId(),$genre,$occupation,$religion,$pays,$ville,$region,$films,$series,$livres);
+        $datemin = new \DateTime("now -$age[0] year");
+        $datemax = new \DateTime("now -$age[1] year");
+        $userList = $manager->getRepository("MainBundle:User")->resultusers($u->getId(),$datemin->format("Y-m-d"),$datemax->format("Y-m-d"),$genre,$occupation,$religion,$pays,$ville,$region,$films,$series,$livres);
 
 
         $normalizer = new ObjectNormalizer();
         $normalizer->setIgnoredAttributes(array('user'));
 
-        $serializer=new Serializer(array($normalizer));
-        $data=$serializer->normalize($userList);
+        $serializer=new Serializer(array(new DateTimeNormalizer(),$normalizer));
+        $data=$serializer->normalize($userList, null, array('attributes' => array('id','nom','prenom')));
         return new JsonResponse($data);
 
 

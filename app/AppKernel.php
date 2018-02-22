@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new EspaceBundle\EspaceBundle(),
             new ForumBundle\ForumBundle(),
             new InteractionBundle\InteractionBundle(),
+            new Mgilet\NotificationBundle\MgiletNotificationBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
         ];
 

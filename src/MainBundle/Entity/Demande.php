@@ -30,6 +30,53 @@ class Demande
 
 
     /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="senders")
+     * @ORM\JoinColumn(name="requester",referencedColumnName="id")
+     *
+     */
+    private $sender;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="receivers")
+     * @ORM\JoinColumn(name="acceptor",referencedColumnName="id")
+     *
+     */
+    private $receiver;
+
+    /**
+     * @return mixed
+     */
+    public function getSender()
+    {
+        return $this->sender;
+    }
+
+    /**
+     * @param mixed $sender
+     */
+    public function setSender($sender)
+    {
+        $this->sender = $sender;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReceiver()
+    {
+        return $this->receiver;
+    }
+
+    /**
+     * @param mixed $receiver
+     */
+    public function setReceiver($receiver)
+    {
+        $this->receiver = $receiver;
+    }
+
+
+    /**
      * Get id
      *
      * @return int

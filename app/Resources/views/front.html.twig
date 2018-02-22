@@ -389,18 +389,7 @@
 
         <div class="mCustomScrollbar" data-mcs-theme="dark">
             <ul id="chat-list" class="chat-users">
-                <li class="inline-items js-chat-open">
-                    <div class="author-thumb">
-                        <img id="14" alt="author" src="{{ asset('img/avatar67-sm.jpg') }}" class="avatar">
-                        <span class="icon-status online"></span>
-                    </div>
-                </li>
-                <li  class="inline-items js-chat-open">
-                    <div class="author-thumb">
-                        <img id="12" alt="author" src="{{ asset('img/avatar2-sm.jpg') }}" class="avatar">
-                        <span class="icon-status online"></span>
-                    </div>
-                </li>
+
             </ul>
         </div>
 
@@ -984,7 +973,7 @@
 
             <div class="control-icon more has-items">
                 <svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
-                <div class="label-avatar bg-purple">2</div>
+                <div class="label-avatar bg-purple notif-message">0</div>
 
                 <div class="more-dropdown more-with-triangle triangle-top-center">
                     <div class="ui-block-title ui-block-title-small">
@@ -994,78 +983,8 @@
                     </div>
 
                     <div class="mCustomScrollbar" data-mcs-theme="dark">
-                        <ul class="notification-list chat-message">
-                            <li class="message-unread">
-                                <div class="author-thumb">
-                                    <img src="{{ asset('img/avatar59-sm.jpg') }}" alt="author">
-                                </div>
-                                <div class="notification-event">
-                                    <a href="#" class="h6 notification-friend">Diana Jameson</a>
-                                    <span class="chat-message-item">Hi James! It’s Diana, I just wanted to let you know that we have to reschedule...</span>
-                                    <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
-                                </div>
-                                <span class="notification-icon">
-									<svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
-								</span>
-                                <div class="more">
-                                    <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
-                                </div>
-                            </li>
+                        <ul class="notification-list chat-message message-list-notif">
 
-                            <li>
-                                <div class="author-thumb">
-                                    <img src="{{ asset('img/avatar60-sm.jpg') }}" alt="author">
-                                </div>
-                                <div class="notification-event">
-                                    <a href="#" class="h6 notification-friend">Jake Parker</a>
-                                    <span class="chat-message-item">Great, I’ll see you tomorrow!.</span>
-                                    <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
-                                </div>
-                                <span class="notification-icon">
-									<svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
-								</span>
-
-                                <div class="more">
-                                    <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="author-thumb">
-                                    <img src="{{ asset('img/avatar61-sm.jpg') }}" alt="author">
-                                </div>
-                                <div class="notification-event">
-                                    <a href="#" class="h6 notification-friend">Elaine Dreyfuss</a>
-                                    <span class="chat-message-item">We’ll have to check that at the office and see if the client is on board with...</span>
-                                    <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 9:56pm</time></span>
-                                </div>
-                                <span class="notification-icon">
-										<svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
-									</span>
-                                <div class="more">
-                                    <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
-                                </div>
-                            </li>
-
-                            <li class="chat-group">
-                                <div class="author-thumb">
-                                    <img src="{{ asset('img/avatar11-sm.jpg') }}" alt="author">
-                                    <img src="{{ asset('img/avatar12-sm.jpg') }}" alt="author">
-                                    <img src="{{ asset('img/avatar13-sm.jpg') }}" alt="author">
-                                    <img src="{{ asset('img/avatar10-sm.jpg') }}" alt="author">
-                                </div>
-                                <div class="notification-event">
-                                    <a href="#" class="h6 notification-friend">You, Faye, Ed &amp; Jet +3</a>
-                                    <span class="last-message-author">Ed:</span>
-                                    <span class="chat-message-item">Yeah! Seems fine by me!</span>
-                                    <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 16th at 10:23am</time></span>
-                                </div>
-                                <span class="notification-icon">
-										<svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
-									</span>
-                                <div class="more">
-                                    <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
-                                </div>
-                            </li>
                         </ul>
                     </div>
 
@@ -1332,7 +1251,7 @@
                 <a class="nav-link" data-toggle="tab" href="#chat" role="tab">
                     <div class="control-icon has-items">
                         <svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
-                        <div class="label-avatar bg-purple">2</div>
+                        <div class="label-avatar bg-purple notif-message">0</div>
                     </div>
                 </a>
             </li>
@@ -1479,78 +1398,8 @@
                     <a href="#">Settings</a>
                 </div>
 
-                <ul class="notification-list chat-message">
-                    <li class="message-unread">
-                        <div class="author-thumb">
-                            <img src="{{ asset('img/avatar59-sm.jpg') }}" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Diana Jameson</a>
-                            <span class="chat-message-item">Hi James! It’s Diana, I just wanted to let you know that we have to reschedule...</span>
-                            <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
-                        </div>
-                        <span class="notification-icon">
-										<svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
-									</span>
-                        <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
-                        </div>
-                    </li>
+                <ul class="notification-list chat-message message-list-notif">
 
-                    <li>
-                        <div class="author-thumb">
-                            <img src="{{ asset('img/avatar60-sm.jpg') }}" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Jake Parker</a>
-                            <span class="chat-message-item">Great, I’ll see you tomorrow!.</span>
-                            <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
-                        </div>
-                        <span class="notification-icon">
-										<svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
-									</span>
-
-                        <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="author-thumb">
-                            <img src="{{ asset('img/avatar61-sm.jpg') }}" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Elaine Dreyfuss</a>
-                            <span class="chat-message-item">We’ll have to check that at the office and see if the client is on board with...</span>
-                            <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 9:56pm</time></span>
-                        </div>
-                        <span class="notification-icon">
-											<svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
-										</span>
-                        <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
-                        </div>
-                    </li>
-
-                    <li class="chat-group">
-                        <div class="author-thumb">
-                            <img src="{{ asset('img/avatar11-sm.jpg') }}" alt="author">
-                            <img src="{{ asset('img/avatar12-sm.jpg') }}" alt="author">
-                            <img src="{{ asset('img/avatar13-sm.jpg') }}" alt="author">
-                            <img src="{{ asset('img/avatar10-sm.jpg') }}" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">You, Faye, Ed &amp; Jet +3</a>
-                            <span class="last-message-author">Ed:</span>
-                            <span class="chat-message-item">Yeah! Seems fine by me!</span>
-                            <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 16th at 10:23am</time></span>
-                        </div>
-                        <span class="notification-icon">
-											<svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
-										</span>
-                        <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
-                        </div>
-                    </li>
                 </ul>
 
                 <a href="#" class="view-all bg-purple">View All Messages</a>
@@ -1906,13 +1755,21 @@
 
 <script src="{{ asset('js/mediaelement-and-player.min.js') }}"></script>
 <script src="{{ asset('js/mediaelement-playlist-plugin.min.js') }}"></script>
+<script src="{{ asset('js/Models.js') }}"></script>
 <script>
     $(document).ready(function () {
         //$(".mCustomScrollbar").mCustomScrollbar();
+        $(".notif-message").hide();
         var b = 0;
         var lastMessage;
         var id = 0;
-        var messageItem = `<span class="chat-message-item">{0}</span>`;
+        var chatItem = `<li class="inline-items js-chat-open">
+                    <div class="author-thumb">
+                        <img id="{0}" alt="author" src="{1}" class="avatar">
+                        <span class="icon-status online"></span>
+                    </div>
+                </li>`;
+        var messageItem = `<span id="{0}" class="chat-message-item">{1}</span>`;
         var messageModel = `<li>
                         <div class="author-thumb">
                             <img src="{0}" alt="author" class="mCS_img_loaded">
@@ -1922,7 +1779,74 @@
                             <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
                         </div>
 			        </li>`;
-        function load() {
+        var notifMessageItem = `<li class="message-unread">
+                        <div class="author-thumb">
+                            <img id="{0}" src="{{ asset('img/') }}{1}" alt="author">
+                        </div>
+                        <div class="notification-event">
+                            <a href="#" class="h6 notification-friend">{2}</a>
+                            <span class="chat-message-item">{3}</span>
+                            <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18"></time></span>
+                        </div>
+                        <span class="notification-icon">
+										<svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
+									</span>
+                        <div class="more">
+                            <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
+                        </div>
+                    </li>`;
+        function loadNotificationMessages(args)
+        {
+            $.ajax({
+               url:"{{ path("message_data_all") }}",
+               type:'get',
+                data:{'mids':args},
+               success:function(data){
+                   $(".message-list-notif").empty();
+                    $.each(data,function (key,message) {
+                        var s = formatString(notifMessageItem,[message[0].sender.id,message.photoprofil,message.nom+" "+message.prenom,message[0].text]);
+                        $(".message-list-notif").append(s);
+                    });
+                   $(".message-list-notif").find("li").find("img").click(function (e) {
+                       loadNotifications();
+                       $("#messagep").attr("class","ui-block popup-chat popup-chat-responsive open-chat");
+                       lastMessage = 0;
+                       $("#message-list").empty();
+                       id = e.target.id;
+                       b = 0;
+                       loadMessage();
+                   });
+               }
+            });
+        }
+        function loadNotifications()
+        {
+            var tab = [];
+            $.ajax({
+                url:"{{ path('message_notifications') }}",
+                type:'get',
+                success:function(data){
+                    var count = 0;
+                    $.each(data,function(key,notif){
+                        count++;
+                        tab.push(notif[0].link)
+                    });
+                    if(count != 0)
+                    {
+                        $(".notif-message").text(count);
+                        $(".notif-message").show();
+                        loadNotificationMessages(tab);
+                    }
+                    else
+                        $(".notif-message").hide();
+                }
+            });
+        }
+        loadNotifications();
+        setInterval(function(){
+            loadNotifications();
+        },10000);
+        function loadMessage() {
             $.ajax({
                 url:"{{ path("message_data") }}",
                 type:'get',
@@ -1937,7 +1861,7 @@
                     {
                         lastMessage = message.id;
                         if(check == message.sender.id)
-                            tab.push(formatString(messageItem,[message.text]));
+                            tab.push(formatString(messageItem,[message.id,message.text]));
                         else
                         {
                             var content = messageModel;
@@ -1946,7 +1870,7 @@
                             content =  formatString(content,["{{ asset('img/avatar14-sm.jpg') }}",""]);
                             $("#message-list").append(content);
                             tab = [];
-                            tab.push(formatString(messageItem,[message.text]));
+                            tab.push(formatString(messageItem,[message.id,message.text]));
                         }
                         check = message.sender.id;
                     });
@@ -1961,34 +1885,49 @@
                 }
             });
         }
+        $.ajax({
+           url:"{{ path("chat") }}",
+            type:"get",
+            success:function(data) {
+               $.each(data,function(key,relation){
+                   if(relation.acceptor.id == {{ app.user.id }}) {
+                       var id = relation.requester.id;
+                       var photo = relation.requester.image;
+                   }
+                   else {
+                       var id = relation.acceptor.id;
+                       var photo = relation.acceptor.image;
+                   }
+
+                   var item = formatString(chatItem,[id,"{{ asset('images/') }}"+photo]);
+                   $("#chat-list").append(item);
+               });
+               $("#chat-list").find("li").find("img").click(function (e) {
+                   loadNotifications();
+                   $("#messagep").attr("class","ui-block popup-chat popup-chat-responsive open-chat");
+                    lastMessage = 0;
+                    $("#message-list").empty();
+                    id = e.target.id;
+                    b = 0;
+                    loadMessage();
+               });
+            }
+
+        });
         setInterval(function(){
             if(id == 0 || b==0) return;
             console.log("setinterval");
-            load();
-        }, 2000);
-        function formatString(s,args)
-        {
-            for (var i = 0; i < args.length; i++) {
-                var reg = new RegExp("\\{" + i + "\\}","gm");
-                s = s.replace(reg, args[i]);
-            }
-            return s;
-        }
-        $("#chat-list").find("li").find("img").click(function (e) {
-            lastMessage = 0;
-            $("#message-list").empty();
-            id = e.target.id;
-            b = 0;
-            load();
-        });
+            loadMessage();
+        }, 3000);
 
         $("#messagep").find("textarea").keypress(function (e) {
-            if(e.which != 13) return;
+            var text = $("#messagep").find("textarea").val();
+            if(e.which != 13 || text == "") return;
             $.ajax({
 
                 url:"{{ path("send_message") }}",
                 type:'post',
-                data:{"touser":id,"text":$("#messagep").find("textarea").val()},
+                data:{"touser":id,"text":text},
                 error:function (data) {
                     alert("erreur");
                 },
@@ -1997,7 +1936,6 @@
                 }
             });
         });
-
     });
 </script>
 {% block js %}
