@@ -6,6 +6,9 @@
 
 # Email spool folder
 /app/spool/*
+/composer.json
+/composer.lock
+/app/AppKernel.php
 
 # Cache, session files and logs (Symfony3)
 /var/cache/*
