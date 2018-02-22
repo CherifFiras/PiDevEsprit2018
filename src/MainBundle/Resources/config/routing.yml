@@ -12,3 +12,15 @@ admin:
 test:
     path:     /test
     defaults: { _controller: MainBundle:Main:test }
+
+indexAdmin:
+    path:     /admin/profiladmin
+    defaults: { _controller: MainBundle:ProfilAdmin:index }
+
+usersAdmin:
+    path:     /admin/profiladmin/users
+    defaults: { _controller: MainBundle:ProfilAdmin:utilisateurs }
+
+statAdmin:
+    path:     /admin/profiladmin/statistiques
+    defaults: { _controller: MainBundle:ProfilAdmin:statProfil }
