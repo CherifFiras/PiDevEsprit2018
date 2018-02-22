@@ -12,3 +12,7 @@ admin:
 test:
     path:     /test
     defaults: { _controller: MainBundle:Main:test }
+
+statistique_recherche_generale:
+    path:     /admin/recherchestatg
+    defaults: { _controller: MainBundle:StatistiqueRecherche:generale }

@@ -1,0 +1,57 @@
+{% extends 'back.html.twig' %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/semantic.min.css') }}">
+
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="ui statistic">
+                <div class="value">
+                    5,550
+                </div>
+                <div class="label">
+                    Totale des recherches
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ui statistic">
+                <div class="value">
+                    5,550
+                </div>
+                <div class="label">
+                    Ce mois
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ui statistic">
+                <div class="value">
+                    5,550
+                </div>
+                <div class="label">
+                    Ce jour
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ui statistic">
+                <div class="value">
+                    5,550
+                </div>
+                <div class="label">
+                    Downloads
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/semantic.min.js') }}"></script>
+    <script>
+
+        $(document).ready(function () {
+           $(".m-subheader__title").text("Statistique de recherche - Générale");
+        });
+    </script>
+{% endblock %}
