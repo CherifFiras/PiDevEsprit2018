@@ -33,3 +33,4 @@ updateEmploi:
 updateScol:
     path:     /educationemploi/us
     defaults: { _controller: ProfilBundle:Profil:updateScol }
+

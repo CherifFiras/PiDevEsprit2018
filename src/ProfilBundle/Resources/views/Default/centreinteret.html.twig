@@ -139,7 +139,7 @@
                                             {% endfor %}
                                         </ul>
                                     </div>
-                                    <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-whatever="film" class="add-field">
+                                    <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-whatever="film" class="add-field prev">
                                         <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
                                         <span>Ajouter un Film</span>
                                     </a>
@@ -161,7 +161,7 @@
                                             {% endfor %}
                                         </ul>
                                     </div>
-                                    <a href="#exampleModalserie" data-toggle="modal" data-target="#exampleModalserie" data-whatever="serie" class="add-field">
+                                    <a href="#exampleModalserie" data-toggle="modal" data-target="#exampleModalserie" data-whatever="serie" class="add-field prev">
                                         <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
                                         <span>Ajouter une Série</span>
                                     </a>
@@ -184,7 +184,7 @@
                                             <li class="list-group-item">Vestibulum at eros</li>
                                         </ul>
                                     </div>
-                                    <a href="#" class="add-field">
+                                    <a href="#" class="add-field prev">
                                         <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
                                         <span>Ajouter un Artist</span>
                                     </a>
@@ -208,7 +208,7 @@
                                             <li class="list-group-item">Vestibulum at eros</li>
                                         </ul>
                                     </div>
-                                    <a href="#" class="add-field">
+                                    <a href="#" class="add-field prev">
                                         <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
                                         <span>Ajouter un Livre</span>
                                     </a>
@@ -229,7 +229,7 @@
                                             <li class="list-group-item">Vestibulum at eros</li>
                                         </ul>
                                     </div>
-                                    <a href="#" class="add-field">
+                                    <a href="#" class="add-field prev">
                                         <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
                                         <span>Ajouter une Activité</span>
                                     </a>
@@ -325,6 +325,9 @@
 {% block js %}
 
     <script>
+        $('.perv').click(function(e) {
+            e.preventDefault();
+        });
         //Modal Film
         $('#exampleModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)

@@ -5,6 +5,7 @@ namespace ProfilBundle\Controller;
 use MainBundle\Entity\Album;
 use MainBundle\Entity\CentreInteret;
 use MainBundle\Entity\Emploi;
+use MainBundle\Entity\Publication;
 use MainBundle\Entity\Scolarite;
 use MainBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,12 +17,49 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProfilController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $u= $this->container->get('security.token_storage')->getToken()->getUser();
+        $u = $this->container->get('security.token_storage')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $films = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'film'));
+        $series = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'serie'));
+        $artists = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'artist'));
+        $livres = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'livre'));
+        $photos = $em->getRepository(Album::class)->findBy(array('user' => $u->getId()),null,9,null);
+        //------------------------------
+        $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $u->getId()),array('datePublication' => 'DESC'));
 
+        if ($request->isMethod('POST')) {
+            if ($request->request->has('idpubd')) {
+                $p= $em->getRepository(Publication::class)->find($request->get("idpubd"));
+                $em->remove($p);
+                $em->flush();
+                return $this->redirectToRoute("profil_homepage");
+            }
+            if ($request->request->has('idpubmodal')) {
+                $p= $em->getRepository(Publication::class)->find($request->get("idpubmodal"));
+                $p->setContenu(($request->get('contenuup')));
+                $d = new \DateTime("now");
+                $p->setDatePublication($d);
+                $em->persist($p);
+                $em->flush();
+                return $this->redirectToRoute("profil_homepage");
+            }
+            if ($request->request->has('contenuajout')) {
+                $p = new Publication();
+                $p->setContenu(($request->get('contenuajout')));
+                $d = new \DateTime("now");
+                $p->setDatePublication($d);
+                $p->setUser($u);
+                $em->persist($p);
+                $em->flush();
+            }
+            return $this->redirectToRoute('profil_homepage');
+        }
+        //------------------------------
         return $this->render('ProfilBundle:Default:profil.html.twig', array(
-            'iduser' => $u->getId(),'curr_user' => $u
+            'iduser' => $u->getId(),'curr_user' => $u,'films'=>$films,'series'=>$series,'artists'=>$artists,'livres'=>$livres,
+            'photos'=>$photos,'pubs'=>$pubs
         ));
     }
 
@@ -259,9 +297,19 @@ class ProfilController extends Controller
     public function AproposAction()
     {
         $u= $this->container->get('security.token_storage')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+
+        $films = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'film'));
+        $series = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'serie'));
+        $artists = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'artist'));
+        $livres = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'livre'));
+        $loisirs = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'loisir'));
+        $emplois = $em->getRepository(Emploi::class)->findBy(array('user' => $u->getId()),array('dateDebut' => 'ASC'));
+        $scolarite = $em->getRepository(Scolarite::class)->findBy(array('user' => $u->getId()),array('dateDebut' => 'ASC'));
 
         return $this->render('ProfilBundle:Default:apropos.html.twig', array(
-            'iduser' => $u->getId(),'curr_user' => $u
+            'iduser' => $u->getId(),'curr_user' => $u,'films'=>$films,'series'=>$series,'loisirs'=>$loisirs,'artists'=>$artists,'livres'=>$livres,
+            'emplois'=>$emplois,'scolarites'=>$scolarite
         ));
     }
 

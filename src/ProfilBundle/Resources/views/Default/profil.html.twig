@@ -1,7 +1,52 @@
 {% extends 'front.html.twig' %}
 
+{% block css %}
+    <style>
+        .divlm{
+            display:none;
+        }
+
+    </style>
+{% endblock %}
+
 {% block content %}
 
+    <!-- MODAL AJOUT FILM -->
+    <form name="fmod" method="POST">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 id="exampleModalLabel">Modifier votre status:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="form-group">
+
+                            <div class="form-group with-icon label-floating is-empty">
+
+                                <textarea class="form-control" placeholder="" id="contenup" name="contenuup"></textarea>
+                                <input type="hidden" value="" name="idpubmodal">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Modifier</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
 <!-- Top Header -->
 
 <div class="container">
@@ -99,18 +144,18 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
-                                    <form>
+                                    <form name="formajout" method="POST">
                                         <div class="author-thumb">
                                             <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">
                                         </div>
                                         <div class="form-group with-icon label-floating is-empty">
                                             <label class="control-label">Partagez ce que vous pensez ici ...</label>
-                                            <textarea class="form-control" placeholder=""></textarea>
+                                            <textarea class="form-control" placeholder="" name="contenuajout"></textarea>
                                         </div>
                                         <div class="add-options-message">
 
 
-                                            <button class="btn btn-primary btn-md-2">Post Status</button>
+                                            <button type="submit" class="btn btn-primary btn-md-2">Partager le Status</button>
 
                                         </div>
 
@@ -122,7 +167,8 @@
                         </div>
                     </div>
                     <!-- END New Status Block -->
-                    <div class="ui-block">
+                    {% for p in pubs %}
+                    <div class="ui-block divlm">
                         <article class="hentry post">
 
                             <div class="post__author author vcard inline-items">
@@ -131,39 +177,39 @@
                                 <div class="author-date">
                                     <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{curr_user.prenom ~" "~ curr_user.nom }}</a>
                                     <div class="post__date">
-                                        <time class="published" datetime="2017-03-24T18:18">
-                                            19 hours ago
-                                        </time>
+                                        <time class="published" datetime="2017-03-24T18:18">{{ p.datepublication|date("D d-m-Y g:i A") }}</time>
                                     </div>
                                 </div>
 
                                 <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use></svg>
                                     <ul class="more-dropdown">
+
                                         <li>
-                                            <a href="#">Modifier Status</a>
+                                            <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-id="{{ p.id }}" data-whatever="{{ p.contenu }}" id="{{ p.id }}" class="clickmod">Modifier Status</a>
+
                                         </li>
-                                        <li>
-                                            <a href="#">Supprimer Status</a>
-                                        </li>
+
+                                        <form id="formd{{ p.id }}" method="POST" action="{{ path('profil_homepage') }}">
+                                            <li>
+                                                <a href="#" id="{{ p.id }}" class="clicksup">Supprimer Status</a>
+                                                <input type="hidden" value="{{ p.id }}" name="idpubd">
+                                            </li>
+                                        </form>
                                     </ul>
                                 </div>
 
                             </div>
 
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                                accusantium doloremque.
-                            </p>
+                            <p>{{ p.contenu }}</p>
 
 
                         </article>
                     </div>
-
+                    {% endfor %}
 
                 </div>
 
-                <a id="load-more-button" href="#" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset("icons/icons.svg#olymp-three-dots-icon") }}"></use></svg></a>
+                <a href="#" id="loadMore" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset("icons/icons.svg#olymp-three-dots-icon") }}"></use></svg></a>
             </div>
 
             <!-- ... end Main Content -->
@@ -174,94 +220,64 @@
             <div class="col-xl-3 order-xl-1 col-lg-6 order-lg-2 col-md-6 col-sm-12 col-xs-12">
                 <div class="ui-block">
                     <div class="ui-block-title">
-                        <h6 class="title">Profile Intro</h6>
+                        <h6 class="title">Vue Globale</h6>
                     </div>
                     <div class="ui-block-content">
                         <ul class="widget w-personal-info item-block">
                             <li>
-                                <span class="title">About Me:</span>
-                                <span class="text">Hi, I’m James, I’m 36 and I work as a Digital Designer for the  “Daydreams” Agency in Pier 56.</span>
+                                <span class="title">Description:</span>
+                                <span class="text">{{ curr_user.apropos }}</span>
                             </li>
                             <li>
-                                <span class="title">Favourite TV Shows:</span>
-                                <span class="text">Breaking Good, RedDevil, People of Interest, The Running Dead, Found,  American Guy.</span>
+                                <span class="title">Série de télévision préférées:</span>
+                                <span class="text">
+                                    {% for s in series %}
+                                        {{ s.contenu~", " }}
+                                    {% endfor %}
+                                </span>
                             </li>
                             <li>
-                                <span class="title">Favourite Music Bands / Artists:</span>
-                                <span class="text">Iron Maid, DC/AC, Megablow, The Ill, Kung Fighters, System of a Revenge.</span>
+                                <span class="title">Groupes de musique / Artistes préférés:</span>
+                                <span class="text">
+                                    {% for a in artists %}
+                                        {{ a.contenu~", " }}
+                                    {% endfor %}
+                                </span>
+                            </li>
+                            <li>
+                                <span class="title">Films préférés:</span>
+                                <span class="text">
+                                    {% for f in films %}
+                                        {{ f.contenu~", " }}
+                                    {% endfor %}
+                                </span>
+                            </li>
+                            <li>
+                                <span class="title">Livres préférés:</span>
+                                <span class="text">
+                                    {% for l in livres %}
+                                        {{ l.contenu~", " }}
+                                    {% endfor %}
+                                </span>
                             </li>
                         </ul>
 
                         <div class="widget w-socials">
-                            <h6 class="title">Other Social Networks:</h6>
-                            <a href="#" class="social-item bg-facebook">
+                            <h6 class="title">Autres réseaux sociaux:</h6>
+                            <a href="{{ curr_user.facebook }}" class="social-item bg-facebook">
                                 <i class="fa fa-facebook" aria-hidden="true"></i>
                                 Facebook
                             </a>
-                            <a href="#" class="social-item bg-twitter">
+                            <a href="{{ curr_user.twitter }}" class="social-item bg-twitter">
                                 <i class="fa fa-twitter" aria-hidden="true"></i>
                                 Twitter
                             </a>
-                            <a href="#" class="social-item bg-dribbble">
-                                <i class="fa fa-dribbble" aria-hidden="true"></i>
-                                Dribbble
+                            <a href="{{ curr_user.instagram }}" class="social-item bg-dribbble">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                                Instagram
                             </a>
                         </div>
                     </div>
-                </div>
-
-                <div class="ui-block">
-                    <div class="ui-block-title">
-                        <h6 class="title">Twitter Feed</h6>
-                    </div>
-
-                    <ul class="widget w-twitter">
-                        <li class="twitter-item">
-                            <div class="author-folder">
-                                <img src="{{ asset('img/twitter-avatar1.png') }}" alt="avatar">
-                                <div class="author">
-                                    <a href="#" class="author-name">Space Cowboy</a>
-                                    <a href="#" class="group">@james_spiegelOK</a>
-                                </div>
-                            </div>
-                            <p>Tomorrow with the agency we will run 5 km for charity. Come and give us your support! <a href="#" class="link-post">#Daydream5K</a></p>
-                            <span class="post__date">
-							<time class="published" datetime="2017-03-24T18:18">
-								2 hours ago
-							</time>
-						</span>
-                        </li>
-                        <li class="twitter-item">
-                            <div class="author-folder">
-                                <img src="{{ asset('img/twitter-avatar1.png') }}" alt="avatar">
-                                <div class="author">
-                                    <a href="#" class="author-name">Space Cowboy</a>
-                                    <a href="#" class="group">@james_spiegelOK</a>
-                                </div>
-                            </div>
-                            <p>Check out the new website of “The Bebop Bar”! <a href="#" class="link-post">bytle/thbp53f</a></p>
-                            <span class="post__date">
-							<time class="published" datetime="2017-03-24T18:18">
-								16 hours ago
-							</time>
-						</span>
-                        </li>
-                        <li class="twitter-item">
-                            <div class="author-folder">
-                                <img src="{{ asset('img/twitter-avatar1.png') }}" alt="avatar">
-                                <div class="author">
-                                    <a href="#" class="author-name">Space Cowboy</a>
-                                    <a href="#" class="group">@james_spiegelOK</a>
-                                </div>
-                            </div>
-                            <p>The Sunday is the annual agency camping trip and I still haven’t got a tent  <a href="#" class="link-post">#TheWild #Indoors</a></p>
-                            <span class="post__date">
-							<time class="published" datetime="2017-03-24T18:18">
-								Yesterday
-							</time>
-						</span>
-                        </li>
-                    </ul>
                 </div>
 
 
@@ -275,55 +291,16 @@
             <div class="col-xl-3 order-xl-3 col-lg-6 order-lg-3 col-md-6 col-sm-12 col-xs-12">
                 <div class="ui-block">
                     <div class="ui-block-title">
-                        <h6 class="title">Last Photos</h6>
+                        <h6 class="title">Dernières Photos</h6>
                     </div>
                     <div class="ui-block-content">
                         <ul class="widget w-last-photo js-zoom-gallery">
+                            {% for p in photos %}
+
                             <li>
-                                <a href="{{ asset('img/last-photo10-large.jpg') }}">
-                                    <img src="{{ asset('img/last-photo10-large.jpg') }}" alt="photo">
-                                </a>
+                                <img src="{{ asset('') }}{{ vich_uploader_asset(p, 'imageFile') }}" alt="photo">
                             </li>
-                            <li>
-                                <a href="{{ asset('img/last-phot11-large.jpg') }}">
-                                    <img src="{{ asset('img/last-phot11-large.jpg') }}" alt="photo">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ asset('img/last-phot12-large.jpg') }}">
-                                    <img src="{{ asset('img/last-phot12-large.jpg') }}" alt="photo">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ asset('img/last-phot13-large.jpg') }}">
-                                    <img src="{{ asset('img/last-phot13-large.jpg') }}" alt="photo">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ asset('img/last-phot14-large.jpg') }}">
-                                    <img src="{{ asset('img/last-phot14-large.jpg') }}" alt="photo">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ asset('img/last-phot15-large.jpg') }}">
-                                    <img src="{{ asset('img/last-phot15-large.jpg') }}" alt="photo">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ asset('img/last-phot16-large.jpg') }}">
-                                    <img src="{{ asset('img/last-phot16-large.jpg') }}" alt="photo">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ asset('img/last-phot17-large.jpg') }}">
-                                    <img src="{{ asset('img/last-phot17-large.jpg') }}" alt="photo">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ asset('img/last-phot18-large.jpg') }}">
-                                    <img src="{{ asset('img/last-phot18-large.jpg') }}" alt="photo">
-                                </a>
-                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -445,3 +422,51 @@
 
 {% endblock %}
 
+{% block js %}
+    <script>
+        $('.clicksup').click(function(e) {
+            e.preventDefault();
+        });
+        $('.clicksup').click(function (e) {
+
+            var idClicked = e.target.id;
+            //console.log(idClicked);
+            $('#formd'+idClicked ).submit();
+        });
+        $('.clickmod').click(function(e) {
+            e.preventDefault();
+        });
+        $('.clickmod').click(function (e) {
+
+            var idClicked = e.target.id;
+            $('#formm'+idClicked ).submit();
+        });
+        //Modal modifier publication
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            var idpubmod = button.data('id')
+            var modal = $(this)
+            modal.find('#contenup').val(recipient)
+            modal.find('input[type=hidden]').val(idpubmod)
+            //modal.find('.modal-body input').val(recipient)
+        })
+        //-------------------------
+        $(function () {
+            $(".divlm").slice(0, 4).show();
+
+            $("#loadMore").on('click', function (e) {
+                e.preventDefault();
+                $(".divlm:hidden").slice(0, 4).slideDown();
+
+                if ($(".divlm:hidden").length == 0) {
+                    $("#load").fadeOut('slow');
+                }
+                $('html,body').animate({
+                    scrollTop: $(this).offset().top
+                }, 1500);
+            });
+        });
+    </script>
+
+{% endblock %}
