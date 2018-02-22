@@ -1892,11 +1892,11 @@
                $.each(data,function(key,relation){
                    if(relation.acceptor.id == {{ app.user.id }}) {
                        var id = relation.requester.id;
-                       var photo = relation.requester.photoprofil;
+                       var photo = relation.requester.image;
                    }
                    else {
                        var id = relation.acceptor.id;
-                       var photo = relation.acceptor.photoprofil;
+                       var photo = relation.acceptor.image;
                    }
 
                    var item = formatString(chatItem,[id,"{{ asset('images/') }}"+photo]);

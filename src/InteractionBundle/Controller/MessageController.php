@@ -66,7 +66,7 @@ class MessageController extends Controller
         $users = $manager->getRepository("MainBundle:Relation")->fetchMembers($user);
         $normalizer = new ObjectNormalizer();
         $serializer=new Serializer(array(new DateTimeNormalizer(),$normalizer));
-        $data=$serializer->normalize($users, null, array('attributes' => array('id','requester'=> ['id','photoprofil'], 'acceptor' => ['id','photoprofil'])));
+        $data=$serializer->normalize($users, null, array('attributes' => array('id','requester'=> ['id','image'], 'acceptor' => ['id','image'])));
         return new JsonResponse($data);
     }
 
