@@ -23,11 +23,8 @@ class AppKernel extends Kernel
             new EspaceBundle\EspaceBundle(),
             new ForumBundle\ForumBundle(),
             new InteractionBundle\InteractionBundle(),
-<<<<<<< HEAD
             new Mgilet\NotificationBundle\MgiletNotificationBundle(),
-=======
             new Vich\UploaderBundle\VichUploaderBundle(),
->>>>>>> e7b3dd222bb9bbcf5f57ae69dfdc4de4ce0274f6
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

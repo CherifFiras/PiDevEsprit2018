@@ -6,12 +6,9 @@ namespace MainBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-<<<<<<< HEAD
 use Mgilet\NotificationBundle\Annotation\Notifiable;
 use Mgilet\NotificationBundle\NotifiableInterface;
-=======
 use Symfony\Component\HttpFoundation\File\File;
->>>>>>> e7b3dd222bb9bbcf5f57ae69dfdc4de4ce0274f6
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -19,11 +16,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass="MainBundle\Repository\UserRepository")
  * @ORM\Table(name="user")
-<<<<<<< HEAD
  * @Notifiable(name="user")
-=======
  * @Vich\Uploadable
->>>>>>> e7b3dd222bb9bbcf5f57ae69dfdc4de4ce0274f6
  */
 class User extends BaseUser implements NotifiableInterface
 {
