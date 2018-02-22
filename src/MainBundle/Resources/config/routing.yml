@@ -13,7 +13,6 @@ test:
     path:     /test
     defaults: { _controller: MainBundle:Main:test }
 
-<<<<<<< HEAD
 indexAdmin:
     path:     /admin/profiladmin
     defaults: { _controller: MainBundle:ProfilAdmin:index }
@@ -25,8 +24,8 @@ usersAdmin:
 statAdmin:
     path:     /admin/profiladmin/statistiques
     defaults: { _controller: MainBundle:ProfilAdmin:statProfil }
-=======
+
 statistique_recherche_generale:
     path:     /admin/recherchestatg
     defaults: { _controller: MainBundle:StatistiqueRecherche:generale }
->>>>>>> 65790086b26c945a6facd7cf0be04166a130a966
+
