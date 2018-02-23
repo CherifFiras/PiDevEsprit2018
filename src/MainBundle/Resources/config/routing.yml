@@ -25,6 +25,10 @@ statAdmin:
     path:     /admin/profiladmin/statistiques
     defaults: { _controller: MainBundle:ProfilAdmin:statProfil }
 
+signalAdmin:
+    path:     /admin/profiladmin/signaled
+    defaults: { _controller: MainBundle:ProfilAdmin:utilisateurSignal }
+
 statistique_recherche_generale:
     path:     /admin/recherchestatg
     defaults: { _controller: MainBundle:StatistiqueRecherche:generale }

@@ -62,4 +62,78 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
 
     }
 
+    public function findByRole($role)
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb->select($qb->expr()->count("u.id"));
+        $qb -> where('u.roles NOT LIKE :role')
+            ->setParameter(':role','%"'.$role.'"%');
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function findActif($role)
+    {
+        $now = new \DateTime("now");
+        $qb = $this->createQueryBuilder('u');
+        $qb->select($qb->expr()->count("u.id"));
+        //$qb->select("u");
+        $qb->andWhere("dateadd(u.lastLogin,7,'day') >= :now");
+        $qb ->andWhere('u.roles NOT LIKE :role')
+            ->setParameter(':role','%"'.$role.'"%')
+            ->setParameter(':now',$now->format("Y-m-d"));
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function findInactif($role)
+    {
+        $now = new \DateTime("now");
+        $qb = $this->createQueryBuilder('u');
+        $qb->select($qb->expr()->count("u.id"));
+        //$qb->select("u");
+        $qb->andWhere("dateadd(u.lastLogin,7,'day') < :now");
+        $qb ->andWhere('u.roles NOT LIKE :role')
+            ->setParameter(':role','%"'.$role.'"%')
+            ->setParameter(':now',$now->format("Y-m-d"));
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function findByFacebook($role)
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb->select($qb->expr()->count("u.id"));
+        $qb->andWhere($qb->expr()->isNotNull('u.facebook'));
+        $qb ->andWhere('u.roles NOT LIKE :role')
+            ->setParameter(':role','%"'.$role.'"%');
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function findByTwitter($role)
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb->select($qb->expr()->count("u.id"));
+        $qb->andWhere($qb->expr()->isNotNull('u.twitter'));
+        $qb ->andWhere('u.roles NOT LIKE :role')
+            ->setParameter(':role','%"'.$role.'"%');
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function findByInstagram($role)
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb->select($qb->expr()->count("u.id"));
+        $qb->andWhere($qb->expr()->isNotNull('u.instagram'));
+        $qb ->andWhere('u.roles NOT LIKE :role')
+            ->setParameter(':role','%"'.$role.'"%');
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function findAllUsers($role)
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb->select('u');
+        $qb -> where('u.roles NOT LIKE :role')
+            ->setParameter(':role','%"'.$role.'"%');
+        return $qb->getQuery()->execute();
+    }
+
 }
