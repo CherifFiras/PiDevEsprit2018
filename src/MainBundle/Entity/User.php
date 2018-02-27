@@ -148,10 +148,33 @@ class User extends BaseUser implements NotifiableInterface
     private $imageFile;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",nullable=true)
      * @var \DateTime
      */
     private $updatedAt;
+
+    /**
+     * @return string
+     */
+    public function getConnplace()
+    {
+        return $this->connplace;
+    }
+
+    /**
+     * @param string $connplace
+     */
+    public function setConnplace($connplace)
+    {
+        $this->connplace = $connplace;
+    }
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="connplace", type="string" , length=255,nullable=true)
+     */
+    public $connplace;
 
     /**
      * @return string
