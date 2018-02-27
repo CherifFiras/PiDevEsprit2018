@@ -26,6 +26,9 @@ class ProfilController extends Controller
         $artists = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'artist'));
         $livres = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'livre'));
         $photos = $em->getRepository(Album::class)->findBy(array('user' => $u->getId()),null,9,null);
+
+        //$users_sug = $em->getRepository(User::class)->findBy(array('salt' => $u->getSalt()),null,6,null);
+        $users_sug = $em->getRepository(User::class)->findSuggestionUsers("ROLE_SUPER_ADMIN",$u->getSalt(),$u->getId());
         //------------------------------
         $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $u->getId()),array('datePublication' => 'DESC'));
 
@@ -59,7 +62,7 @@ class ProfilController extends Controller
         //------------------------------
         return $this->render('ProfilBundle:Default:profil.html.twig', array(
             'iduser' => $u->getId(),'curr_user' => $u,'films'=>$films,'series'=>$series,'artists'=>$artists,'livres'=>$livres,
-            'photos'=>$photos,'pubs'=>$pubs
+            'photos'=>$photos,'pubs'=>$pubs,'users_sug'=>$users_sug
         ));
     }
 

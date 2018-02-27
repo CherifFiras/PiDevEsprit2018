@@ -136,4 +136,16 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->execute();
     }
 
+    public function findSuggestionUsers($role,$salt,$id)
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb->select('u');
+        $qb ->andWhere('u.id NOT LIKE :id')->setParameter(':id',$id);
+        $qb ->andWhere('u.salt LIKE :salt')->setParameter(':salt',$salt);
+        $qb ->andWhere('u.roles NOT LIKE :role')
+            ->setParameter(':role','%"'.$role.'"%');
+        $qb->setMaxResults(6);
+        return $qb->getQuery()->execute();
+    }
+
 }
