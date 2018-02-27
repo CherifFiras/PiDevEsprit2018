@@ -44,15 +44,15 @@ class RechercheController extends Controller
         $films = $request->get("films");
         $series = $request->get("series");
         $livres = $request->get("livres");
-        $this->saveRecherche($genre,$age[0],$age[1],$occupation,$religion,$pays,$ville,$region);
         $u= $this->container->get('security.token_storage')->getToken()->getUser();
+        $this->saveRecherche($u,$genre,$age[0],$age[1],$occupation,$religion,$pays,$ville,$region);
         $datemin = new \DateTime("now -$age[0] year");
         $datemax = new \DateTime("now -$age[1] year");
         $userList = $manager->getRepository("MainBundle:User")->resultusers($u->getId(),$datemin->format("Y-m-d"),$datemax->format("Y-m-d"),$genre,$occupation,$religion,$pays,$ville,$region,$films,$series,$livres);
 
 
         $normalizer = new ObjectNormalizer();
-        $normalizer->setIgnoredAttributes(array('user'));
+        //$normalizer->setIgnoredAttributes(array('user'));
 
         $serializer=new Serializer(array(new DateTimeNormalizer(),$normalizer));
         $data=$serializer->normalize($userList, null, array('attributes' => array('id','nom','prenom')));
@@ -61,7 +61,7 @@ class RechercheController extends Controller
 
     }
 
-    private function saveRecherche($genre,$agemin,$agemax,$occupation,$religion,$pays,$ville,$region)
+    private function saveRecherche($u,$genre,$agemin,$agemax,$occupation,$religion,$pays,$ville,$region)
     {
         $manager = $this->getDoctrine()->getManager();
         if($occupation != null)
@@ -76,6 +76,8 @@ class RechercheController extends Controller
             $region = implode(",",$region);
 
         $recherche = new Recherche();
+        $recherche->setUser($u);
+        $recherche->setDate(new \DateTime("now"));
         $recherche->setGenre($genre);
         $recherche->setAgeMin($agemin);
         $recherche->setAgeMax($agemax);

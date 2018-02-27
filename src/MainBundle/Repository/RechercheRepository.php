@@ -2,6 +2,8 @@
 
 namespace MainBundle\Repository;
 
+use Symfony\Component\Validator\Constraints\DateTime;
+
 /**
  * RechercheRepository
  *
@@ -10,4 +12,62 @@ namespace MainBundle\Repository;
  */
 class RechercheRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function countAll()
+    {
+        $qb = $this->createQueryBuilder('r');
+        $qb->select($qb->expr()->count("r.id"));
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+    public function countAllByYear()
+    {
+        $date = new \DateTime("now");
+        $year = $date->format('Y');
+        $qb = $this->createQueryBuilder('r');
+        $qb->select($qb->expr()->count("r.id"));
+        $qb->andWhere('YEAR(r.date) = :y')->setParameter(":y",$year);
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+    public function countAllByMonth()
+    {
+        $date = new \DateTime("now");
+        $month = $date->format('m');
+        $year = $date->format('Y');
+        $qb = $this->createQueryBuilder('r');
+        $qb->select($qb->expr()->count("r.id"));
+        $qb->andWhere('MONTH(r.date) = :m')->setParameter(":m",$month);
+        $qb->andWhere('YEAR(r.date) = :y')->setParameter(":y",$year);
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+    public function countAllByToday()
+    {
+        $date = new \DateTime("now");
+        $day = $date->format('d');
+        $month = $date->format('m');
+        $year = $date->format('Y');
+        $qb = $this->createQueryBuilder('r');
+        $qb->select($qb->expr()->count("r.id"));
+        $qb->andWhere('DAY(r.date) = :d')->setParameter(":d",$day);
+        $qb->andWhere('MONTH(r.date) = :m')->setParameter(":m",$month);
+        $qb->andWhere('YEAR(r.date) = :y')->setParameter(":y",$year);
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+    public function statByCountry()
+    {
+        $qb = $this->createQueryBuilder('r');
+        $qb->select($qb->expr()->count("u.pays"));
+        $qb->addSelect("u.pays");
+        $qb->join("r.user","u","WITH");
+        $qb->groupBy("u.pays");
+        return $qb->getQuery()->execute();
+    }
+    public function statByTunis()
+    {
+        $qb = $this->createQueryBuilder('r');
+        $qb->select($qb->expr()->count("u.ville"));
+        $qb->addSelect("u.ville");
+        $qb->where("u.pays = 'tn'");
+        $qb->join("r.user","u","WITH");
+        $qb->groupBy("u.ville");
+        return $qb->getQuery()->execute();
+    }
 }

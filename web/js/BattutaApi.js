@@ -2,7 +2,7 @@
  	//-------------------------------SELECT CASCADING-------------------------//
   	var currentCities=[];
 // This is a demo API key that can only be used for a short period of time, and will be unavailable soon. You should rather request your API key (free)  from http://battuta.medunes.net/ 	
-var BATTUTA_KEY="ff0b90e420bd8826a16c88e17428424d"
+var BATTUTA_KEY="b55b50cebe8809ff19058499250142fe"
   	// Populate country select box from battuta API
 	url="https://battuta.medunes.net/api/country/all/?key="+BATTUTA_KEY+"&callback=?";
   	$.getJSON(url,function(countries)

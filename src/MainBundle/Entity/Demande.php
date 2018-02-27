@@ -30,14 +30,14 @@ class Demande
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="senders")
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="sendedDemandes")
      * @ORM\JoinColumn(name="requester",referencedColumnName="id")
      *
      */
     private $sender;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="receivers")
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User",inversedBy="receivedDemandes")
      * @ORM\JoinColumn(name="acceptor",referencedColumnName="id")
      *
      */

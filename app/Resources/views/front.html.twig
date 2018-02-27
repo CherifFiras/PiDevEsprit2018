@@ -1804,7 +1804,7 @@
                success:function(data){
                    $(".message-list-notif").empty();
                     $.each(data,function (key,message) {
-                        var s = formatString(notifMessageItem,[message[0].sender.id,message.photoprofil,message.nom+" "+message.prenom,message[0].text]);
+                        var s = formatString(notifMessageItem,[message[0].sender.id,message.image,message.nom+" "+message.prenom,message[0].text]);
                         $(".message-list-notif").append(s);
                     });
                    $(".message-list-notif").find("li").find("img").click(function (e) {

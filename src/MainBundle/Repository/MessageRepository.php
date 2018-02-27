@@ -39,7 +39,7 @@ class MessageRepository extends \Doctrine\ORM\EntityRepository
             $qb->join("m.sender","u","WITH");
             $qb->AddSelect("u.nom");
             $qb->AddSelect("u.prenom");
-            $qb->AddSelect("u.photoprofil");
+            $qb->AddSelect("u.image");
             $qb->andWhere("m.receiver in (:ur)")->setParameter(":ur",$user);
             $qb->andWhere("m.sender in (:us)")->setParameter(":us",$sender->getSender());
             $qb->orderBy("m.date","DESC");

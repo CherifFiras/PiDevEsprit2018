@@ -16,7 +16,6 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         $c = array();
         $t = array();
         $qb = $this->createQueryBuilder('u');
-        //$qb->andWhere("u.date_naissance >= :dmax")->setParameter(":dmax",$datemax);
         $qb->andWhere("u.date_naissance BETWEEN :dmax AND :dmin ")->setParameter(":dmin","$datemin")->setParameter("dmax","$datemax");
         $qb->andWhere("u.id != :ii")->setParameter(":ii",$u);
         if($gender != null)
@@ -50,11 +49,20 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             $c = array_merge($c,$livres);
             $t = array_merge($t,array("Book"));
         }
-        if($films != null && $series!= null && $livres != null)
+        if($films != null || $series!= null || $livres != null)
             $qb->andWhere($qb->expr()->andX("i.type in (:ty)","i.contenu in (:co)"))
                 ->setParameter(":ty",$t)->setParameter(":co",$c);
 
 
+
+        $qb->leftJoin("u.sendedDemandes","sd","WITH");
+        $qb->andWhere("sd.receiver != :reid")->setParameter(":reid",$u);
+        $qb->leftJoin("u.receivedDemandes","rd","WITH");
+        $qb->andWhere("rd.sender != :seid")->setParameter(":seid",$u);
+        $qb->leftJoin("u.requesters","re","WITH");
+        $qb->andWhere("re.acceptor != :accid")->setParameter(":accid",$u);
+        $qb->leftJoin("u.acceptors","ac","WITH");
+        $qb->andWhere("ac.requester != :reqid")->setParameter(":reqid",$u);
 
         return $qb->getQuery()->execute();
 
