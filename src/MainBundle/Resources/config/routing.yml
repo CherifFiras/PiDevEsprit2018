@@ -9,9 +9,6 @@ loginadmin:
 admin:
     path:     /admin
     defaults: { _controller: MainBundle:AdminSecurity:admin }
-test:
-    path:     /test
-    defaults: { _controller: MainBundle:Main:test }
 
 indexAdmin:
     path:     /admin/profiladmin

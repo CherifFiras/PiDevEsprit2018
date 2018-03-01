@@ -1108,18 +1108,18 @@
                 type:"post",
                 data:{"user":$("#"+id).attr("value"),"demande":idd},
                 success:function () {
-                    $("#"+id).closest("ul").hide();
+                    $("#"+id).closest("li").remove();
                 }
             });
         }
-        function rejectDemande(id)
+        function rejectDemande(id,idd)
         {
             $.ajax({
-                url:"{{ path("accept_demande") }}",
+                url:"{{ path("reject_demande") }}",
                 type:"post",
                 data:{"user":$("#"+id).attr("value"),"demande":idd},
                 success:function () {
-                    $("#"+id).closest("ul").hide();
+                    $("#"+id).closest("li").remove();
                 }
             });
         }

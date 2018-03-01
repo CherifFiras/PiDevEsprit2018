@@ -8,7 +8,14 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('MainBundle:Default:index.html.twig');
+        $user= $this->container->get('security.token_storage')->getToken()->getUser();
+        if (in_array("ROLE_SUPER_ADMIN", $user->getRoles())) {
+            return $this->redirectToRoute("admin");
+        }
+        else
+        {
+            return $this->render('MainBundle:Default:index.html.twig');
+        }
     }
 
     public function ForumAction()
