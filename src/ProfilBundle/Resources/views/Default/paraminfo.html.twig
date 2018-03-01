@@ -243,26 +243,6 @@
                             </div>
                         </div>
 
-                        <div class="ui-block-title">
-                            <a href="33-YourAccount-Notifications.html" class="h6 title">Notifications</a>
-                            <a href="#" class="items-round-little bg-primary">8</a>
-                        </div>
-                        <div class="ui-block-title">
-                            <a href="34-YourAccount-ChatMessages.html" class="h6 title">Chat / Messages</a>
-                        </div>
-                        <div class="ui-block-title">
-                            <a href="35-YourAccount-FriendsRequests.html" class="h6 title">Friend Requests</a>
-                            <a href="#" class="items-round-little bg-blue">4</a>
-                        </div>
-                        <div class="ui-block-title ui-block-title-small">
-                            <h6 class="title">FAVOURITE PAGE</h6>
-                        </div>
-                        <div class="ui-block-title">
-                            <a href="36-FavPage-SettingsAndCreatePopup.html" class="h6 title">Create Fav Page</a>
-                        </div>
-                        <div class="ui-block-title">
-                            <a href="36-FavPage-SettingsAndCreatePopup.html" class="h6 title">Fav Page Settings</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -276,41 +256,50 @@
 
     <script type="text/javascript" src="{{ asset('js/BattutaApiProfil.js') }}"></script>
     <script>
-        $("select[name='rel']").find("option[value={{ app.user.relegion }}]").attr("selected",true);
-        $("select[name='gen']").find("option[value={{ app.user.genre }}]").attr("selected",true);
+
+        var r = "{{ app.user.relegion }}";
+        var g = "{{ app.user.genre }}";
+
+        if( r != "") {
+            $("select[name='rel']").find("option[value={{ app.user.relegion }}]").attr("selected", true);
+        }
+        if( g != "") {
+            $("select[name='gen']").find("option[value={{ app.user.genre }}]").attr("selected", true);
+        }
         function refresh() {
-            $("select[name='pays']").find("option[value={{ app.user.pays }}]").attr("selected",true);
-            $("select[name='ville']").find(`option[value="{{ app.user.ville|striptags|raw }}"]`).attr("selected",true);
-            $("select[name='region']").find(`option[value="{{ app.user.region|striptags|raw }}"]`).attr("selected",true);
+            var p = "{{ app.user.pays }}";
+            if( p != ""){
+                $("select[name='pays']").find("option[value={{ app.user.pays }}]").attr("selected",true);
+                $("select[name='ville']").find(`option[value="{{ app.user.ville|striptags|raw }}"]`).attr("selected",true);
+                $("select[name='region']").find(`option[value="{{ app.user.region|striptags|raw }}"]`).attr("selected",true);
+            }
         }
         hundler(refresh);
         //----------------------
-        $(document).ready(function () {
+        //Charger les occupation
+        $(document).ready(function() {
+            $.ajax({
+                url: "{{ asset('js/Emploi.json') }}",
+                dataType: "json",
 
-            $('#retrieve-resources').click(function () {
-                var displayResources = $('#occ');
-
-                $.ajax({
-                    type: "GET",
-                    url: "emploi.json",
-                    success: function(result)
-                    {
-                        console.log(result);
-                        var output="<table><thead><tr><th>Name</th><th>Provider</th><th>URL</th></thead><tbody>";
-                        for (var i in result)
-                        {
-                            output+="<tr><td>" + result[i].name + "</td><td>" + result[i].provider + "</td><td>" + result[i].url + "</td></tr>";
-                        }
-                        output+="</tbody></table>";
-
-                        displayResources.html(output);
-                        $("table").addClass("table");
+                success: function(data) {
+                    for(i=0;i<data.length;i++){
+                        $("<option></option>")
+                            .attr("value",data[i])
+                            .append(data[i])
+                            .appendTo($("#occ"));
                     }
-                });
+                },
+                complete:function () {
+                    var o = "{{ app.user.occupation }}";
 
+                    if( o != "") {
+                        $("select[name='occ']").find("option[value={{ app.user.occupation|striptags|raw }}]").attr("selected", true);
+                    }
+                },
+                type: 'GET'
             });
         });
-
 
     </script>
 {%  endblock %}

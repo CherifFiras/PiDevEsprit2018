@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new InteractionBundle\InteractionBundle(),
             new Mgilet\NotificationBundle\MgiletNotificationBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+            new APY\DataGridBundle\APYDataGridBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
