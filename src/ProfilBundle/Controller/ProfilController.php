@@ -5,8 +5,10 @@ namespace ProfilBundle\Controller;
 use MainBundle\Entity\Album;
 use MainBundle\Entity\CentreInteret;
 use MainBundle\Entity\Emploi;
+use MainBundle\Entity\Loisir;
 use MainBundle\Entity\Publication;
 use MainBundle\Entity\Scolarite;
+use MainBundle\Entity\Signaler;
 use MainBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -102,6 +104,7 @@ class ProfilController extends Controller
             $user->setFacebook($request->get('facebook'));
             $user->setTwitter($request->get('twitter'));
             $user->setInstagram($request->get('instagram'));
+            $user->setOccupation($request->get('occ'));
             //$user->setPhotoprofil("unknownphoto.jpg");
             //----------------------PhotoUpload
 
@@ -128,8 +131,12 @@ class ProfilController extends Controller
         $em = $this->getDoctrine()->getManager();
         $cen_user_film = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'film'));
         $cen_user_serie = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'serie'));
+        $cen_user_livre = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'livre'));
+        $cen_user_artist = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'artist'));
+        $loisir = $em->getRepository(Loisir::class)->findBy(array('user' => $u->getId()));
 
         $newc = new CentreInteret();
+        //$newl = new Loisir();
         if ($request->isMethod('POST'))
         {
             if ($request->request->has('idc')) {
@@ -156,12 +163,48 @@ class ProfilController extends Controller
                 $em->flush();
                 return $this->redirectToRoute('centreinteret');
             }
-
+            if ($request->request->has('newcentrelivre'))
+            {
+                $newc->setType($request->get("type"));
+                $newc->setContenu($request->get("newcentrelivre"));
+                $newc->setUser($u);
+                $em->persist($newc);
+                $em->flush();
+                return $this->redirectToRoute('centreinteret');
+            }
+            if ($request->request->has('newcentreartist'))
+            {
+                $newc->setType($request->get("type"));
+                $newc->setContenu($request->get("newcentreartist"));
+                $newc->setUser($u);
+                $em->persist($newc);
+                $em->flush();
+                return $this->redirectToRoute('centreinteret');
+            }
+            if ($request->request->has('newlois'))
+            {
+                $list = $request->get("newloisir");
+                foreach ($list as $selectedOption){
+                    $newloisir = new Loisir();
+                    $newloisir->setContenu($selectedOption);
+                    $newloisir->setUser($u);
+                    $em->persist($newloisir);
+                    $em->flush();
+                }
+                return $this->redirectToRoute('centreinteret');
+            }
+            if ($request->request->has('idl')) {
+                $dell= $em->getRepository(Loisir::class)->find($request->get("idl"));
+                $em->remove($dell);
+                $em->flush();
+                return $this->redirectToRoute("centreinteret");
+            }
         }
 
         //-----------------
         return $this->render('ProfilBundle:Default:centreinteret.html.twig', array(
-            'iduser' => $u->getId(),'centresfilm' => $cen_user_film,'centresserie' => $cen_user_serie
+            'iduser' => $u->getId(),'centresfilm' => $cen_user_film,'centresserie' => $cen_user_serie,
+            'centreslivre'=>$cen_user_livre,'centreartist'=>$cen_user_artist,'loisir'=>$loisir
         ));
     }
 
@@ -306,7 +349,7 @@ class ProfilController extends Controller
         $series = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'serie'));
         $artists = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'artist'));
         $livres = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'livre'));
-        $loisirs = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'loisir'));
+        $loisirs = $em->getRepository(Loisir::class)->findBy(array('user' => $u->getId()));
         $emplois = $em->getRepository(Emploi::class)->findBy(array('user' => $u->getId()),array('dateDebut' => 'ASC'));
         $scolarite = $em->getRepository(Scolarite::class)->findBy(array('user' => $u->getId()),array('dateDebut' => 'ASC'));
 
@@ -316,8 +359,88 @@ class ProfilController extends Controller
         ));
     }
 
-    public function listPhotoAction()
+    public function autreIndexAction(Request $request,$id)
     {
-        return $this->render('ProfilBundle:Default:listphoto.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $u = $em->getRepository(User::class)->findBy(array('id' => $id));
+        $films = $em->getRepository(CentreInteret::class)->findBy(array('user' => $id,'type' => 'film'));
+        $series = $em->getRepository(CentreInteret::class)->findBy(array('user' => $id,'type' => 'serie'));
+        $artists = $em->getRepository(CentreInteret::class)->findBy(array('user' => $id,'type' => 'artist'));
+        $livres = $em->getRepository(CentreInteret::class)->findBy(array('user' => $id,'type' => 'livre'));
+        $photos = $em->getRepository(Album::class)->findBy(array('user' => $id),null,9,null);
+        $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $id),array('datePublication' => 'DESC'));
+        //------------------------------
+        if ($request->isMethod('POST')) {
+            if ($request->request->has('idautreprofil')) {
+                $user_signal = new Signaler();
+                $user_signal->setCause(($request->get('ncontenusignal')));
+                $user_signal->setIdUser(($request->get('idautreprofil')));
+                $em->persist($user_signal);
+                $em->flush();
+                $idautreuser = ($request->get('idautreprofil'));
+                $lastautreuser = $em->getRepository(User::class)->findBy(array('id' => $idautreuser));
+                return $this->redirectToRoute("autre_profil_homepage", array('id' => $lastautreuser[0]->getId()));
+            }
+        }
+        //------------------------------
+        return $this->render('ProfilBundle:Default:autreProfil.html.twig', array(
+            'autreUser' => $u[0],'films'=>$films,'series'=>$series,'artists'=>$artists,'livres'=>$livres,
+            'photos'=>$photos,'pubs'=>$pubs
+        ));
+    }
+
+    public function autreAproposAction(Request $request,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $u = $em->getRepository(User::class)->findBy(array('id' => $id));
+        $films = $em->getRepository(CentreInteret::class)->findBy(array('user' => $id,'type' => 'film'));
+        $series = $em->getRepository(CentreInteret::class)->findBy(array('user' => $id,'type' => 'serie'));
+        $artists = $em->getRepository(CentreInteret::class)->findBy(array('user' => $id,'type' => 'artist'));
+        $livres = $em->getRepository(CentreInteret::class)->findBy(array('user' => $id,'type' => 'livre'));
+        $loisirs = $em->getRepository(Loisir::class)->findBy(array('user' => $id));
+        $emplois = $em->getRepository(Emploi::class)->findBy(array('user' => $id),array('dateDebut' => 'ASC'));
+        $scolarite = $em->getRepository(Scolarite::class)->findBy(array('user' => $id),array('dateDebut' => 'ASC'));
+        //------------------------------
+        if ($request->isMethod('POST')) {
+            if ($request->request->has('idautreprofil')) {
+                $user_signal = new Signaler();
+                $user_signal->setCause(($request->get('ncontenusignal')));
+                $user_signal->setIdUser(($request->get('idautreprofil')));
+                $em->persist($user_signal);
+                $em->flush();
+                $idautreuser = ($request->get('idautreprofil'));
+                $lastautreuser = $em->getRepository(User::class)->findBy(array('id' => $idautreuser));
+                return $this->redirectToRoute("autre_profil_apropos", array('id' => $lastautreuser[0]->getId()));
+            }
+        }
+        //-----------------------------------------------
+        return $this->render('ProfilBundle:Default:autreApropos.html.twig', array(
+            'autreUser' => $u[0],'films'=>$films,'series'=>$series,'loisirs'=>$loisirs,'artists'=>$artists,'livres'=>$livres,
+            'emplois'=>$emplois,'scolarites'=>$scolarite
+        ));
+    }
+
+    public function autreAlbumAction(Request $request,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $u = $em->getRepository(User::class)->findBy(array('id' => $id));
+        $photos=$em->getRepository(Album::class)->findBy(array('user' => $id),array('datePublication' => 'ASC'));
+        //------------------------------
+        if ($request->isMethod('POST')) {
+            if ($request->request->has('idautreprofil')) {
+                $user_signal = new Signaler();
+                $user_signal->setCause(($request->get('ncontenusignal')));
+                $user_signal->setIdUser(($request->get('idautreprofil')));
+                $em->persist($user_signal);
+                $em->flush();
+                $idautreuser = ($request->get('idautreprofil'));
+                $lastautreuser = $em->getRepository(User::class)->findBy(array('id' => $idautreuser));
+                return $this->redirectToRoute("autre_profil_album", array('id' => $lastautreuser[0]->getId()));
+            }
+        }
+        //-----------------------------------------------
+        return $this->render('ProfilBundle:Default:autreAlbum.html.twig', array(
+            'autreUser' => $u[0],'photos'=>$photos
+        ));
     }
 }

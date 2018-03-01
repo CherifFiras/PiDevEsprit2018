@@ -58,7 +58,7 @@ class Loisir
      */
     public function getUser()
     {
-        return $this->User;
+        return $this->user;
     }
 
     /**
@@ -66,7 +66,7 @@ class Loisir
      */
     public function setUser($User)
     {
-        $this->User = $User;
+        $this->user = $User;
     }
 
     /**

@@ -319,11 +319,11 @@
                                 <img src="{{ asset('') }}{{ vich_uploader_asset(su, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">
                             </div>
                             <div class="notification-event">
-                                <a href="#" class="h6 notification-friend">{{ su.nom ~ su.prenom }}</a>
+                                <a href="{{ path('autre_profil_homepage',{'id':su.id}) }}" class="h6 notification-friend">{{ su.nom ~ su.prenom }}</a>
                                 <span class="chat-message-item">{% if su.genre=="F" %}
                                         Femme
                                     {% endif %}
-                                    {% if su.relegion=="M" %}
+                                    {% if su.genre=="M" %}
                                         Homme
                                     {% endif %} / {{ su.datenaissance|date("j F Y") }}</span>
                             </div>
