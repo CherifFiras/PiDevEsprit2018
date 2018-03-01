@@ -44,21 +44,34 @@ class RechercheController extends Controller
         $films = $request->get("films");
         $series = $request->get("series");
         $livres = $request->get("livres");
+        $musiques = $request->get("musiques");
         $u= $this->container->get('security.token_storage')->getToken()->getUser();
         $this->saveRecherche($u,$genre,$age[0],$age[1],$occupation,$religion,$pays,$ville,$region);
         $datemin = new \DateTime("now -$age[0] year");
         $datemax = new \DateTime("now -$age[1] year");
-        $userList = $manager->getRepository("MainBundle:User")->resultusers($u->getId(),$datemin->format("Y-m-d"),$datemax->format("Y-m-d"),$genre,$occupation,$religion,$pays,$ville,$region,$films,$series,$livres);
+        $userList = $manager->getRepository("MainBundle:User")->resultusers($u->getId(),$datemin->format("Y-m-d"),$datemax->format("Y-m-d"),$genre,$occupation,$religion,$pays,$ville,$region,$films,$series,$livres,$musiques);
 
 
         $normalizer = new ObjectNormalizer();
         //$normalizer->setIgnoredAttributes(array('user'));
 
         $serializer=new Serializer(array(new DateTimeNormalizer(),$normalizer));
-        $data=$serializer->normalize($userList, null, array('attributes' => array('id','nom','prenom')));
+        $data=$serializer->normalize($userList, null, array('attributes' => array('id','nom','prenom','image','pays','ville')));
         return new JsonResponse($data);
 
 
+    }
+
+    public function checkAction(Request $request)
+    {
+        $user = $request->get("user");
+        $touser = $request->get("touser");
+        $users = array($user,$touser);
+        $manager = $this->getDoctrine()->getManager();
+        $x = $manager->getRepository("MainBundle:Relation")->checkMembers($users);
+        $y = $manager->getRepository("MainBundle:Demande")->checkMembers($users);
+        $z = $x+$y;
+        return new JsonResponse($z);
     }
 
     private function saveRecherche($u,$genre,$agemin,$agemax,$occupation,$religion,$pays,$ville,$region)

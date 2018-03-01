@@ -18,4 +18,13 @@ class RelationRepository extends \Doctrine\ORM\EntityRepository
         $qb->orWhere("r.requester = :u2")->setParameter(":u2",$user);
         return $qb->getQuery()->execute();
     }
+
+    public function checkMembers($user)
+    {
+        $qb = $this->createQueryBuilder('r');
+        $qb->select($qb->expr()->count("r"));
+        $qb->andWhere("r.acceptor in (:u1)")->setParameter(":u1",$user);
+        $qb->andWhere("r.requester in (:u2)")->setParameter(":u2",$user);
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }

@@ -70,12 +70,8 @@ doctrine:
                 DAY: DoctrineExtensions\Query\Mysql\Day
                 MONTH: DoctrineExtensions\Query\Mysql\Month
                 YEAR: DoctrineExtensions\Query\Mysql\Year
-<<<<<<< HEAD
-=======
                 date: DoctrineExtensions\Query\Mysql\Date
                 dateadd: DoctrineExtensions\Query\Mysql\DateAdd
-
->>>>>>> 618473b08493ef0911ffe32e8a2c5138359b4550
 
 # Swiftmailer Configuration
 swiftmailer:

@@ -23,4 +23,32 @@ class NotificationController extends Controller
         $data=$serializer->normalize($notifications);
         return new JsonResponse($data);
     }
+
+    public function getDemandesAction()
+    {
+        $user= $this->container->get('security.token_storage')->getToken()->getUser();
+        $manager = $this->getDoctrine()->getManager();
+        $list = $manager->getRepository("MainBundle:Demande")->fetchDemandes($user);
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setIgnoredAttributes(array('sendedDemandes','receivedDemandes'));
+
+        $serializer=new Serializer(array(new DateTimeNormalizer(),$normalizer));
+        $data=$serializer->normalize($list,null, array('attributes' => array('id','sender'=>['id','image','nom','prenom'])));
+        return new JsonResponse($data);
+
+    }
+
+    public function makeAcceptsAsSeenAction()
+    {
+        $user= $this->container->get('security.token_storage')->getToken()->getUser();
+        $manager = $this->get('mgilet.notification');
+        $notifications = $manager->getUnseenNotifications($user);
+        foreach ($notifications as $notif)
+        {
+            if($notif[0]->getSubject() == "Accept");
+            $manager->markAsSeen($user,$notif[0],true);
+        }
+        return new JsonResponse("OK");
+    }
 }

@@ -10,7 +10,7 @@ function loadFilms(query,select)
         $.each(movies['results'],function(key,movie)
         {
             $("<option></option>")
-                .attr("value",movie.id)
+                .attr("value",movie.title)
                 .append(movie.title)
                 .appendTo($(select));
         });
@@ -31,7 +31,7 @@ function loadSeries(query,select)
         $.each(movies['results'],function(key,movie)
         {
             $("<option></option>")
-                .attr("value",movie.id)
+                .attr("value",movie.title)
                 .append(movie.original_name)
                 .appendTo($(select));
         });
