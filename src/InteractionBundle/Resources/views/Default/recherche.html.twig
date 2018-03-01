@@ -131,29 +131,22 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="form-group">
+                                            <div id="livre_div" class="form-group">
                                                 <select id="livre" class="ui fluid search dropdown" multiple="">
                                                     <option value="">Livres</option>
-                                                    <option value="Insomnia">Insomnia</option>
-                                                    <option value="The Shinin">The Shining</option>
-                                                    <option value="The Social Animal">The Social Animal</option>
-                                                    <option value="Do androids dream with an electric ship">Do androids dream with an electric ship</option>
                                                 </select>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="form-group">
+                                            <div id="music_div" class="form-group">
                                                 <select id="music" class="ui fluid search dropdown" multiple="">
                                                     <option value="">Musique</option>
-                                                    <option value="Rap">Rap</option>
-                                                    <option value="Metal">Metal</option>
-                                                    <option value="Rock">Rock</option>
                                                 </select>
                                             </div>
                                         </li>
                                     </ul>
                                     <div class="ui-block-title">
-                                        <a id="searchh"  class="h6 title ">Rechercher</a>
+                                        <a id="searchh"  style="color:white;font-weight: bold;" class="btn btn-primary btn-md">Rechercher<div class="ripple-container"></div></a>
                                     </div>
                                 </div>
                             </div>
@@ -171,10 +164,24 @@
     <script type="text/javascript" src="{{ asset('js/BattutaApi.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/themoviedbApi.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/Models.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/Apis.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
     <script>
         var age;
         $(document).ready(function() {
+
+            function makeDemande(id){
+                $.ajax({
+                    url:"{{ path('demande') }}",
+                    type:"get",
+                    data:{"user":$("#"+id).attr("value")},
+                    success:function (data) {
+                        $("#"+id).hide();
+                    }
+
+                });
+            }
+
             $('.ui.dropdown').dropdown({
                 onChange:function (x,y,z) {
                 }
@@ -182,10 +189,15 @@
 
             $("#film_div").find(".search").keyup(function (v) {
                 loadFilms($("#film_div").find("input").val(),"#film");
-                var musique = $("#music").val();
             });
             $("#serie_div").find(".search").keyup(function (v) {
                 loadSeries($("#serie_div").find("input").val(),"#serie");
+            });
+            $("#livre_div").find(".search").keyup(function (v) {
+                loadLivres($("#livre_div").find("input").val(),"#livre");
+            });
+            $("#music_div").find(".search").keyup(function (v) {
+                loadMusique($("#music_div").find("input").val(),"#music");
             });
 
             $("#searchh").click(function () {
@@ -210,23 +222,42 @@
                 $.each($("#livre_div").find("a"),function (k,v) {
                     livre[i++] = v.dataset.value;
                 });
+                var music = [];
+                i = 0;
+                $.each($("#music_div").find("a"),function (k,v) {
+                    music[i++] = v.dataset.value;
+                });
 
                 $.ajax({
 
                     url:"{{ path("search_result") }}",
                     type:'get',
-                    data:{"gender":gender,"age":age,"occupation":occupation,"pays":pays,"ville":ville,"region":region,"religion":religion,"films":film,"series":serie,"livres":livre},
+                    data:{"gender":gender,"age":age,"occupation":occupation,"pays":pays,"ville":ville,"region":region,"religion":religion,"films":film,"series":serie,"livres":livre,"musiques":music},
                     success:function (data) {
                         $("#result_content").empty();
                         $.each(data,function(key,user)
                         {
-                            var args = ["{{ asset('img/') }}avatar16-sm.jpg","{{ path('profil_homepage') }}"+user.id,user.nom,"{{ asset('icons/icons.svg#olymp-happy-face-icon') }}","{{ asset('icons/icons.svg#olymp-three-dots-icon') }}","{{ asset('icons/icons.svg#olymp-little-delete') }}"];
-                            var s = formatString(searchResult,args);
-                            $("#result_content").append(s);
+                            var h = "";
+                            $.ajax({
+                                url:"{{ path("check_users") }}",
+                                type:'get',
+                                data:{"user":{{ app.user.id}},"touser":user.id},
+                                success:function (count) {
+                                    if (count == 0) h = '';
+                                    else h='style="display:none"';
+                                    var args = ["{{ asset('images/') }}"+user.image,"{{ path('profil_homepage') }}"+user.id,user.nom+" "+user.prenom,user.pays+" "+user.ville,h,user.id,user.id,"{{ asset('icons/icons.svg#olymp-happy-face-icon') }}"];
+                                    var s = formatString(searchResult,args);
+                                    $("#result_content").append(s);
+                                },
+                                complete:function () {
+                                    $("#de"+user.id).on("click",function (e) {
+                                        makeDemande(e.target.id);
+                                    });
+                                }
+                            });
                         });
                     }
                 });
-
             });
         });
         $("#ageInt").slider();

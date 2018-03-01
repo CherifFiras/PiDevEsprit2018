@@ -33,8 +33,8 @@ class User extends BaseUser implements NotifiableInterface
     {
         parent::__construct();
         $this->interets = new ArrayCollection();
-        $this->receivers = new ArrayCollection();
-        $this->senders = new ArrayCollection();
+        $this->receivedDemandes = new ArrayCollection();
+        $this->sendedDemandes = new ArrayCollection();
     }
 
     /**
@@ -197,45 +197,62 @@ class User extends BaseUser implements NotifiableInterface
     /**
      * @ORM\OneToMany(targetEntity="MainBundle\Entity\Demande", mappedBy="sender")
      */
-    private $senders;
+    private $sendedDemandes;
 
 
     /**
      * @ORM\OneToMany(targetEntity="MainBundle\Entity\Demande", mappedBy="receiver")
      */
-    private $receivers;
+    private $receivedDemandes;
 
     /**
      * @return mixed
      */
-    public function getReceivers()
+    public function getReceivedDemandes()
     {
-        return $this->receivers;
+        return $this->receivedDemandes;
     }
 
     /**
-     * @param mixed $receivers
+     * @param mixed $receivedDemandes
      */
-    public function setReceivers($receivers)
+    public function setReceivedDemandes($receivedDemandes)
     {
-        $this->receivers = $receivers;
+        $this->receivedDemandes = $receivedDemandes;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
     }
 
     /**
      * @return mixed
      */
-    public function getSenders()
+    public function getSendedDemandes()
     {
-        return $this->senders;
+        return $this->sendedDemandes;
     }
 
     /**
-     * @param mixed $senders
+     * @param mixed $sendedDemandes
      */
-    public function setSenders($senders)
+    public function setSendedDemandes($sendedDemandes)
     {
-        $this->senders = $senders;
+        $this->sendedDemandes = $sendedDemandes;
     }
+
 
 
     /**

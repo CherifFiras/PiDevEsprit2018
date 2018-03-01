@@ -25,3 +25,27 @@ chat:
 message_notifications:
     path:     /getmessagenotifications
     defaults: { _controller: InteractionBundle:Notification:getMessageNotification }
+
+check_users:
+    path:     /checkusers
+    defaults: { _controller: InteractionBundle:Recherche:check }
+
+demande:
+    path:     /demande
+    defaults: { _controller: InteractionBundle:Communication:demande }
+
+demande_notifications:
+    path:     /getdemandenotifications
+    defaults: { _controller: InteractionBundle:Notification:getDemandes }
+
+accept_demande:
+    path:     /acceptdemande
+    defaults: { _controller: InteractionBundle:Communication:acceptDemande }
+
+reject_demande:
+    path:     /rejectdemande
+    defaults: { _controller: InteractionBundle:Communication:rejectDemande }
+
+make_accepts_seen:
+    path:     /makeacceptsasseen
+    defaults: { _controller: InteractionBundle:Notification:makeAcceptsAsSeen }

@@ -11,12 +11,11 @@ namespace MainBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function resultusers($u,$datemin,$datemax,$gender,$occupation,$religion,$pays,$ville,$region,$films,$series,$livres)
+    public function resultusers($u,$datemin,$datemax,$gender,$occupation,$religion,$pays,$ville,$region,$films,$series,$livres,$musiques)
     {
         $c = array();
         $t = array();
         $qb = $this->createQueryBuilder('u');
-        //$qb->andWhere("u.date_naissance >= :dmax")->setParameter(":dmax",$datemax);
         $qb->andWhere("u.date_naissance BETWEEN :dmax AND :dmin ")->setParameter(":dmin","$datemin")->setParameter("dmax","$datemax");
         $qb->andWhere("u.id != :ii")->setParameter(":ii",$u);
         if($gender != null)
@@ -37,30 +36,44 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         if($films != null)
         {
             $c = array_merge($c,$films);
-            $t = array_merge($t,array("Movie"));
+            $t = array_merge($t,array("film"));
         }
 
         if($series != null)
         {
             $c = array_merge($c,$series);
-            $t = array_merge($t,array("Serie"));
+            $t = array_merge($t,array("serie"));
         }
         if($livres != null)
         {
             $c = array_merge($c,$livres);
-            $t = array_merge($t,array("Book"));
+            $t = array_merge($t,array("livre"));
         }
-        if($films != null && $series!= null && $livres != null)
+        if($musiques != null)
+        {
+            $c = array_merge($c,$musiques);
+            $t = array_merge($t,array("artist"));
+        }
+        if($films != null || $series!= null || $livres != null || $musiques!= null)
             $qb->andWhere($qb->expr()->andX("i.type in (:ty)","i.contenu in (:co)"))
                 ->setParameter(":ty",$t)->setParameter(":co",$c);
 
 
 
+        //$qb->leftJoin("u.sendedDemandes","sd","WITH");
+        //$qb->andWhere($qb->expr()->orX("sd.receiver != :reid","sd.receiver is null"))->setParameter(":reid",$u);
+        //$qb->leftJoin("u.receivedDemandes","rd","WITH");
+        //$qb->andWhere($qb->expr()->orX("rd.sender != :seid","rd.sender is null"))->setParameter(":seid",$u);
+        //$qb->leftJoin("u.requesters","re","WITH");
+        //$qb->andWhere($qb->expr()->orX("re.acceptor != :accid","re.acceptor is null"))->setParameter(":accid",$u);
+        //$qb->leftJoin("u.acceptors","ac","WITH");
+        //$qb->andWhere("ac.requester != 12");//->setParameter(":reqid",$u);
+
         return $qb->getQuery()->execute();
 
 
-
     }
+
 
     public function findByRole($role)
     {

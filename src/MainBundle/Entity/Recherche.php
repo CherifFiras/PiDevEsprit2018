@@ -79,6 +79,52 @@ class Recherche
      */
     protected $age_max;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User")
+     * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
+     *
+     */
+    private $user;
+
+    /**
+     * @var Date
+     *
+     * @ORM\Column(name="date", type="date")
+     */
+    protected $date;
+
+    /**
+     * @return Date
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param Date $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
 
     /**
      * Get id
